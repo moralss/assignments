@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#target1").css("color", "red");
+            $(".target2").prop("disabled", true);
+            $(".target4").clone().appendto("#left-well");
+            $("body").css("color", "red");
+        });
+    </script>
+
+    <h3 class="text-center">learning jquery</h3>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-9">
+                <div class="well" id="left-well">
+                    <button id="target1" class="btn btn-default">target1</button>
+                    <button class="btn btn-primary target2">target2</button>
+                </div>
+            </div>
+
+
+            <div class="col col-lg-9">
+                <div class="well" id="right-well">
+                    <button class="btn btn-primary target3">target3</button>
+                    <button class="btn btn-primary target4">target4</button>
+
+
+
+                </div>
+
+            </div>
+
+</body>
+
+</html>
