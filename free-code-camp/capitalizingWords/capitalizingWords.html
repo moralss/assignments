@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>capitalizing Words</title>
+    </head>
+    <body>
+        <script>
+            var emptyArray = [];
+            var result = "";
+            var string = "my rEal naMe is moRal";
+            string = string.toLowerCase();
+            var turnStringIntoArray = string.split(' ');
+
+            for (var i = 0; i < turnStringIntoArray.length; i++) {
+
+                var firstIndex = turnStringIntoArray[i][0];
+
+                var upperCase = firstIndex.toUpperCase();
+
+                results = turnStringIntoArray[i].replace(firstIndex, upperCase);
+                emptyArray.push(results);
+
+
+
+
+                console.log(emptyArray.join(' '));
+            }
+            console.log(emptyArray.join(' '));
+
+
+
+        </script>
+
+    </body>
+</html>
