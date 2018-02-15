@@ -10,12 +10,12 @@ function capitalizeFirstLetters(stringToBecapitalized) {
 
         var firstIndexOfEveryWord = turnStringIntoArray[i][0];
 
-        var firstIndexOfEveryWord = firstIndexOfEveryWord.toUpperCase();
+        var firstIndexCapitalize = firstIndexOfEveryWord.toUpperCase();
 
-        replaceFirstIndexOfEveryWord = turnStringIntoArray[i].replace(firstIndexOfEveryWord, firstIndexOfEveryWord);
+        replaceFirstIndexOfEveryWord = turnStringIntoArray[i].replace(firstIndexOfEveryWord, firstIndexCapitalize);
         emptyArray.push(replaceFirstIndexOfEveryWord);
 
-        return emptyArray.join(' ');
+        
 
     }
     return emptyArray.join(' ');
