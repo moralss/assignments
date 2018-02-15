@@ -18,7 +18,7 @@ function capitalizeFirstLetters(stringToBecapitalized) {
         return emptyArray.join(' ');
 
     }
-
+    return emptyArray.join(' ');
 }
 
 console.log(capitalizeFirstLetters(string));
