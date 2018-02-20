@@ -1,0 +1,68 @@
+<html>
+<title>Wiki</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
+<style>
+    #output {
+        background-color: #0F8FF3;
+    }
+
+    body {
+        background-color: #00579B;
+    }
+</style>
+
+<body>
+    <div class="intro">
+        <div class="container">
+            <div class="row">
+                <h1>Welcome to Morals Wikipedia viewer</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <a href="https://en.wikipedia.org/wiki/Special:Random">
+                <img src="https://vignette.wikia.nocookie.net/simpsons/images/d/dd/Wikipedia-logo.svg.png/revision/latest?cb=20100610161747" alt="" target="blank"></a>
+
+            <input id="searchTerm" type="text" class="form-control">
+            <button id="search" type="button" class="btn btn-success">Search request</button>
+            <ul id="output">
+
+
+            </ul>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $('#search').click(function () {
+            var searchTerm = document.getElementById("searchTerm").value;
+
+            var wikiSearchUrl = 'https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=opensearch&search=' + searchTerm;
+
+
+            $.getJSON(wikiSearchUrl, function (data) {
+                $("#output").html("");
+                for (i = 0; i < data[1].length; i++) {
+                    console.log(data[1][i]);
+                    var keyWord = list = "<li><b>  " + data[1][i] + " </b></li>";
+                    var description = "<li>" + data[2][i] + "</li>";
+                    var link = "<li> <a href='" + data[3][i] + "'>link To Site</a></li>";
+
+
+                    $("#output").append(keyWord + description + link);
+                }
+
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>
