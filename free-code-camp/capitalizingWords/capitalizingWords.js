@@ -1,3 +1,4 @@
+
 var emptyArray = [];
 var result = "";
 var string = "my rEal naMe is moRal";
@@ -18,7 +19,7 @@ function capitalizeFirstLetters(stringToBecapitalized) {
         
 
     }
-    return emptyArray.join(' ');
+    console.log(emptyArray.join(' '));
 }
 
 console.log(capitalizeFirstLetters(string));

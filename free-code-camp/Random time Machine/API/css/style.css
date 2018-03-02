@@ -1,0 +1,29 @@
+.section {
+        padding-top: 330px;
+    }
+
+    .btn {
+        float: right;
+    }
+
+    body {  
+        background-color: DodgerBlue;
+    }
+
+    .myQuotecontainer {
+        display: block;
+    }
+
+    .page-header {
+        padding: 0;
+    }
+
+    header {
+        background-color: white;
+        padding-bottom: 50px;
+    }
+
+    header,
+    h1 {
+        color: dodgerblue;
+    }

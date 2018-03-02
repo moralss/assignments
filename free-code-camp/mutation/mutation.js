@@ -1,3 +1,4 @@
+
 function mutation(arr) {
     var stringValue = arr[1].toUpperCase();
     var stringCompare = arr[0].toUpperCase();
@@ -9,3 +10,4 @@ function mutation(arr) {
 }
 
 console.log(mutation(["Hello", "heLo"]));
+
