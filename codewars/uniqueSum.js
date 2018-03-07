@@ -1,15 +1,15 @@
 
-function uniqueSum(lst) {
+function uniqueSum(list) {
     var emptyString = [];
     var sum = 0;
 
-    if (lst.length === 0){
+    if (list.length === 0){
         sum =  null;
     }
 
-    for (var index = 0; index < lst.length; index++) {
-        if (emptyString.indexOf(lst[index]) === -1) {
-            emptyString.push(lst[index]);
+    for (var index = 0; index < list.length; index++) {
+        if (emptyString.indexOf(list[index]) === -1) {
+            emptyString.push(list[index]);
 
             var sum = emptyString.reduce(function (a, b) {
                 return a + b;
