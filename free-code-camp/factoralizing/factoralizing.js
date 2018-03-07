@@ -6,10 +6,9 @@ function factorialize(Number) {
     for (var i = 1; i <= Number; i++) {
         arrNumbersToFactorlize.push(i);
     }
+    sumTotal = arrNumbersToFactorlize.reduce((a ,b) => a * b );
 
-    for (var i = 1; i <= arrNumbersToFactorlize.length; i++) {
-        sumTotal = sumTotal * i;
-
-    }
     return sumTotal;
 }
+
+console.log(factorialize(9));
