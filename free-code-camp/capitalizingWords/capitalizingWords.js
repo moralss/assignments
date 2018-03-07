@@ -4,16 +4,15 @@ var result = "";
 var string = "my rEal naMe is moRal";
 
 function capitalizeFirstLetters(stringToBecapitalized) {
-    stringToBecapitalized = stringToBecapitalized.toLowerCase();
-    var turnStringIntoArray = stringToBecapitalized.split(' ');
+    
+    var turnStringIntoArray = stringToBecapitalized.toLowerCase().split(' ');
 
     for (var i = 0; i < turnStringIntoArray.length; i++) {
 
-        var firstIndexOfEveryWord = turnStringIntoArray[i][0];
 
-        var firstIndexCapitalize = firstIndexOfEveryWord.toUpperCase();
+        var firstIndexCapitalize = turnStringIntoArray[i][0].toUpperCase();
 
-        replaceFirstIndexOfEveryWord = turnStringIntoArray[i].replace(firstIndexOfEveryWord, firstIndexCapitalize);
+        replaceFirstIndexOfEveryWord = turnStringIntoArray[i].replace(turnStringIntoArray[i][0], firstIndexCapitalize);
         emptyArray.push(replaceFirstIndexOfEveryWord);
 
         
