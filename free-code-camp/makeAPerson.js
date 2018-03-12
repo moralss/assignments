@@ -1,44 +1,44 @@
 
 var Person = function (firstAndLast) {
-
-    var initialsArray = firstAndLast.split(' ');
-
-    this.getFullName = function () {
-        return initialsArray[0] + " " + initialsArray[1];
-    };
-
-    this.getLastName = function () {
-        return initialsArray[1];
-    };
+    var initialsArray = firstAndLast.split(" ");
 
     this.getFirstName = function () {
         return initialsArray[0];
-    };
+    }
 
-    this.setFirstName = function (firstName) {
-         initialsArray[0] = firstName;
-    };
+    this.getLastName = function(){
+        return initialsArray[1];
+    }
 
+    this.setFirstName = function (name) {
+        initialsArray[0] = name;
+    }
 
-    this.setLastName = function (LastName) {
-        initialsArray[1] = LastName;
-    };
+    this.setLastName = function (name) {
+        initialsArray[1] = name;
+    }
 
-    this.setFullName = function (firstAndLast) {
-        var arraySplit = firstAndLast.split(' ');
-        this.setFirstName(arraySplit[0]);
-        this.setLastName(arraySplit[1]);
-    };
+    this.setFullName = function(firstAndLast){
+        var arrayInitials = firstAndLast.split(" ");
+        this.setFirstName(arrayInitials[0]);
+        this.setLastName(arrayInitials[1]);
+    }
 
+    this.getFullName = function(){
+        return initialsArray[0] + " " + initialsArray[1];
+    }
 
 };
 
 var bob = new Person('Bob Ross');
 
-bob.setFullName('Moral Smith');
-console.log(bob.getFullName());
-console.log(bob.getLastName());
+bob.setFirstName("Moral");
+bob.setLastName("Jera");
+bob.setFullName("Thabo Noboli");
+
 console.log(bob.getFirstName());
+console.log(bob.getLastName());
+console.log(bob.getFullName());
 
 
 
