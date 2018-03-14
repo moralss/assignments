@@ -1,20 +1,38 @@
 function diffArray(arr1, arr2) {
-  var newArr = [];
-  
-  function onlyInFirst(first, second) {
-  // Looping through an array to find elements that don't exist in another array
-    for (var i=0;i<first.length;i++) {
-      if (second.indexOf(first[i]) === -1) {
-        // Pushing the elements unique to first to newArr
-        newArr.push(first[i]);
-      }
-    }
-  }
-  
-  onlyInFirst(arr1, arr2);
-  onlyInFirst(arr2, arr1);
-  
-  return newArr;
-};
+  var arrayElementsTheSame = [];
+  var finalArray = [];
 
-console.log(diffArray([1,3,4,5], [1,2,3]));
+  var checkAndCompare = function (firstArray, secondArray) {
+
+    for (var i in firstArray) {
+      newArray = secondArray.every(function (element) {
+        return element !== firstArray[i];
+      });
+
+      if (newArray) {
+        arrayElementsTheSame.push(firstArray[i]);
+      }
+
+    }
+
+    return arrayElementsTheSame;
+  }
+
+
+
+  checkAndCompare(arr2, arr1) 
+   checkAndCompare(arr1, arr2);
+  
+  return arrayElementsTheSame;
+}
+
+
+
+
+console.log(diffArray(["andesite", "grass", "dirt", "pink wool", "dead shrub"], ["diorite", "andesite", "grass", "dirt", "dead shrub"]));
+
+
+
+
+// ["diorite", "andesite", "grass", "dirt", "pink wool", "dead shrub"], ["diorite", "andesite", "grass", "dirt", "dead shrub"] should return ["pink wool"].
+// ["andesite", "grass", "dirt", "pink wool", "dead shrub"], ["diorite", "andesite", "grass", "dirt", "dead shrub"] should return ["diorite", "pink wool"].
