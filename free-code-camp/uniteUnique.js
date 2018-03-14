@@ -1,25 +1,24 @@
+
+
 function uniteUnique(arr) {
-    var array = Array.from(arguments);
-    var newArray = [];
-    array = array.reduce(function (a, b) {
-        return a.concat(b)
-    })
 
-    
-    var sortedArray = array.sort(function(a , b){
-        return a - b;
-    })
+var noDuplicates = [];
 
-    
+var combinedArray = Array.from(arguments).join('');
+var findDigits = combinedArray.match(/[0-9]/g).map(x => Number(x));
 
-      for (var i = 0; i < sortedArray.length; i++){
-          if(newArray.indexOf(sortedArray[i]) === -1){
-              newArray.push(sortedArray[i]);
-              
-
-          }
-        }
-        console.log(newArray);
+for (var i in findDigits){
+    if(noDuplicates.indexOf(findDigits[i]) === -1){
+        noDuplicates.push(findDigits[i]);
+    }
 }
 
-uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+
+return noDuplicates.sort((a , b) => a - b);
+
+
+
+
+}
+
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
