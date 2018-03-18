@@ -16,12 +16,8 @@ function translatePigLatin(str) {
 
     }
 
-
     return results;
 }
-
-
-
 
  console.log(translatePigLatin("glove"));
 
