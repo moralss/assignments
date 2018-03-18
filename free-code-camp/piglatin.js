@@ -26,9 +26,3 @@ function translatePigLatin(str) {
  console.log(translatePigLatin("glove"));
 
 console.log(translatePigLatin("algorithm"));
-
-
-
-// translatePigLatin("glove") should return "oveglay".
-// translatePigLatin("algorithm") should return "algorithmway".
-// translatePigLatin("california") should return "aliforniacay".
