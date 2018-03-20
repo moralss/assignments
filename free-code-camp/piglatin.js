@@ -1,4 +1,5 @@
 
+
 function translatePigLatin(str) {
     var shiftedArray = [];
     var results = "";
@@ -7,18 +8,18 @@ function translatePigLatin(str) {
     vows = (/[aeiou]/g);
 
     if (vows.test(splitedSting[0])) {
-         return str + "way";
+       results = str + "way";
     }
 
     while (!vows.test(splitedSting[0])) {
         shiftedArray.push(splitedSting.shift());
-        var results = splitedSting.join('') + shiftedArray.join('') + "ay";
+         results = splitedSting.join('') + shiftedArray.join('') + "ay";
 
     }
 
     return results;
 }
 
- console.log(translatePigLatin("glove"));
+console.log(translatePigLatin("glove"));
 
 console.log(translatePigLatin("algorithm"));
