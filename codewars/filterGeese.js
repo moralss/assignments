@@ -11,6 +11,3 @@ console.log(gooseFilter(["Mallard", "Hook Bill", "African", "Crested", "Pilgrim"
 
 
 
-
-
-

@@ -1,13 +1,13 @@
+
 function perAlone(str) {
     var splitString = str.split('');
-    var swappedArray = [];
     counter = 0;
     generatePermutation(splitString.length, splitString);
     return counter;
+
 }
 function generatePermutation(arrayLength, array) {
     if (arrayLength === 1 && !/([a-z])\1+/g.test(array.join(''))) {
-
         counter++;
     } else {
         for (var i = 0; i < arrayLength; i++) {
@@ -25,4 +25,5 @@ function swap(a, b, array) {
 
 
 
-console.log(perAlone('aab'));
+console.log(perAlone('abcd'));
+

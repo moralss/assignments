@@ -1,4 +1,5 @@
 function smallestCommons(arr) {
+  
   var maxRange = Math.max(arr[0], arr[1]);
   var minRange = Math.min(arr[0], arr[1]);
 

@@ -33,6 +33,7 @@ function checkExam(array1, array2) {
 console.log(checkExam(["a", "a", "b", "b"], ["a", "c", "b", "d"]));
 console.log(checkExam(["a", "a", "c", "b"], ["a", "a", "b", ""]));
 console.log(checkExam(["b", "c", "b", "a"], ["", "a", "a", "c"]));
+console.log(checkExam(["a", "a", "b", "c"], ["a", "a", "b", "c"]));
 
 
 

@@ -1,7 +1,27 @@
-function repeatString(num , string){
-   repeat = string.repeat(num).split(' ');
+// Sum Numbers
+function sum(numbers) {
+    "use strict";
 
-   return repeat;
-}
+    
+    if (numbers.length === 0) {
+        return 0;
+    }
 
-console.log(repeatString(4 , "moral"));
+    if(numbers.length !== 0){
+        var sum = numbers.reduce(function (a, b) {
+        return a + b;
+
+    });
+
+    }
+    
+
+    return sum;
+
+
+};
+
+
+console.log(sum([1, 5.2, 4, 0, -1]));
+// Test.assertEquals(sum([]), 0);
+// Test.assertEquals(sum([1, 5.2, 4, 0, -1]), 9.2);

@@ -42,7 +42,3 @@ for (var i in str.split('')) {
 
 
 console.log(decode("ưɞʈʈʚÀȊʚʬʈɘÆ"));
-
-// Test.assertEquals(encode("Hello World!"), "ưɞʈʈʚÀȊʚʬʈɘÆ")
-// Test.assertEquals(decode("ưɞʈʈʚÀȊʚʬʈɘÆ"), "Hello World!");
-

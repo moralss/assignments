@@ -1,6 +1,6 @@
 
 function uniqueSum(list) {
-    var emptyString = [];
+    var emptyArray = [];
     var sum = 0;
 
     if (list.length === 0){
@@ -8,10 +8,10 @@ function uniqueSum(list) {
     }
 
     for (var index = 0; index < list.length; index++) {
-        if (emptyString.indexOf(list[index]) === -1) {
-            emptyString.push(list[index]);
+        if (emptyArray.indexOf(list[index]) === -1) {
+            emptyArray.push(list[index]);
 
-            var sum = emptyString.reduce(function (a, b) {
+            var sum = emptyArray.reduce(function (a, b) {
                 return a + b;
             });
         }

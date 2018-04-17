@@ -14,6 +14,7 @@ function rot13(str) {
                 }
             }
         }
+        
     }
 
     return temp.join("");

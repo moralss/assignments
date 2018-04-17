@@ -1,0 +1,67 @@
+    #ticTacToe {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .block {
+        border: 2px solid green;
+        width: 150px;
+        height: 150px;
+    }
+
+    .gameOver {
+        display: grid;
+    }
+
+    #option {
+        display:grid;
+        padding: 20px;
+        display: grid;
+        grid-template: repeat(1, 1fr) / repeat(4, 1fr);
+        grid-gap: 1em;
+    }
+
+    #chooseX {
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    #chooseO {
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+
+    #choosePlayers {
+        display: grid;
+        grid-template: 1fr;
+        justify-content: center;
+        grid-gap: 1em;
+    }
+
+
+    #buttonPlay {
+        grid-column: span 2;
+        grid-row: span 4;
+    }
+
+    .block {
+        font-size: 60px;
+    }
+
+    .displayGameOver {
+        display:grid;
+        justify-content: center;
+        grid-template: 1fr ;
+        font-size: 30px;
+        grid-gap:1px;
+        padding-bottom: 20px;
+    }
+
+
+    

@@ -12,16 +12,19 @@ function add(stringNumber) {
             if(filteredString[i] < 0) {
                 throw "Negative numbers not allowed";
             }
-            
+
+
             if (filteredString[i] > 0) {
                 calculatedResults = filteredString.reduce(function (a, c) {
                     return parseInt(a) + parseInt(c);
                 });
             }
         };
+
     }
 
     return calculatedResults;
+    
 }
 
 console.log(add("1\n2,3"));

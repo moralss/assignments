@@ -18,12 +18,3 @@ console.log(countRepeats('AAABCCDB'));
 
 
 
-
-
-// describe("removeRepeats", function(){
-//     it ("Should count repeats", function(){
-//         Test.assertEquals(countRepeats('AABCCD'),2);
-//         Test.assertEquals(countRepeats('AABCCDA'),2)
-//         Test.assertEquals(countRepeats('AaBBCCC'),3);
-//     });
-// });
