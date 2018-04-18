@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>simonGame</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .act {
+        background-color: black !important;
+    }
+
+    #red {
+        background-color: red;
+    }
+
+    #red:active {
+        background-color: black;
+    }
+
+    #blue {
+        background-color: blue;
+    }
+
+    #blue:active {
+        background-color: black;
+    }
+
+    #green {
+        background-color: green;
+    }
+
+    #green:active {
+        background-color: black;
+    }
+
+    #yellow {
+        background-color: yellow;
+    }
+
+    #yellow:active {
+        background-color: black;
+    }
+
+    .buttons {
+        cursor: pointer;
+        height: 200px;
+        width: 200px;
+          border-radius: 15px 50px 30px 5px; 
+    }
+
+    .simonGame {
+        max-width: 400px;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
+
+    .simonGame-buttons {
+        padding: 20px;
+        display: grid;
+        justify-content: center;
+        grid-template: repeat(5, 1fr) / repeat(2, 1fr);
+        grid-gap: 15px;
+        border-radius: 15px 50px 30px 5px; 
+    }
+
+    .inside {
+        grid-column: span 2;
+        grid-rows: span 2;
+      
+        
+
+    }
+</style>
+
+<body>
+
+    <div class="simonGame">
+        <h1 style="text-align:center">Simon Game</h1>
+        <div class="simonGame-buttons">
+            <div class="buttons" id="red" val="0"></div>
+            <div class="buttons" id="green" val="2"></div>
+            <div style="background-color:purple;" class="inside">
+                
+            </div>
+            <div class="buttons" id="blue" val="1"></div>
+            <div class="buttons" id="yellow" val="3"></div>
+        </div>
+    </div>
+
+    <script src="mainJs.js ">
+
+    </script>
+
+</body>
+
+</html>
