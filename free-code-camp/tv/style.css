@@ -1,0 +1,23 @@
+   #streamers {
+            font-size: 36px;
+            list-style-type: none;
+        }
+
+        li {
+            color:#067871;
+        }
+
+        .section3{
+            background-color:#067871;
+            padding-top: -66;
+        }
+
+         .bg-primary{
+             color: white;
+         }
+
+         .main-page{
+             background-color:#C0F0ED;
+         }
+
+        
