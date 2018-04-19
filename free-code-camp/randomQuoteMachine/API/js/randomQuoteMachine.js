@@ -2,11 +2,10 @@
 
 document.getElementById('button').addEventListener('click', button);
 
-
 function button() {
-    fetch('https://random-quote-generator.herokuapp.com/api/quotes/')
-        .then((res) => { return res.json() })
-        .then((data) => {
+    axios.get('https://random-quote-generator.herokuapp.com/api/quotes/')
+        .then(function (response, data) {
+            data = response.data;
             formatObject(data);
         });
 };
@@ -19,7 +18,7 @@ function getRandomInt(max) {
 
 function formatObject(object) {
 
-    var chooseRandomQuote = getRandomInt(81);   
+    var chooseRandomQuote = getRandomInt(81);
     var authorName = document.getElementById("author");
     var quoteMessage = document.getElementById("quote");
     quoteMessage.innerHTML = `quotes ${object[chooseRandomQuote].quote}`;
