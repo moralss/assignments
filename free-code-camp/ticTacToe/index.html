@@ -3,7 +3,7 @@
 
 <head>
 
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ticTac.css">
 
 </head>
 
@@ -18,33 +18,38 @@
     </div>
 
     <div id="choosePlayers">
-        <button id="buttonPlay" onclick="playGame()">Play Game</button>
+        <button id="buttonPlay" onclick="startingGame()">Play Game</button>
     </div>
 
     <table id="ticTacToe">
         <tr>
-            <td class="block" id=0></td>
-            <td class="block" id=1></td>
-            <td class="block" id=2></td>
+            <td class="block" id="0"></td>
+            <td class="block" id="1"></td>
+            <td class="block" id="2"></td>
         </tr>
         <tr>
-            <td class="block" id=3></td>
-            <td class="block" id=4></td>
-            <td class="block" id=5></td>
+            <td class="block" id="3"></td>
+            <td class="block" id="4"></td>
+            <td class="block" id="5"></td>
         </tr>
         <tr>
-            <td class="block" id=6></td>
-            <td class="block" id=7></td>
-            <td class="block" id=8></td>
+            <td class="block" id="6"></td>
+            <td class="block" id="7"></td>
+            <td class="block" id="8"></td>
         </tr>
     </table>
 
 
-    <div id="showEndding"></div>
+    <div id="showEnding" style="visibility:hidden">
+        <div class="displayGameOver">
+            <h3>game finished</h3><button onclick=startGameAllOver()>replay</button> 
+            <button>quit</button> 
+        </div>
+    </div>
 </body>
 
 <script src="tic-tac-toe.js">
- 
+
 </script>
 
 </html>

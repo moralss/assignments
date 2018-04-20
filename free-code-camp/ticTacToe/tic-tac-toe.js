@@ -1,6 +1,4 @@
-
-
-const winningCombonation = [
+const winningCombination = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -11,75 +9,70 @@ const winningCombonation = [
     [6, 4, 2]
 ];
 
-document.getElementById('ticTacToe').style.visibility = "hidden";
-
-var allMoves = [];
-var playerMoves = [];
-var player = "X";
-var computerSimple = "O";
-
-
-function chooseX() {
-    player = "x";
-    computerSimple = "o";
+function setButtonListeners() {
+    var arrayBlocks = document.querySelectorAll('.block');
+    for (var i = 0; i < arrayBlocks.length; i++) {
+        arrayBlocks[i].addEventListener('click', getPlayerMove);
+    };
 };
+
+setButtonListeners();
+stylingElements(['ticTacToe'], "hidden");
+
+var playerMoves = [];
+var computerArrayMoves = [];
+var player;
+var computerSimple;
+var playing = false;
+
 
 function chooseO() {
     player = "O";
     computerSimple = "X";
 };
 
-function playGame() {
-    document.getElementById('ticTacToe').style.visibility = "visible";
-    document.getElementById('chooseX').style.visibility = "hidden";
-    document.getElementById('chooseO').style.visibility = "hidden";
-    document.getElementById('XorOHeader').style.visibility = "hidden";
-    accessblock();
+function stylingElements(arr, action) {
+    arr.forEach(element => document.getElementById(element).style.visibility = action);
 };
 
-var collection = document.querySelectorAll('.block');
-function accessblock() {
-    for (var i = 0; i < collection.length; i++) {
-        collection[i].addEventListener('click', getPlayerMove);
-    };
+function startingGame() {
+    playing = true;
+    stylingElements(['ticTacToe'], "visible");
+    stylingElements(['chooseX', 'chooseO', 'XorOHeader'], "hidden");
 };
 
-var computerArrayMoves = [];
 function getPlayerMove(e) {
-
+    if (!playing) { alert("Game Over"); return; };
     var target = e.target.id;
-
     var playerChosenBlock = document.getElementById(target);
     var randomSquare = document.getElementById(getRandomInt(9));
-
-
+    playerChosenBlock.removeEventListener('click', getPlayerMove);
     if (playerChosenBlock.innerHTML !== computerSimple) {
         playerMoves.push(Number(target));
     };
 
-    determineWinning(playerMoves);
-    CheckTie(playerMoves, playerChosenBlock);
-    determineWinning(computerArrayMoves);
-    console.log("array computer moves", computerArrayMoves);
-
+    determineWinner(playerMoves);
+    checkingTie(playerMoves, playerChosenBlock);
+    determineWinner(computerArrayMoves);
 };
+
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 };
 
-function CheckTie(playerMoves, playerChosenBlock) {
+function checkingTie(playerMoves, playerChosenBlock) {
     if (playerMoves.length === 5) {
-        !generateComputerMove(player);
+        generateComputerMove(player);
         computerArrayMoves.pop();
-        GameOverDisplay();
+        gameOverDisplayMenu();
     } else {
         if (playerChosenBlock.innerHTML === "") {
             playerChosenBlock.innerHTML = player;
             generateComputerMove(computerSimple);
         };
     };
-}
+};
 
 function generateComputerMove(simple) {
     var isEmptyBlock = true;
@@ -94,26 +87,24 @@ function generateComputerMove(simple) {
     randomSquare.innerHTML = simple;
 };
 
-function determineWinning(arrayMoves) {
-    for (var i = 0; i < winningCombonation.length; i++) {
-        if (arrayMoves.indexOf(winningCombonation[i][0]) !== -1
-            && arrayMoves.indexOf(winningCombonation[i][1]) !== -1
-            && arrayMoves.indexOf(winningCombonation[i][2]) !== -1) {
-            GameOverDisplay();
-            winningCombonation[i].forEach(element => document.getElementById(element).style.backgroundColor = "red");
+function determineWinner(arrayMoves) {
+
+    for (var i = 0; i < winningCombination.length; i++) {
+        if (arrayMoves.indexOf(winningCombination[i][0]) !== -1
+            && arrayMoves.indexOf(winningCombination[i][1]) !== -1
+            && arrayMoves.indexOf(winningCombination[i][2]) !== -1) {
+            gameOverDisplayMenu();
+            winningCombination[i].forEach(element => document.getElementById(element).style.backgroundColor = "red");
             break;
         };
     };
 };
 
-function GameOverDisplay() {
-    var display = (`<div class="displayGameOver"> <h3>game finished</h3><button onclick=startGameAllOver()>replay</button> <button>quit</button> </div>`);
-    document.getElementById("showEndding").innerHTML = display;
-    for (var i = 0; i < collection.length; i++) {
-        collection[i].removeEventListener('click', getPlayerMove);
-    };
+function gameOverDisplayMenu() {
+    stylingElements(['showEnding'], "visible");
+    playing = false
 };
 
 function startGameAllOver() {
     location.reload();
-}
+};

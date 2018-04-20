@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <output id="outputClock"></output>
+    <button style="width:50px;height:30px;" id="button" onclick="countDownTimer()">count down</button>
+</body>
+
+<script>
+    let timeInterval;
+
+    var counter = 10;
+
+    function countDownTimer() {
+        timeInterval = setInterval(generateTimerInSeconds, 1000);
+    };
+
+    function generateTimerInSeconds() {
+        counter--;
+        if (counter <= 0) {
+            clearInterval(timeInterval);
+        }
+        console.log(counter);
+    };
+
+</script>
+
+</html>
