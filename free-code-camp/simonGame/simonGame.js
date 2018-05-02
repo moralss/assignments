@@ -15,7 +15,6 @@ function generateRandomArrayNumbers() {
 
 function createSequenceOfColors() {
     let randomNumber = generateRandomArrayNumbers();
-
     randomNumber.forEach((element) => listOfRandomColorMoves.push(arrayId[element]));
     var i = 0;
     var interval = setInterval(function () {
@@ -37,34 +36,24 @@ var counter = 0;
 var arrayStore = [];
 
 function gameModePlay() {
-
-    for (var i = 0; i < listOfRandomColorMoves.length; i++) {
+    for (var i = 0; i < playerColorMoves.length; i++) {
         if (listOfRandomColorMoves[i] === playerColorMoves[i]) {
-            console.log("computer move", listOfRandomColorMoves, "player move", playerColorMoves);
+            console.log("computer move", listOfRandomColorMoves[i], "player move", playerColorMoves[i]);
             console.log(listOfRandomColorMoves);
-            console.log(playerColorMoves);
-            console.log(listOfRandomColorMoves.join(' '));
-            // counter += 1;
-
+            counter += 1;
             if (playerColorMoves.length === listOfRandomColorMoves.length && playerColorMoves.join('') === listOfRandomColorMoves.join('')) {
                 createSequenceOfColors();
                 playerColorMoves = [];
             };
 
         } else if (listOfRandomColorMoves[i] !== playerColorMoves[i]) {
-
             console.log("computer move", listOfRandomColorMoves[i], "player move", playerColorMoves[i]);
             console.log("not equal");
-         
-         
 
         }
     };
 
 };
-
-
-
 
 function userInputRed() {
     playerColorMoves.push("red");
