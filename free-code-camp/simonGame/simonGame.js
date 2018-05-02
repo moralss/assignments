@@ -40,7 +40,7 @@ function updateDisplay(level) {
     return document.getElementById('output').innerHTML = level + 1;
 };
 
-function gameModePlay() {
+function checkMatch() {
     for (var i = 0; i < playerColorMoves.length; i++) {
         console.log("player move" , playerColorMoves);
         if (isComputerGenerated && listOfRandomColorMoves[i] === playerColorMoves[i]) {
@@ -66,21 +66,21 @@ function strictMode() {
 
     function userInputRed() {
         playerColorMoves.push("red");
-        gameModePlay();
+        checkMatch();
     };
 
     function userInputGreen() {
         playerColorMoves.push("green");
-        gameModePlay();
+        checkMatch();
     };
 
     function userInputBlue() {
         playerColorMoves.push("blue");
-        gameModePlay();
+        checkMatch();
     };
 
     function userInputYellow() {
-        gameModePlay();
+        checkMatch();
         playerColorMoves.push("yellow");
     };
 
