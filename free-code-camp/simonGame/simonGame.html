@@ -62,14 +62,32 @@
         grid-gap: 15px;
         border-radius: 15px 50px 30px 5px;
     }
+
+    .opition{
+        display:grid;
+        justify-content: center;
+        grid-template-rows:repeat(4 , 1fr);
+        margin: 20px 20px;
+        padding: 5px 5px;
+        grid-gap:1rem;
+    };
+
+    
 </style>
 
 <body>
-    <button style="text-align:center;" id="buttonStart" onclick="startGame()">start</button>
+
+    <div class="opition">
+        <button style="text-align:center;" id="buttonStart" onclick="startGame()">start</button>
+        <button onclick="strictMode()">strict mode</button>
+        <label style="font-size:20px;">game level</label>
+        <div id="output">1</div>
+    </div>
+
+
     <div class="simonGame">
         <h1 style="text-align:center">Simon Game</h1>
         <div class="simonGame-buttons">
-
             <div class="buttons" id="red" id="0" onclick="userInputRed()"></div>
             <div class="buttons" id="green" id="2" onclick="userInputGreen()"></div>
             <div class="buttons" id="blue" id="1" onclick="userInputBlue()"></div>

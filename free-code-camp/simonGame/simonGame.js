@@ -1,7 +1,6 @@
 var listOfRandomColorMoves = [];
 var arrayId = ["red", "green", "blue", "yellow"];
-
-
+var randomNumber = [];
 var playerColorMoves = [];
 var isComputerGenerated = false;
 
@@ -13,9 +12,15 @@ function generateRandomArrayNumbers() {
 };
 
 
-function createSequenceOfColors() {
-    let randomNumber = generateRandomArrayNumbers();
-    randomNumber.forEach((element) => listOfRandomColorMoves.push(arrayId[element]));
+function createSequenceOfColors(array) {
+
+    array.forEach((element) => listOfRandomColorMoves.push(arrayId[element]));
+
+    if (array.length === 0) {
+        console.log(listOfRandomColorMoves);
+    };
+
+    console.log('list of Random Colors', listOfRandomColorMoves);
     var i = 0;
     var interval = setInterval(function () {
         var currentIndex = i;
@@ -31,52 +36,57 @@ function createSequenceOfColors() {
     }, 1000)
 };
 
-
-var counter = 0;
-var arrayStore = [];
+function updateDisplay(level) {
+    return document.getElementById('output').innerHTML = level + 1;
+};
 
 function gameModePlay() {
     for (var i = 0; i < playerColorMoves.length; i++) {
-        if (listOfRandomColorMoves[i] === playerColorMoves[i]) {
-            console.log("computer move", listOfRandomColorMoves[i], "player move", playerColorMoves[i]);
-            console.log(listOfRandomColorMoves);
-            counter += 1;
+        console.log("player move" , playerColorMoves);
+        if (isComputerGenerated && listOfRandomColorMoves[i] === playerColorMoves[i]) {
             if (playerColorMoves.length === listOfRandomColorMoves.length && playerColorMoves.join('') === listOfRandomColorMoves.join('')) {
-                createSequenceOfColors();
+                randomNumber = generateRandomArrayNumbers();
+                updateDisplay(listOfRandomColorMoves.length);
+                createSequenceOfColors(randomNumber);
                 playerColorMoves = [];
             };
 
         } else if (listOfRandomColorMoves[i] !== playerColorMoves[i]) {
-            console.log("computer move", listOfRandomColorMoves[i], "player move", playerColorMoves[i]);
-            console.log("not equal");
-
+            console.log('not equal');
+            playerColorMoves = [];
+            createSequenceOfColors([]);
         }
     };
-
 };
 
-function userInputRed() {
-    playerColorMoves.push("red");
-    gameModePlay();
+function strictMode() {
+    
 };
 
-function userInputGreen() {
-    playerColorMoves.push("green");
-    gameModePlay();
-};
 
-function userInputBlue() {
-    playerColorMoves.push("blue");
-    gameModePlay();
-};
+    function userInputRed() {
+        playerColorMoves.push("red");
+        gameModePlay();
+    };
 
-function userInputYellow() {
-    gameModePlay();
-    playerColorMoves.push("yellow");
-};
+    function userInputGreen() {
+        playerColorMoves.push("green");
+        gameModePlay();
+    };
 
-function startGame() {
-    listOfRandomColorMoves = [];
-    playerColorMoves = [];
-    createSequenceOfColors()
-};
+    function userInputBlue() {
+        playerColorMoves.push("blue");
+        gameModePlay();
+    };
+
+    function userInputYellow() {
+        gameModePlay();
+        playerColorMoves.push("yellow");
+    };
+
+    function startGame() {
+        listOfRandomColorMoves = [];
+        playerColorMoves = [];
+        randomNumber = generateRandomArrayNumbers();
+        createSequenceOfColors(randomNumber);
+    };
