@@ -9,23 +9,19 @@
         box-sizing: border-box;
     }
 
-    .act {
-        background-color: black !important;
+    #red:hover {
+        background-color: black;
     }
 
     #red {
         background-color: red;
     }
 
-    #red:active {
-        background-color: black;
-    }
-
     #blue {
         background-color: blue;
     }
 
-    #blue:active {
+    #blue:hover {
         background-color: black;
     }
 
@@ -33,7 +29,7 @@
         background-color: green;
     }
 
-    #green:active {
+    #green:hover {
         background-color: black;
     }
 
@@ -41,11 +37,11 @@
         background-color: yellow;
     }
 
-    #yellow:active {
+    #yellow:hover {
         background-color: black;
     }
 
-    .buttons {
+    div {
         cursor: pointer;
         height: 200px;
         width: 200px;
@@ -66,25 +62,18 @@
         grid-gap: 15px;
         border-radius: 15px 50px 30px 5px;
     }
-
-    .inside {
-        grid-column: span 2;
-        grid-rows: span 2;
-    }
 </style>
 
 <body>
-
     <button style="text-align:center;" id="buttonStart" onclick="startGame()">start</button>
-
     <div class="simonGame">
         <h1 style="text-align:center">Simon Game</h1>
         <div class="simonGame-buttons">
 
-            <div class="buttons" id="red" id="0" onclick="redPadClick()"></div>
-            <div class="buttons" id="green" id="2" onclick="greenPadClick()"></div>
-            <div class="buttons" id="blue" id="1" onclick="bluePadClick()"></div>
-            <div class="buttons" id="yellow" id="3" onclick="yellowPadClick()"></div>
+            <div class="buttons" id="red" id="0" onclick="userInputRed()"></div>
+            <div class="buttons" id="green" id="2" onclick="userInputGreen()"></div>
+            <div class="buttons" id="blue" id="1" onclick="userInputBlue()"></div>
+            <div class="buttons" id="yellow" id="3" onclick="userInputYellow()"></div>
         </div>
     </div>
 

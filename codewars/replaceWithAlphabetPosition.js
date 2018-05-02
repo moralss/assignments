@@ -1,6 +1,5 @@
 var alphabets = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
-
 function replaceWithPosition(string) {
     let positionArray = [];
     let splitString = string.split('');
