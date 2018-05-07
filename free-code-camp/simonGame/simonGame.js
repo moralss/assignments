@@ -1,16 +1,15 @@
 var listOfRandomColorMoves = [];
 var listOfColors = ["red", "green", "blue", "yellow"];
-
-var arraySounds = ["https://s3.amazonaws.com/freecodecamp/simonSound1.mp3",
-    "https://s3.amazonaws.com/freecodecamp/simonSound2.mp3", 
-    "https://s3.amazonaws.com/freecodecamp/simonSound3.mp3", 
-    "https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"];
-
-
-
 var playerColorMoves = [];
 var playable = true;
 var onStrictMode = false;
+
+var arraySounds = ["https://s3.amazonaws.com/freecodecamp/simonSound1.mp3",
+    "https://s3.amazonaws.com/freecodecamp/simonSound2.mp3",
+    "https://s3.amazonaws.com/freecodecamp/simonSound3.mp3",
+    "https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"];
+
+
 
 function generateRandomNumber() {
     var randomNumberArray = [];
@@ -20,12 +19,6 @@ function generateRandomNumber() {
 };
 
 
-
-function playSoundS(listComputerColors) {
-
-
-};
-
 function generateSequenceOfColors(appendRandomNum) {
     appendRandomNum.forEach(element => listOfRandomColorMoves.push(listOfColors[element]));
     var i = 0;
@@ -34,19 +27,16 @@ function generateSequenceOfColors(appendRandomNum) {
         document.getElementById(listOfRandomColorMoves[currentIndex]).style.background = 'white';
         setTimeout(function () {
             document.getElementById(listOfRandomColorMoves[currentIndex]).style.background = listOfRandomColorMoves[currentIndex];
-            arraySounds[currentIndex].play();
-
         }, 500);
         i++;
         if (i >= listOfRandomColorMoves.length) {
             clearInterval(interval);
             playable = true;
-        }
-
+        };
     }, 1000);
 };
 
-function updateDisplay(level) {
+function updateGameLevel(level) {
     return document.getElementById('output').innerHTML = level + 1;
 };
 
@@ -57,9 +47,8 @@ function strictMode(listOfRandomColorMoves, playerColorMoves) {
             console.log("entered into strictMode");
             playerColorMoves = [];
             listOfRandomColorMoves = [];
-            updateDisplay(0);
+            updateGameLevel(0);
             startGame();
-            onStrictMode = false;
         };
     };
 };
@@ -81,14 +70,13 @@ function checkMatch() {
         if (listOfRandomColorMoves[i] === playerColorMoves[i] && playerColorMoves.length === listOfRandomColorMoves.length
             && playerColorMoves.join('') === listOfRandomColorMoves.join('')) {
             let randomNumber = generateRandomNumber();
-            updateDisplay(listOfRandomColorMoves.length);
+            updateGameLevel(listOfRandomColorMoves.length);
             generateSequenceOfColors(randomNumber);
             playerColorMoves = [];
         }
 
         else if (onStrictMode === false && listOfRandomColorMoves[i] !== playerColorMoves[i]) {
             showAlert();
-            console.log('not equal');
             playerColorMoves = [];
             generateSequenceOfColors([]);
             break;
@@ -96,20 +84,28 @@ function checkMatch() {
 
         else if (i === playerColorMoves.length - 1) {
             playable = true;
-        }
+        };
     };
-}
+};
 
 
 function strictStart() {
-    onStrictMode = true;
-}
+    if (onStrictMode) {
+        onStrictMode = false;
+        document.getElementById('strictModeButton').style.backgroundColor = "white";
+
+    } else {
+        onStrictMode = true;
+        document.getElementById('strictModeButton').style.backgroundColor = "green";
+
+    }
+};
 
 function userInput(color) {
     if (playable) {
         playerColorMoves.push(color);
         checkMatch();
-    }
+    };
 };
 
 function startGame() {

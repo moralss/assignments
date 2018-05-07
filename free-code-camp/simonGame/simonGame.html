@@ -9,44 +9,39 @@
         box-sizing: border-box;
     }
 
-    /* #red:hover {
-        background-color: black;
-    } */
-
     #red {
-        background-color: red;
-    }
-
-    #blue {
-        background-color: blue;
-    }
-
-    /* #blue:hover {
-        background-color: black;
-    } */
-
-    #green {
-        background-color: green;
-    }
-
-    /* #green:hover {
-        background-color: black;
-    } */
-
-    #yellow {
-        background-color: yellow;
-    }
-
-    /* #yellow:hover {
-        background-color: black;
-    } */
-
-    div {
         cursor: pointer;
         height: 200px;
         width: 200px;
+        background-color: red;
+        border-radius: 50px 15px 5px 30px;
+    }
+
+    #blue {
+        cursor: pointer;
+        height: 200px;
+        width: 200px;
+        background-color: blue;
+        border-radius: 50px 15px 5px 30px;
+    }
+
+    #green {
+        cursor: pointer;
+        height: 200px;
+        width: 200px;
+        background-color: green;
         border-radius: 15px 50px 30px 5px;
     }
+
+    #yellow {
+
+        cursor: pointer;
+        height: 200px;
+        width: 200px;
+        background-color: yellow;
+        border-radius: 15px 50px 30px 5px;
+    }
+
 
     .simonGame {
         max-width: 400px;
@@ -63,29 +58,37 @@
         border-radius: 15px 50px 30px 5px;
     }
 
-    .opition{
-        display:grid;
+    .opition {
+        display: grid;
         justify-content: center;
-        grid-template-rows:repeat(4 , 1fr);
+        grid-template-rows: repeat(4, 1fr);
         margin: 20px 20px;
         padding: 5px 5px;
-        grid-gap:1rem;
-    };
+        grid-gap: 1rem;
+    }
 
     
+    #strictModeButton{
+        cursor: pointer;
+    }
+
+    #buttonStart{
+        cursor:pointer;
+    }
+
 </style>
 
 <body>
 
     <div class="opition">
         <button style="text-align:center;" id="buttonStart" onclick="startGame()">start</button>
-        <button onclick="strictStart()">strict mode</button>
-        <label style="font-size:20px;">game level</label>
-        <div id="output">1</div>
+        <button id="strictModeButton" onclick="strictStart()">strict mode</button>
+        <label style="font-size:25px;">game level</label>
+        <div style="text-align:center;" id="output">1</div>
     </div>
 
     <div class="simonGame">
-        <h1 style="text-align:center">Simon Game</h1>
+        <h1 style="text-align:center;font-size:50px;">Simon Game</h1>
         <div class="simonGame-buttons">
             <div class="buttons" id="red" id="0" onclick="userInput('red')"></div>
             <div class="buttons" id="green" id="2" onclick="userInput('green')"></div>
@@ -95,6 +98,7 @@
     </div>
 
     <script src="simonGame.js">
+
     </script>
 
 </body>
