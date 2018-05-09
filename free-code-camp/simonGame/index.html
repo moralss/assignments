@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>simonGame</title>
+</head>
+
+<link rel="stylesheet" href="style.css">
+
+
+<body>
+
+    <div class="opition">
+        <button style="text-align:center;" id="buttonStart" onclick="startGame()">start</button>
+        <button id="strictModeButton" onclick="strictModeToggle()">strict mode</button>
+        <label style="font-size:25px;">game level</label>
+        <div style="text-align:center;" id="output">1</div>
+    </div>
+
+    <div class="simonGame">
+        <h1 style="text-align:center;font-size:50px;">Simon Game</h1>
+        <div class="simonGame-buttons">
+            <div class="buttons" id="red" id="0" onclick="userInput('red')"></div>
+            <div class="buttons" id="green" id="2" onclick="userInput('green')"></div>
+            <div class="buttons" id="blue" id="1" onclick="userInput('blue')"></div>
+            <div class="buttons" id="yellow" id="3" onclick="userInput('yellow')"></div>
+        </div>
+    </div>
+
+    <script src="simonGame.js">
+
+    </script>
+
+</body>
+
+</html>
