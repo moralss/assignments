@@ -1,7 +1,11 @@
- html{
+  html{
+        overflow:hidden;
         background-image: url(07c4c5f2ea61dfddc4b28d7942075ec6.jpg);
-        background-size: cover;        
-    }
+         background-size: cover;
+        background-repeat: no-repeat; 
+        background-position: center top;
+        background-attachment: fixed;     
+    } 
 
     * {
         box-sizing: border-box;
