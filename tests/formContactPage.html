@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<style>
+
+    html{
+        box-sizing: border-box;
+    }
+    form{
+        display:grid;
+        grid-template-columns: repeat(2 , 1fr);
+        width: 35em;
+        height: 10em;
+        grid-gap:10px;
+        box-shadow: 0 2px 5px rgb(11 , 121 ,121 , 0.8);
+        
+    }
+
+
+    .container{
+        display:grid;
+        justify-content: center;
+        
+    }
+
+</style>
+
+<body>
+
+    <h1 style="text-align:center;">Welcome to my form page</h1>
+    
+    <div class="container">
+        <form>
+            <label style="font-size:22px;margin-left:50px;" for="firstName" class="first-Name">first Name </label>
+            <input id="firstName" tyle="text">
+            <label style="font-size:22px;margin-left:50px;" for="lastName" class="last-name"> Last Name </label>
+            <input id="lastName" type="text">
+            <label style="font-size:22px;margin-left:50px;" for="lastName" class="last-name"> email </label>
+            <input  id="lastName" type="text">
+            <button style="grid-column: span 2;padding-top:2px;" id="submit">submit request</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
