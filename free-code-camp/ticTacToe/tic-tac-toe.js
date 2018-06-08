@@ -25,6 +25,10 @@ var player;
 var computerSimple;
 var playing = false;
 
+function chooseX() {
+    player = "X";
+    computerSimple = "O";
+};
 
 function chooseO() {
     player = "O";
