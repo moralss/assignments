@@ -3,15 +3,14 @@ var answer;
 var temp = [];
 var store = "";
 var calculatorSigns = ["+", "-", "*", "/"];
+var output = document.getElementById("output"); 
 
 function display(value) {
-
-
-
     temp.push(value);
-    var output = document.getElementById("output");
-    output.innerHTML += value;
     validateSum(temp);
+
+    output.innerHTML += value;
+
 
 };
 
@@ -25,15 +24,23 @@ function deletePreviewsValue() {
 
 }
 
-function validateSum(currentValues, newValue) {
+function validateSum(currentValues) {
     const lastCharacter = currentValues[currentValues.length - 1];
     const secondLastCharacter = currentValues[currentValues.length - 2];
     
+    if(calculatorSigns.indexOf(lastCharacter) !== -1 &&
+    calculatorSigns.indexOf(secondLastCharacter) !== -1){
+        
+        output.innerHTML -= value
 
-    return calculatorSigns.indexOf(lastCharacter) !== -1 && calculatorSigns.indexOf(secondLastCharacter) !== -1;
+    }
+
+    return currentValues;
 
     document.getElementById("output").innerHTML = arrayToValidate.join('');
 }
+
+
 
 function clearCalculatorMemory(value) {
 

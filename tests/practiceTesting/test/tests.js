@@ -14,12 +14,12 @@ describe('say hello ', function () {
 
 describe('addition ', function () {
     it('4 + 4 should return 8', function () {
-        let testResults = testing.addition(4, 4);
+        var testResults = testing.addition(4, 4);
         expect(testResults).to.be.eql(8);
     });
 
     it('4 + 4 should return type number', function () {
-        let testResult = testing.addition(4, 4);
+        var testResult = testing.addition(4, 4);
         expect(typeof testResult).to.be.eql( 'number');
     })
 })
@@ -27,7 +27,7 @@ describe('addition ', function () {
 
 describe('multiply' , function(){
     it('4 * 2 should return 8' , function(){
-        let showMultiply = testing.multiplyValues(4 ,2);
+        var showMultiply = testing.multiplyValues(4 ,2);
         expect(showMultiply).to.be.eql(8);
     })
 })
