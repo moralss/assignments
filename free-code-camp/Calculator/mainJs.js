@@ -31,7 +31,7 @@ function validateSum(currentValues) {
     if(calculatorSigns.indexOf(lastCharacter) !== -1 &&
     calculatorSigns.indexOf(secondLastCharacter) !== -1){
         
-        output.innerHTML -= value
+       
 
     }
 
