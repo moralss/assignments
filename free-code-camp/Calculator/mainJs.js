@@ -1,77 +1,51 @@
 
-var answer;
-var temp = [];
-var store = "";
+var sumStore = [];
+
 var calculatorSigns = ["+", "-", "*", "/"];
-var output = document.getElementById("output"); 
+var displayOnScreen = document.getElementById("output");
 
 function display(value) {
-    temp.push(value);
-    validateSum(temp);
+    sumStore.push(value);
+    validateSum(sumStore);
 
-    output.innerHTML += value;
+    displayOnScreen.innerHTML += value;
 
 
 };
 
 function deletePreviewsValue() {
-    var currentOutput = document.getElementById("output").innerHTML;
-    currentOutput = currentOutput.split("");
-    currentOutput.splice(currentOutput.length - 1, 1);
-    document.getElementById("output").innerHTML = currentOutput.join("");
-    temp = currentOutput;
+    var currentDisplayValues = displayOnScreen.innerHTML;
+    currentDisplayValues = currentDisplayValues.split("");
+    currentDisplayValues.splice(currentDisplayValues.length - 1, 1);
+    document.getElementById("output").innerHTML = currentDisplayValues.join("");
+    sumStore = currentDisplayValues;
 
 
 }
 
-function validateSum(currentValues) {
-    const lastCharacter = currentValues[currentValues.length - 1];
-    const secondLastCharacter = currentValues[currentValues.length - 2];
-    
-    if(calculatorSigns.indexOf(lastCharacter) !== -1 &&
-    calculatorSigns.indexOf(secondLastCharacter) !== -1){
-        
-       
-
+function validateSum(mainSumArray) {
+    const lastCharacter = mainSumArray[mainSumArray.length - 1];
+    const secondLastCharacter = mainSumArray[mainSumArray.length - 2];
+    if (calculatorSigns.includes(secondLastCharacter) && calculatorSigns.includes(lastCharacter)) {
+        mainSumArray.splice([mainSumArray.length - 1]);
     }
-
-    return currentValues;
-
-    document.getElementById("output").innerHTML = arrayToValidate.join('');
 }
 
 
 
 function clearCalculatorMemory(value) {
-
-    temp = [value];
-    store = [];
+    sumStore = [value];
 }
+
 
 function generateAnswer() {
-
-    var displayContent = output.innerHTML;
-    store += displayContent;
-    if (calculatorSigns.indexOf(store[store.length - 1]) !== -1) {
-        store.split().pop();
-        store = store.slice(0, store.length - 1);
-
-        document.getElementById("output").innerHTML = eval(store);
-
-        clearCalculatorMemory(eval(store));
-        answer = eval(store);
-    }
-    else {
-
-        document.getElementById("output").innerHTML = eval(store);
-        clearCalculatorMemory(eval(store));
-    }
-
+    document.getElementById("output").innerHTML = eval(sumStore.join(''));
+    clearCalculatorMemory(eval(sumStore.join('')));
 }
 
+
 function deleteAll() {
-    store = [];
-    temp = [];
+    sumStore = [];
     document.getElementById("output").innerHTML = "";
 }
 
