@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Calculator</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+	<div class="calculator">
+		<textarea id="output" class="form-control" rows="3" id="comment"></textarea>
+		<div class="calculator-buttons">
+			<button class="calc-button" onclick="deleteAll()">AC</button>
+			<button class="calc-button" onclick="deletePreviewsValue() ">CE</button>
+
+			<button class="calc-button" onclick="display('/')">&divide;</button>
+			<button class="calc-button" onclick="display('*')">&times;</button>
+
+			<button class="calc-button" onclick='display(7);'>7</button>
+			<button class="calc-button" onclick='display(8);'>8</button>
+			<button class="calc-button" onclick='display(9);'>9</button>
+			<button class="calc-button" onclick="display('-');">&minus;</button>
+
+			<button class="calc-button" onclick='display(4);'>4</button>
+			<button class="calc-button" onclick='display(5);'>5</button>
+			<button class="calc-button" onclick='display(6);'>6</button>
+			<button class="calc-button" onclick="display('+');">&plus;</button>
+
+			<button class="calc-button" onclick='display(1);'>1</button>
+			<button class="calc-button" onclick='display(2);'>2</button>
+			<button class="calc-button" onclick='display(3);'>3</button>
+
+			<button class="calc-button is-equals" onclick="generateAnswer() ">&equals;</button>
+			<button class="calc-button is-zero" onclick='display(0);'>0</button>
+			<button class="calc-button" onclick="display('.');">.</button>
+		</div>
+		<script src="mainJs.js ">
+
+		</script>
+	</div>
+
+</body>
+
+</html>
