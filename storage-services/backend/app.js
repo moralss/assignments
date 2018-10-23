@@ -26,14 +26,33 @@ client.connect();
 //   client.end()
 // })
 
-require("./routers/location")(app);
-
 app.use(bodyPaser.json());
 app.use(cors());
 
+app.get("/businessinfo/:name", (req, res) => {
+  const name = req.params.name;
+
+  let selectQuery = `select location.street ,
+   location.city , location.state , block.name  from
+     business left join  location on business.id = location.business_id
+    left join  block on location.id = block.location_id
+    left join  unit on block.id = unit.block_id 
+    left join  unit_type on  unit.unit_type_id = unit_type.id 
+    where business.name = '${name}';`;
+
+  client.query(selectQuery, (err, result) => {
+    if (err) {
+      console.log(err.stack);
+    } else {
+      res.send(result.rows);
+      console.log(result.rows);
+    }
+  });
+});
+
 app.get("/business", (req, res) => {
-  let selectQuery =
-    "SELECT business.name , business.id ,  business.contact_email , business.contact_number FROM business";
+  let selectQuery = `SELECT business.name , business.id ,  
+  business.contact_email , business.contact_number FROM business`;
   client.query(selectQuery, (err, result) => {
     if (err) {
       console.log(err.stack);
@@ -43,9 +62,10 @@ app.get("/business", (req, res) => {
   });
 });
 
-app.post("/location/", (req, res) => {
+app.post("/location", (req, res) => {
   let insertQuery =
-    "INSERT INTO location(city , state , street , business_id) VALUES($1 , $2 , $3 , $4)";
+    `INSERT INTO location(city , state , street , business_id)
+     VALUES($1 , $2 , $3 , $4)`;
   let locationInfo = [
     req.body.details.city,
     req.body.details.state,

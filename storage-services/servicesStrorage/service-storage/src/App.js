@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
-import Form from "./component/Form";
+import RegisterBusiness from "./component/RegisterBusiness";
 import Navbar from "./component/Navbar";
 import Darshboard from "./component/Darshboard";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import RegisterLocation from "./component/RegiserLocation";
+import BusinessInfo from "./component/BusinessInfo";
 
 
 class App extends Component {
@@ -17,7 +18,14 @@ class App extends Component {
             path="/registerbusiness"
             exact
             strict
-            render={props => <Form {...props} />}
+            render={props => <RegisterBusiness {...props} />}
+          />
+
+          <Route
+            path="/businessinfo/:name"
+            exact
+            strict
+            render={props => <BusinessInfo {...props} />}
           />
 
           <Route
@@ -29,7 +37,7 @@ class App extends Component {
 
 
           <Route
-            path="/registerLocation/:name"
+            path="/registerLocation/:id"
             exact
             strict
             render={props => <RegisterLocation {...props} />}

@@ -15,12 +15,13 @@ class RegisterLocation extends Component {
 
   handleFormSubmit(details) {
     // this.props.history.push("/darshboard");
-    const id =  Number(this.props.match.params.name);
-    console.log(id);
+    const id =  Number(this.props.match.params.id);
 
     let locationInfo = {...details , id}
     this.props.saveLocationToServer(locationInfo);
-    // this.setState({ isShowSuccessMessage: true });
+    this.setState({ isShowSuccessMessage: true });
+    this.props.history.push(`/darshboard`);
+
   }
 
   render() {
@@ -60,7 +61,7 @@ class RegisterLocation extends Component {
           />
 
           <button action="submit"> submit location </button>
-        </form> : <h1> view darshboard to view business and add locations !</h1>
+        </form> : <h1> View darshboard to view businesses and add locations !</h1>
       }
       </div>
     );

@@ -7,25 +7,29 @@ import { connect } from "react-redux";
 class Form extends Component {
   constructor() {
     super();
-
     this.state = {
-      isShowSuccessMessage: true
+      isShowSuccessMessage: false
     };
   }
 
   handleFormSubmit(details) {
-    this.props.saveDetails(details);
-    this.props.history.push("/darshboard");
-    // this.setState({ isShowSuccessMessage: true });
+    this.props.saveBusinessDetails(details);
+    this.setState({ isShowSuccessMessage: true });
   }
+
+
+  componentWillUnmount(){
+    this.setState({ isShowSuccessMessage: false });
+    
+  }
+
 
   render() {
     const { handleSubmit } = this.props;
 
     return (
       <div>
-        {this.state.isShowSuccessMessage ? 
-        
+        {!this.state.isShowSuccessMessage ? 
         <form
           className="form"
           onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
@@ -55,7 +59,7 @@ class Form extends Component {
           />
 
           <button action="submit"> submit </button>
-        </form> : <h1> view darshboard to view business and add locations !</h1>
+        </form> : <h1> view darshboard , to view business and add locations!</h1>
       }
       </div>
     );
@@ -64,8 +68,7 @@ class Form extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveDetails: details => dispatch(actions.BusinessDetails(details)),
-    getBusinessFromServer: () => dispatch(actions.getBusinessFromServer())
+    saveBusinessDetails: details => dispatch(actions.saveBusinessDetails(details))
   };
 }
 

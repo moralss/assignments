@@ -1,12 +1,19 @@
 import axios from "axios";
 const businessUrl = "http://localhost:3003/business";
-// export const BusinessDetails = businessDetails => {
-//   console.log(businessDetails);
-//   return {
-//     type: "UPDATED_DETAIL",
-//     payload: businessDetails
-//   };
-// };
+const businessInfo = "http://localhost:3003/businessinfo/";
+const locationUrl = "http://localhost:3003/location";
+
+
+export function getBusinessInfo(name){
+  return function(dispatch) {
+    axios.get(businessInfo+`${name}`).then(response => {
+      dispatch({
+        type: "GET_BUSINESS_INFO",
+        payload: response.data
+      });
+    });
+  };
+}
 
 export function getBusinessFromServer() {
   return function(dispatch) {
@@ -19,7 +26,7 @@ export function getBusinessFromServer() {
   };
 }
 
-export function BusinessDetails(details) {
+export function saveBusinessDetails(details) {
   return function(dispatch) {
     axios.post(businessUrl, { details }).then(response => {
       dispatch({ type: "SUCCESS" }).catch(() => {
@@ -28,8 +35,6 @@ export function BusinessDetails(details) {
     });
   };
 }
-
-const locationUrl = "http://localhost:3003/location";
 
 
 export function saveLocationToServer(details) {
@@ -42,11 +47,3 @@ export function saveLocationToServer(details) {
   };
 }
 
-// export function getBusinessFromServer(){
-//     return {
-//         type:"action",
-//         payload:"object"
-//     }
-// }
-
-// const url = "http://localhost:3003/business"
