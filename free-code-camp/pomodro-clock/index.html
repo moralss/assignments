@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<style>
+
+    
+
+</style>
+
+<body onload="hiddenElement()">
+    <h1 style="text-align:center;font-size:80px;">PomodroClock count down</h1>
+
+    <div class="SetSession">
+        <div>
+            <label id="setSession" for="comments">Set Session time</label>
+            <button id="SubtractSession" onclick="subtactSessionTime()"> - </button>
+            <button id="addSession" onclick="addSessionTime()"> + </button>
+            <div id="SessionTimeLabel" style="font-size:50px;">Session time remaining:</div>
+            <div id="SessionOutput"></div>
+        </div>
+
+        <div>
+            <label id="setBreak" for="comments">Set break time</label>
+            <button id="subtractBreak" onclick="subtactBreakTime()"> - </button>
+            <button id="addBreak" onclick="addSessionBreakTime()"> + </button>
+            <div id="BreakTimeLabel" style="font-size:50px;">Break time remaining:</div>
+            <div id="breakOutput"></div>
+        </div>
+    </div>
+
+
+    <div id="section3">
+        <h1 id="completeSession">Session Complete</h1>
+        <button class="btn btn-primary" style="font-size:25px" id="startCountDown" onClick="startCountDown()"> start</button>
+        <button class="btn btn-primary" style="font-size:25px;" onClick="resetPomodroClock()">Reset</button>
+    </div>
+
+    <script src="mainPomodro.js"></script>
+  
+</body>
+
+</html>
