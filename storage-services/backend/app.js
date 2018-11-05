@@ -19,5 +19,5 @@ unitType.unitTypeRoutes(app);
 
 
 app.listen(3003, function() {
-  console.log("server running port 3000");
+  console.log("server running port 3003");
 });

@@ -1,3 +1,13 @@
+{/* <div className="block-area">
+<label> block Name </label>
+<input
+  value={this.state.blockName}
+  name="blockName"
+  onChange={e => this.handleChange(e)}
+  onKeyPress={event => this.enterPressed(event)}
+/>
+</div> */}
+
 import React, { Component } from "react";
 import "../App.css";
 import { Field, reduxForm } from "redux-form";
@@ -16,6 +26,7 @@ class RegisterLocation extends Component {
     let locationInfo = { ...details, id };
     await this.props.saveLocationToServer(locationInfo);
     this.props.history.push(`/darshboard`);
+    console.log("submit");
   }
 
   render() {
@@ -53,18 +64,5 @@ class RegisterLocation extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    saveLocationToServer: details =>
-      dispatch(actions.saveLocationToServer(details))
-  };
-}
 
-const registerLocation = reduxForm({
-  form: "registerLocation"
-})(RegisterLocation);
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(registerLocation);
+export default connect()(registerLocation);

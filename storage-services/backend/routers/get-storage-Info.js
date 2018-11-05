@@ -6,7 +6,6 @@ const businessInfoRoutes = app => {
       
       const name = req.params.name;
       const businessInfo = await getStorageInfo.getStorageInfo(name);
-      console.log("businessInfo", businessInfo);
       res
         .send(businessInfo)
         .status(201)

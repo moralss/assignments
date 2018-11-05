@@ -4,19 +4,12 @@ import { Field, reduxForm } from "redux-form";
 import * as actions from "../actions";
 import { connect } from "react-redux";
 
-class RegisterLocation extends Component {
+class RegisterUnitType extends Component {
   constructor() {
     super();
-
   }
 
-  async handleFormSubmit(details) {
-    // this.props.history.push("/darshboard");
-    const id = Number(this.props.match.params.id);
-    let locationInfo = { ...details, id };
-    await this.props.saveLocationToServer(locationInfo);
-    this.props.history.push(`/darshboard`);
-  }
+  async handleFormSubmit(details) {}
 
   render() {
     const { handleSubmit } = this.props;
@@ -27,26 +20,34 @@ class RegisterLocation extends Component {
           className="form"
           onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
         >
-          <label>city</label>
-          <Field name="city" component="input" type="text" placeholder="city" />
+          <label>name</label>
+          <Field name="name" component="input" type="text" placeholder="name" />
 
-          <label>state</label>
+          <label>length</label>
           <Field
-            name="state"
+            name="length"
             component="input"
             type="text"
-            placeholder="state"
+            placeholder="length"
           />
 
-          <label>street </label>
+          <label>width</label>
           <Field
-            name="street"
+            name="width"
             component="input"
             type="text"
-            placeholder="street"
+            placeholder="width"
           />
 
-          <button action="submit"> submit location </button>
+          <label>height</label>
+          <Field
+            name="height"
+            component="input"
+            type="text"
+            placeholder="height"
+          />
+
+          <button action="submit"> submit unit type </button>
         </form>
       </div>
     );
@@ -60,11 +61,11 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const registerLocation = reduxForm({
-  form: "registerLocation"
-})(RegisterLocation);
+const registerUnitType = reduxForm({
+  form: "registerUnitType"
+})(RegisterUnitType);
 
 export default connect(
   null,
   mapDispatchToProps
-)(registerLocation);
+)(registerUnitType);

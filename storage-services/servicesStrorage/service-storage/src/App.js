@@ -6,6 +6,7 @@ import Dashboard from "./component/Dashboard";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import RegisterLocation from "./component/RegiserLocation";
 import BusinessInfo from "./component/BusinessInfo";
+import Blocks from "./component/Blocks";
 
 
 class App extends Component {
@@ -13,7 +14,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-        <Navbar />
+          <Navbar />
           <Route
             path="/registerbusiness"
             exact
@@ -41,6 +42,14 @@ class App extends Component {
             exact
             strict
             render={props => <RegisterLocation {...props} />}
+          />
+
+
+          <Route
+            path="/blocks/:id"
+            exact
+            strict
+            render={props => <Blocks {...props} />}
           />
         </div>
       </Router>
