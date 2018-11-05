@@ -12,11 +12,11 @@ class Navbar extends Component {
     return (
       <div className="navbar">
         <NavLink to="/registerbusiness" class="link-tag" activeStyle={activeStyles}>
-          rigister business
+          register business
         </NavLink>
 
-        <NavLink to="/darshboard" class="link-tag" activeStyle={activeStyles}>
-          darshboard
+        <NavLink to="/dashboard" class="link-tag" activeStyle={activeStyles}>
+          dashboard
         </NavLink>
       </div>
     );

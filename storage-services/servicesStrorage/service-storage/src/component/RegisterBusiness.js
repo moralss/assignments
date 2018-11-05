@@ -12,8 +12,10 @@ class Form extends Component {
     };
   }
 
-  handleFormSubmit(details) {
-    this.props.saveBusinessDetails(details);
+  async handleFormSubmit(details) {
+    console.log('b')
+    await this.props.saveBusinessDetails(details);
+    console.log('c')
     this.setState({ isShowSuccessMessage: true });
   }
 
@@ -26,6 +28,7 @@ class Form extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    console.log('props save business', this.props)
 
     return (
       <div>

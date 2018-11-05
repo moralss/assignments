@@ -1,49 +1,58 @@
 import axios from "axios";
 const businessUrl = "http://localhost:3003/business";
-const businessInfo = "http://localhost:3003/businessinfo/";
+const businessInfoUrl = "http://localhost:3003/businessinfo/";
 const locationUrl = "http://localhost:3003/location";
+const blockUrl = "http://localhost:3003/block";
 
-
-export function getBusinessInfo(name){
-  return function(dispatch) {
-    axios.get(businessInfo+`${name}`).then(response => {
+export function getBusinessInfo(name) {
+  return async function(dispatch) {
+    dispatch({ type: "LOADING_TRUE" });
+      let businessInfo = await axios.get(businessInfoUrl + `${name}`);
       dispatch({
         type: "GET_BUSINESS_INFO",
-        payload: response.data
+        payload: businessInfo.data
       });
-    });
+    
+
+    dispatch({ type: "LOADING_FALSE" });
   };
 }
 
 export function getBusinessFromServer() {
-  return function(dispatch) {
-    axios.get(businessUrl).then(response => {
-      dispatch({
-        type: "GET_BUSINESS_DETAILS",
-        payload: response.data
-      });
+  return async function(dispatch) {
+    dispatch({ type: "LOADING_TRUE" });
+    const businesses = await axios.get(businessUrl);
+    dispatch({
+      type: "GET_BUSINESS_DETAILS",
+      payload: businesses.data
     });
+
+    dispatch({ type: "LOADING_FALSE" });
   };
 }
 
-export function saveBusinessDetails(details) {
-  return function(dispatch) {
-    axios.post(businessUrl, { details }).then(response => {
-      dispatch({ type: "SUCCESS" }).catch(() => {
-        dispatch({ type: "FAILED" });
-      });
-    });
+export const saveBlockToServer = details => {
+  console.log("submit to server" , {details})
+  return async dispatch => {
+    dispatch({ type: "LOADING_TRUE" });
+    await axios.post(blockUrl, { details });
+    dispatch({ type: "LOADING_FALSE" });
   };
 }
 
+
+export const saveBusinessDetails = details => {
+  return async dispatch => {
+    dispatch({ type: "LOADING_TRUE" });
+    await axios.post(businessUrl, { details });
+    dispatch({ type: "LOADING_FALSE" });
+  };
+};
 
 export function saveLocationToServer(details) {
-  return function(dispatch) {
-    axios.post(locationUrl, { details }).then(response => {
-      dispatch({ type: "SUCCESS" }).catch(() => {
-        dispatch({ type: "FAILED" });
-      });
-    });
+  return async function(dispatch) {
+    dispatch({ type: "LOADING_TRUE" });
+    await axios.post(locationUrl, { ...details });
+    dispatch({ type: "LOADING_FALSE" });
   };
 }
-

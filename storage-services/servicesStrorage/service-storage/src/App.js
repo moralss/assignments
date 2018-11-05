@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import RegisterBusiness from "./component/RegisterBusiness";
 import Navbar from "./component/Navbar";
-import Darshboard from "./component/Darshboard";
+import Dashboard from "./component/Dashboard";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import RegisterLocation from "./component/RegiserLocation";
 import BusinessInfo from "./component/BusinessInfo";
@@ -29,10 +29,10 @@ class App extends Component {
           />
 
           <Route
-            path="/darshboard"
+            path="/dashboard"
             exact
             strict
-            render={props => <Darshboard {...props} />}
+            render={props => <Dashboard {...props} />}
           />
 
 

@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS location (
 
 CREATE TABLE IF NOT EXISTS block (
     id serial PRIMARY KEY,
-    name varchar(255) NOT NULL,
+    block_name varchar(255) NOT NULL,
     location_id INT REFERENCES location(id) NOT NULL,
     created_at timestamp NOT NULL DEFAULT NOW() NOT NULL,
     updated_at timestamp NOT NULL DEFAULT NOW() NOT NULL

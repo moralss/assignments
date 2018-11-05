@@ -1,14 +1,20 @@
 const initialState = {
   businessInfo: [],
-  businessFullInfo: []
+  businessFullInfo: [],
+  loading: false
 };
 
 export const businessReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_BUSINESS_DETAILS":
-      return { ...state, businessInfo: [action.payload] };
+    return { ...state, businessInfo: [...action.payload] };
     case "GET_BUSINESS_INFO":
-      return { ...state, businessFullInfo: [action.payload] };
+    console.log("payload" , action.payload);
+      return { ...state, businessFullInfo: [...action.payload] };
+    case "LOADING_FLASE":
+      return { ...state, loading: false };
+    case "LOADING_TRUE":
+      return { ...state, loading: true };
     default:
       return state;
   }

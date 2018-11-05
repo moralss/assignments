@@ -8,41 +8,29 @@ class RegisterLocation extends Component {
   constructor() {
     super();
 
-    this.state = {
-      isShowSuccessMessage:true
-    };
   }
 
-  handleFormSubmit(details) {
+  async handleFormSubmit(details) {
     // this.props.history.push("/darshboard");
-    const id =  Number(this.props.match.params.id);
-
-    let locationInfo = {...details , id}
-    this.props.saveLocationToServer(locationInfo);
-    this.setState({ isShowSuccessMessage: true });
+    const id = Number(this.props.match.params.id);
+    let locationInfo = { ...details, id };
+    await this.props.saveLocationToServer(locationInfo);
     this.props.history.push(`/darshboard`);
-
   }
 
   render() {
     const { handleSubmit } = this.props;
 
-    return (
+    console.log("this", this.props);
 
+    return (
       <div>
-        {this.state.isShowSuccessMessage ? 
-        
         <form
           className="form"
           onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
         >
           <label>city</label>
-          <Field
-            name="city"
-            component="input"
-            type="text"
-            placeholder="city"
-          />
+          <Field name="city" component="input" type="text" placeholder="city" />
 
           <label>state</label>
           <Field
@@ -61,8 +49,7 @@ class RegisterLocation extends Component {
           />
 
           <button action="submit"> submit location </button>
-        </form> : <h1> View darshboard to view businesses and add locations !</h1>
-      }
+        </form>
       </div>
     );
   }
@@ -70,7 +57,8 @@ class RegisterLocation extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveLocationToServer: details => dispatch(actions.saveLocationToServer(details))
+    saveLocationToServer: details =>
+      dispatch(actions.saveLocationToServer(details))
   };
 }
 

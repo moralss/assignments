@@ -1,47 +1,87 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
+import FormBlock from "./FormBlock";
 
 class BusinessInfo extends Component {
   constructor() {
     super();
     this.state = {
-      display: false,
-      address: []
+      blockName: "",
+      isInput: false,
+      id: 0
     };
   }
 
   componentDidMount() {
     const businessName = this.props.match.params.name;
-    // console.log("BusinessInfothis", this.props.match.params);
     this.props.getBusinessInfo(businessName);
-    this.updateState();
   }
 
-  updateState() {
-    let setInt = setInterval(() => {
-      this.setState({ address: this.props.business[0] });
-      clearInterval(setInt);
-    }, 1000);
-  }
+  // handleChange(e) {
+  //   this.setState({ blockName: e.target.value });
+  // }
+
+  // addBlock = id => {
+  //   this.setState({ id: id });
+  //   this.setState({ isInput: true });
+  // };
+
+  // enterPressed = (event) => {
+
+  //   const { blockName, id } = this.state;
+  //   let details = { blockName, id };
+
+  //   if (event.key === 'Enter') {
+  //     this.props.saveBlockToServer(details);
+  //     this.setState({ isInput: false });
+  //     this.setState({blockName : ""});      
+  //   }
+    
+  // }
 
   render() {
-    console.log("txk", this.state.address);
+    if (!this.props.storage_info) {
+      return <div>Loading</div>;
+    }
     return (
       <div>
-        <h1> Hello World! </h1>
+        <label> Current locations </label>
+        <span> number of locations {this.props.storage_info.length}</span>
+        {/* {this.props.storage_info.map(object => {
+          return (
+            <li> {object.city} {object.block_name}</li>
+          )
+        })} */}
 
-        <label> current locations </label>
-
-        {this.state.address.map(object => {
+        {this.props.storage_info.map(object => {
           return (
             <div>
-              <span> city : {object.city} </span>
-              <span> state : {object.state} </span>
-              <span> street : {object.street} </span>              
+              <select name="" id="">
+                <option> city : {object.city} </option>
+                <option> street : {object.street} </option>
+                <option> state : {object.state} </option>
+              </select>
+
+              
+              {/* <button onClick={() => this.addBlock(object.id)}>
+                add block name
+              </button> */}
             </div>
           );
         })}
+
+        {/* {this.state.isInput && (
+          <div>
+            <label>  block Name </label>
+            <input
+              value={this.state.blockName}
+              name="blockName"
+              onChange={e => this.handleChange(e)}
+              onKeyPress={(event) => this.enterPressed(event)}
+            />
+          </div>
+        )} */}
       </div>
     );
   }
@@ -49,13 +89,14 @@ class BusinessInfo extends Component {
 
 function mapStateToProps(state) {
   return {
-    business: state.business.businessFullInfo
+    storage_info: state.business.businessFullInfo
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getBusinessInfo: name => dispatch(actions.getBusinessInfo(name))
+    getBusinessInfo: name => dispatch(actions.getBusinessInfo(name)),
+    saveBlockToServer: details => dispatch(actions.saveBlockToServer(details))
   };
 }
 
