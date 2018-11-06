@@ -10,11 +10,11 @@ const saveBusiness = async (business) => {
     const parameters = [businessName, phoneNumbers, email]
     try{
         await client.query(statement, parameters)    
-        await client.end()
+        await client.release()
 
     }catch(e){
         console.log(e);
-        await client.end()        
+        await client.release()
     }
 }
 

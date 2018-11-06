@@ -3,6 +3,20 @@ const businessUrl = "http://localhost:3003/business";
 const businessInfoUrl = "http://localhost:3003/businessinfo/";
 const locationUrl = "http://localhost:3003/location";
 const blockUrl = "http://localhost:3003/block/";
+const unitType = "http://localhost:3003/unittype";
+const unitTypeUrl = "http://localhost:3003/unittype/";
+
+export function getUnitTypes(id) {
+  return async function(dispatch) {
+    dispatch({ type: "LOADING_TRUE" });
+    let unitTypes = await axios.get(unitTypeUrl + `${id}`);
+    dispatch({
+      type: "GET_UNIT_TYPES",
+      payload: unitTypes.data
+    });
+    dispatch({ type: "LOADING_FALSE" });
+  };
+}
 
 export function getBlocks(id) {
   return async function(dispatch) {
@@ -16,9 +30,16 @@ export function getBlocks(id) {
   };
 }
 
+export function saveUnitTypes(details) {
+  return async dispatch => {
+    dispatch({ type: "LOADING_TRUE" });
+    await axios.post(unitType, { details });
+    dispatch({ type: "LOADING_FALSE" });
+  };
+}
+
 export function getBusinessInfo(name) {
   return async function(dispatch) {
-    console.log("business", name);
     dispatch({ type: "LOADING_TRUE" });
     let businessInfo = await axios.get(businessInfoUrl + `${name}`);
     dispatch({
@@ -44,7 +65,6 @@ export function getBusinessFromServer() {
 }
 
 export const saveBlockToServer = details => {
-  console.log("submit to server", { details });
   return async dispatch => {
     dispatch({ type: "LOADING_TRUE" });
     await axios.post(blockUrl, { details });

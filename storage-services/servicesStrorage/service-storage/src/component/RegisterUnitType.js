@@ -7,21 +7,44 @@ import { connect } from "react-redux";
 class RegisterUnitType extends Component {
   constructor() {
     super();
+    this.state = {
+      isSuccessful: false
+    };
   }
 
-  async handleFormSubmit(details) {}
+  async handleFormSubmit(details) {
+    let blockId = this.props.blockId;
+    let unitTypeDetails = { ...details, blockId };
+    this.props.saveUnitTypes(unitTypeDetails);
+    this.setState({ isSuccessful: true });
+  }
 
   render() {
+    console.log(this.props.blockId);
     const { handleSubmit } = this.props;
 
     return (
-      <div>
+      <div style={{ display: "inline-block" }}>
+      {!this.state.isSuccessful ?
         <form
           className="form"
           onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
         >
-          <label>name</label>
-          <Field name="name" component="input" type="text" placeholder="name" />
+          <label>unit name</label>
+          <Field
+            name="unitName"
+            component="input"
+            type="text"
+            placeholder="unit Name"
+          />
+
+          <label>unit type</label>
+          <Field
+            name="unitType"
+            component="input"
+            type="text"
+            placeholder="unit type"
+          />
 
           <label>length</label>
           <Field
@@ -48,7 +71,7 @@ class RegisterUnitType extends Component {
           />
 
           <button action="submit"> submit unit type </button>
-        </form>
+        </form> : <div> Successfully Submited </div>}
       </div>
     );
   }
@@ -56,8 +79,7 @@ class RegisterUnitType extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveLocationToServer: details =>
-      dispatch(actions.saveLocationToServer(details))
+    saveUnitTypes: details => dispatch(actions.saveUnitTypes(details))
   };
 }
 

@@ -2,7 +2,8 @@ const initialState = {
   businessInfo: [],
   businessFullInfo: [],
   loading: false,
-  blocks: []
+  blocks: [],
+  unitTypes : []
 };
 
 export const businessReducer = (state = initialState, action) => {
@@ -11,6 +12,8 @@ export const businessReducer = (state = initialState, action) => {
       return { ...state, businessInfo: [...action.payload] };
     case "GET_BUSINESS_INFO":
       return { ...state, businessFullInfo: [...action.payload] };
+    case "GET_UNIT_TYPES":
+      return { ...state, unitTypes: [...action.payload] };
     case "GET_BLOCK_INFO":
       return { ...state, blocks: [...action.payload] };
     case "LOADING_FLASE":

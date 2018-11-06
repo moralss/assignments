@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS unit_type (
 
 CREATE TABLE IF NOT EXISTS unit (
     id serial PRIMARY KEY,
-    name varchar(255) NOT NULL,
+    unit_name varchar(255) NOT NULL,
     block_id INT REFERENCES block(id) NOT NULL,
     unit_type_id INT REFERENCES unit_type(id) NOT NULL,
     created_at timestamp NOT NULL DEFAULT NOW() NOT NULL,

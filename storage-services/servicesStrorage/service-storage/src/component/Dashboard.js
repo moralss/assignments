@@ -11,10 +11,9 @@ class Dashboard extends Component {
   componentDidMount() {
     this.fetchBusiness();
   }
-  
-  async fetchBusiness(){
+
+  async fetchBusiness() {
     await this.props.getBusinessFromServer();
-  
   }
 
   rigisterLocation(id) {
@@ -22,20 +21,14 @@ class Dashboard extends Component {
   }
 
   render() {
-
-    console.log("business info :" , this.props.businessInfo.businessInfo);
-    if (!this.props.businessInfo.businessInfo) {
+    if (!this.props.businessInfo) {
       return <div>Loading</div>;
     }
 
     return (
       <div className="App">
-       
- 
-
-
-        <h1> Welcome to your dashboard </h1>    
-        {this.props.businessInfo.businessInfo.map(business => {
+        <h1> Welcome to your dashboard </h1>
+        {this.props.businessInfo.map(business => {
           return (
             <div>
               <div>
@@ -43,7 +36,6 @@ class Dashboard extends Component {
                 <Link to={`businessinfo/${business.name}`}>
                   Click to view more info
                 </Link>
-    
                 <button onClick={() => this.rigisterLocation(business.id)}>
                   add location
                 </button>
@@ -58,7 +50,7 @@ class Dashboard extends Component {
 
 function mapStateToProps(state) {
   return {
-    businessInfo: state.business
+    businessInfo: state.business.businessInfo
   };
 }
 
@@ -72,4 +64,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Dashboard);
-

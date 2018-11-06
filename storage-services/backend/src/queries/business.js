@@ -10,15 +10,14 @@ const getBusinesses = async () => {
 
   try {
     const businesses = res.rows;
+    await client.release();
     return businesses;
   } catch (e) {
-      
+    console.log(e);
+    await client.release();
   }
-  await client.end();
 };
 
 module.exports = {
   getBusinesses
 };
-
-

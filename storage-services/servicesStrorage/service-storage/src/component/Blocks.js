@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import "../App.css";
+import RegisterUnitType from "./RegisterUnitType";
+import ShowUnitTypes from "./ShowUnitTypes";
 
 class Blocks extends Component {
   constructor() {
@@ -9,7 +11,8 @@ class Blocks extends Component {
     this.state = {
       blockName: "",
       isAddUnit: false,
-      id: 0
+      isShowUnitType: false,
+      blockId: 0
     };
   }
 
@@ -18,42 +21,62 @@ class Blocks extends Component {
     this.props.getBlocks(locationId);
   }
 
+  viewUnitTypes(id) {
+    if (!this.state.isShowUnitType) {
+      this.setState({ isShowUnitType: true });
+      this.setState({ isAddUnit: false });
+    } else if (this.state.isShowUnitType) {
+      this.setState({ isShowUnitType: false });
+    }
+
+    this.setState({ blockId: id });
+  }
+
   addUnitType(id) {
-    !this.state.isAddUnit
-      ? this.setState({ isAddUnit: true })
-      : this.setState({ isAddUnit: false });
+    if (!this.state.isAddUnit) {
+      this.setState({ isShowUnitType: false });
+      this.setState({ isAddUnit: true });
+    } else if (this.state.isAddUnit) {
+      this.setState({ isAddUnit: false });
+    }
+
+    this.setState({ blockId: id });
   }
 
   render() {
-    console.log(this.props.blocks);
-
     if (!this.props.blocks) {
       return <div>Loading</div>;
     }
+    const { blocks } = this.props;
 
     return (
-      <div>
-        <h1> blocks </h1>
-        {this.props.blocks.map(block => {
-          return (
-            <div>
-              <li> {block.block_name}</li>
-              <button onClick={() => this.addUnitType(block.id)}> </button>
-            </div>
-          );
-        })}
-        {this.state.isAddUnit ?
-          <form>
-            <label> name </label>
-            <input />
-            <label> length </label>
-            <input />
-            <label> width </label>
-            <input />
-            <label> height </label>
-            <input /> 
-          </form>: null
-        }
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+        <div>
+          <h1> blocks </h1>
+          <h1> number of blocks for location {blocks.length}</h1>
+          {blocks.map(block => {
+            return (
+              <div style={{ display: "block" }}>
+                <li> {block.block_name}</li>
+                <button onClick={() => this.addUnitType(block.id)}>
+                  Register a Unit Type for current block
+                </button>
+                <button onClick={() => this.viewUnitTypes(block.id)}>
+                  View Unit Types for current block
+                </button>
+              </div>
+            );
+          })}
+        </div>
+        <div>
+          {this.state.isAddUnit ? (
+            <RegisterUnitType blockId={this.state.blockId} />
+          ) : null}
+
+          {this.state.isShowUnitType ? (
+            <ShowUnitTypes blockId={this.state.blockId} />
+          ) : null}
+        </div>
       </div>
     );
   }

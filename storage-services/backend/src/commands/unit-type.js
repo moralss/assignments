@@ -1,22 +1,33 @@
-const { getClient } = require('../db')
+const { getClient } = require("../db");
 
-const  saveUnitType  = async (unitType) => {
-    const { name , length, width , height } = unitType
-    const client = await getClient()
+const saveUnitType = async unitTypeInfo => {
+  console.log("unit type" , unitTypeInfo);
+  const { unitName, unitType, length, width, height, blockId } = unitTypeInfo;
+    let idBlock = Number(blockId);
+  const client = await getClient();
+  
+  let parameters = [unitType, length, width, height];
+  let insertQuery = `INSERT INTO unit_type( name , length, width , height )
+    VALUES($1 , $2 , $3 , $4) RETURNING ID`;
 
-    let insertQuery =  `INSERT INTO unit_type( name , length, width , height )
-    VALUES($1 , $2 , $3 , $4)`;
-    let parameters = [name , length, width , height ];
-    
-    try{
-        await client.query(insertQuery, parameters)
-   
-    }catch(e){
-        console.log(e);
-        await client.end()        
-    }
-}
+  let insertQuery2 = `INSERT INTO unit( unit_name , block_id, unit_type_id )
+  VALUES($1 , $2 , $3)`;
+
+  try {
+
+    const res = await client.query(insertQuery, parameters);
+    let unitTypeId = Number(res.rows[0].id);
+
+    let parameters2 = [unitName, idBlock, unitTypeId];
+    await client.query(insertQuery2, parameters2);
+
+    await client.release();
+  } catch (e) {
+    console.log(e);
+    await client.release();
+  }
+};
 
 module.exports = {
-     saveUnitType 
-}
+  saveUnitType
+};

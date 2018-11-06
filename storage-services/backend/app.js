@@ -11,11 +11,11 @@ const unitType = require("./routers/unit-type")
 app.use(bodyPaser.json());
 app.use(cors());
 
+unitType.unitTypeRoutes(app);
 location.locationRoutes(app);
 business.businessRoutes(app);
 businessInfo.businessInfoRoutes(app);
 block.blockRoutes(app);
-unitType.unitTypeRoutes(app);
 
 
 app.listen(3003, function() {

@@ -7,15 +7,13 @@ import { connect } from "react-redux";
 class RegisterLocation extends Component {
   constructor() {
     super();
-
   }
 
   async handleFormSubmit(details) {
-    // this.props.history.push("/darshboard");
     const id = Number(this.props.match.params.id);
     let locationInfo = { ...details, id };
     await this.props.saveLocationToServer(locationInfo);
-    this.props.history.push(`/darshboard`);
+    this.props.history.push(`/dashboard`);
   }
 
   render() {
@@ -55,8 +53,7 @@ class RegisterLocation extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveLocationToServer: details =>
-      dispatch(actions.saveLocationToServer(details))
+    saveLocationToServer: details => dispatch(actions.saveLocationToServer(details))
   };
 }
 
@@ -64,7 +61,4 @@ const registerLocation = reduxForm({
   form: "registerLocation"
 })(RegisterLocation);
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(registerLocation);
+export default connect(null , mapDispatchToProps)(registerLocation);
