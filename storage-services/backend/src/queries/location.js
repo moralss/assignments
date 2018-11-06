@@ -1,6 +1,6 @@
 const { getClient } = require("../db");
 
-const getStorageInfo = async businessName => {
+const getLocation = async businessName => {
 
   const client = await getClient();
   let selectQuery = `select location.id , location.street ,
@@ -24,5 +24,5 @@ const getStorageInfo = async businessName => {
 };
 
 module.exports = {
-  getStorageInfo
+  getLocation
 };

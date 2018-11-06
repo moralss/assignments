@@ -1,13 +1,13 @@
-const getStorageInfo = require("../src/queries/business-storage-info");
+const {getLocation} = require("../src/queries/location");
 
 const businessInfoRoutes = app => {
   app.get("/businessinfo/:name", async (req, res) => {
     try {
       
       const name = req.params.name;
-      const businessInfo = await getStorageInfo.getStorageInfo(name);
+      const locationForBusiness = await getLocation(name);
       res
-        .send(businessInfo)
+        .send(locationForBusiness)
         .status(201)
         .end();
     } catch (e) {
