@@ -13,3 +13,5 @@ app.post("/location", async (req, res) => {
 }
 
 module.exports = {locationRoutes}
+
+// {"name":"google" ,"length":"20" ,"width":"43" ,"height":"18" ,"id":"1"}

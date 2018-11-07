@@ -13,7 +13,7 @@ const saveUnitType = async unitTypeInfo => {
   let insertQuery2 = `INSERT INTO unit( unit_name , block_id, unit_type_id )
   VALUES($1 , $2 , $3)`;
 
-  try {
+  try { 
 
     const res = await client.query(insertQuery, parameters);
     let unitTypeId = Number(res.rows[0].id);

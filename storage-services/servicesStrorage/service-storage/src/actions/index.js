@@ -46,7 +46,6 @@ export function getBusinessInfo(name) {
       type: "GET_BUSINESS_INFO",
       payload: businessInfo.data
     });
-
     dispatch({ type: "LOADING_FALSE" });
   };
 }
