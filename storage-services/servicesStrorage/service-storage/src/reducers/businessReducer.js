@@ -1,6 +1,6 @@
 const initialState = {
   businessInfo: [],
-  businessFullInfo: [],
+  businessLocations: [],
   loading: false,
   blocks: [],
   unitTypes : []
@@ -10,8 +10,8 @@ export const businessReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_BUSINESS_DETAILS":
       return { ...state, businessInfo: [...action.payload] };
-    case "GET_BUSINESS_INFO":
-      return { ...state, businessFullInfo: [...action.payload] };
+    case "GET_BUSINESS_LOCATION":
+      return { ...state, businessLocations: [...action.payload] };
     case "GET_UNIT_TYPES":
       return { ...state, unitTypes: [...action.payload] };
     case "GET_BLOCK_INFO":

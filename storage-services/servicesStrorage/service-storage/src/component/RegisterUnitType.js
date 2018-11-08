@@ -12,6 +12,20 @@ class RegisterUnitType extends Component {
     };
   }
 
+  renderInput = ({ input, meta, label }) => {
+    return (
+      <div>
+        <label>{label}</label>
+        <input {...input} placeholder={label} />
+        {meta.error && meta.touched ? (
+          <span style={{ color: "red" }}> {meta.error}</span>
+        ) : (
+          <span> </span>
+        )}
+      </div>
+    );
+  };
+
   async handleFormSubmit(details) {
     let blockId = this.props.blockId;
     let unitTypeDetails = { ...details, blockId };
@@ -20,61 +34,84 @@ class RegisterUnitType extends Component {
   }
 
   render() {
-    console.log(this.props.blockId);
     const { handleSubmit } = this.props;
 
     return (
       <div style={{ display: "inline-block" }}>
-      {!this.state.isSuccessful ?
-        <form
-          className="form"
-          onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
-        >
-          <label>unit name</label>
-          <Field
-            name="unitName"
-            component="input"
-            type="text"
-            placeholder="unit Name"
-          />
+        {!this.state.isSuccessful ? (
+          <form
+            className="form"
+            onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
+          >
+            <Field
+              label="unit name"
+              name="unitName"
+              component={this.renderInput}
+              type="text"
+            />
 
-          <label>unit type</label>
-          <Field
-            name="unitType"
-            component="input"
-            type="text"
-            placeholder="unit type"
-          />
+            <Field
+              label="unit type"
+              name="unitType"
+              component={this.renderInput}
+              type="text"
+            />
 
-          <label>length</label>
-          <Field
-            name="length"
-            component="input"
-            type="text"
-            placeholder="length"
-          />
+            <Field
+              label="length"
+              name="length"
+              component={this.renderInput}
+              type="text"
+            />
 
-          <label>width</label>
-          <Field
-            name="width"
-            component="input"
-            type="text"
-            placeholder="width"
-          />
+            <Field
+              label="width"
+              name="width"
+              component={this.renderInput}
+              type="text"
+            />
 
-          <label>height</label>
-          <Field
-            name="height"
-            component="input"
-            type="text"
-            placeholder="height"
-          />
+            <Field
+              label="height"
+              name="height"
+              component={this.renderInput}
+              type="text"
+            />
 
-          <button action="submit"> submit unit type </button>
-        </form> : <div> Successfully Submited </div>}
+            <input disabled={this.props.invalid} type="submit" />
+          </form>
+        ) : (
+          <div> Successfully Submited </div>
+        )}
       </div>
     );
   }
+}
+
+function validate(value) {
+  let error = {};
+
+  if (!value.unitName) {
+    error.unitName = "unit name is required";
+  }
+
+  if (!value.unitType) {
+    error.unitType = "unit type is required";
+  }
+
+  if (!value.width) {
+    error.width = "width is required";
+  }
+
+  if (!value.length) {
+    error.length = "length is required";
+  }
+
+  if (!value.height) {
+    error.height = "height is required";
+  }
+
+  return error;
 }
 
 function mapDispatchToProps(dispatch) {
@@ -84,7 +121,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 const registerUnitType = reduxForm({
-  form: "registerUnitType"
+  form: "registerUnitType",
+  validate
 })(RegisterUnitType);
 
 export default connect(

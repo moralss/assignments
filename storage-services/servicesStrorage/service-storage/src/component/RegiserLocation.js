@@ -9,11 +9,26 @@ class RegisterLocation extends Component {
     super();
   }
 
+
+  renderInput = ({ input, meta, label }) => {
+    return (
+      <div>
+        <label>{label}</label>
+        <input {...input} />
+        {meta.error && meta.touched ? (
+          <span style={{color:"red"}}> {meta.error}</span>
+        ) : (
+          <span> </span>
+        )}
+      </div>
+    );
+  };
+
+
   async handleFormSubmit(details) {
     const id = Number(this.props.match.params.id);
     let locationInfo = { ...details, id };
-    await this.props.saveLocationToServer(locationInfo);
-    this.props.history.push(`/dashboard`);
+    await this.props.saveLocationToServer(locationInfo, this.props.history);
   }
 
   render() {
@@ -25,26 +40,29 @@ class RegisterLocation extends Component {
           className="form"
           onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
         >
-          <label>city</label>
-          <Field name="city" component="input" type="text" placeholder="city" />
+          <Field name="city"
+           component={this.renderInput}
+           type="text"
+           label="city"
+           placeholder="city" />
 
-          <label>state</label>
           <Field
             name="state"
-            component="input"
+            component={this.renderInput}
+            label="state"
             type="text"
             placeholder="state"
           />
 
-          <label>street </label>
           <Field
             name="street"
-            component="input"
+            label="street"
+            component={this.renderInput}
             type="text"
             placeholder="street"
           />
 
-          <button action="submit"> submit location </button>
+          <input disabled={this.props.invalid} type="submit" />
         </form>
       </div>
     );
@@ -53,12 +71,35 @@ class RegisterLocation extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveLocationToServer: details => dispatch(actions.saveLocationToServer(details))
+    saveLocationToServer: (details, history) =>
+      dispatch(actions.saveLocationToServer(details, history))
   };
 }
 
+function validate(value) {
+  let error = {};
+
+  if (!value.city) {
+    error.city = "city is required";
+  }
+
+  if (!value.state) {
+    error.state = "state is required";
+  }
+
+  if (!value.street) {
+    error.street = "street is required";
+  }
+
+  return error;
+}
+
 const registerLocation = reduxForm({
-  form: "registerLocation"
+  form: "registerLocation",
+  validate
 })(RegisterLocation);
 
-export default connect(null , mapDispatchToProps)(registerLocation);
+export default connect(
+  null,
+  mapDispatchToProps
+)(registerLocation);

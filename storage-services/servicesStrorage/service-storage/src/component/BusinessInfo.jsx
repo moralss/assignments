@@ -72,7 +72,7 @@ class BusinessInfo extends Component {
 
 function mapStateToProps(state) {
   return {
-    locations: state.business.businessFullInfo,
+    locations: state.business.businessLocations,
     blocks: state.business.block
   };
 }

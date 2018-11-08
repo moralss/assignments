@@ -42,7 +42,7 @@ class RegisterBlock extends Component {
               placeholder="enter block"
             />
 
-            <button action="submit"> submit location </button>
+            <button action="submit"> submit block </button>
           </form>
         ) : (
           " Successfully submitted"

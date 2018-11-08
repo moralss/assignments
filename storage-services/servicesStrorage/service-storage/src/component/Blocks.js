@@ -50,32 +50,33 @@ class Blocks extends Component {
     const { blocks } = this.props;
 
     return (
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-        <div>
-          <h1> blocks </h1>
-          <h1> number of blocks for location {blocks.length}</h1>
-          {blocks.map(block => {
-            return (
-              <div style={{ display: "block" }}>
-                <li> {block.block_name}</li>
-                <button onClick={() => this.addUnitType(block.id)}>
-                  Register a Unit Type for current block
-                </button>
-                <button onClick={() => this.viewUnitTypes(block.id)}>
-                  View Unit Types for current block
-                </button>
-              </div>
-            );
-          })}
-        </div>
-        <div>
-          {this.state.isAddUnit ? (
-            <RegisterUnitType blockId={this.state.blockId} />
-          ) : null}
+      <div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+          <div>
+            <h1> Number of blocks for location {blocks.length}</h1>
+            {blocks.map(block => {
+              return (
+                <div style={{ display: "block" }}>
+                  <li> {block.block_name}</li>
+                  <button onClick={() => this.addUnitType(block.id)}>
+                    Register a Unit Type for current block
+                  </button>
+                  <button onClick={() => this.viewUnitTypes(block.id)}>
+                    View Unit Types for current block
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+          <div>
+            {this.state.isAddUnit ? (
+              <RegisterUnitType blockId={this.state.blockId} />
+            ) : null}
 
-          {this.state.isShowUnitType ? (
-            <ShowUnitTypes blockId={this.state.blockId} />
-          ) : null}
+            {this.state.isShowUnitType ? (
+              <ShowUnitTypes blockId={this.state.blockId} />
+            ) : null}
+          </div>
         </div>
       </div>
     );
