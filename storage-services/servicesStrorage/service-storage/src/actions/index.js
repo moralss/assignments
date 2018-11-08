@@ -62,7 +62,7 @@ export function getBusinessFromServer() {
 export const saveBlockToServer = details => {
   return async dispatch => {
     dispatch({ type: "LOADING_TRUE" });
-    await axios.post(blockUrl, { details });
+    await axios.post(blockUrl, { ...details });
     dispatch({ type: "LOADING_FALSE" });
   };
 };
@@ -70,13 +70,17 @@ export const saveBlockToServer = details => {
 export const saveBusinessDetails = (details, history) => {
   return async dispatch => {
     dispatch({ type: "LOADING_TRUE" });
-    await axios.post(businessUrl, { details });
-    history.push("/dashboard");
-    dispatch({ type: "LOADING_FALSE" });
+    try {
+      await axios.post(businessUrl, { ...details });
+      history.push("/dashboard");
+      dispatch({ type: "SAVED_BUSINESS_SUCCESS" });
+    } catch (e) {
+      dispatch({ type: "POST_ERROR", payload: e });
+    }
   };
 };
 
-export function saveLocationToServer(details , history) {
+export function saveLocationToServer(details, history) {
   return async function(dispatch) {
     dispatch({ type: "LOADING_TRUE" });
     await axios.post(locationUrl, { ...details });
@@ -88,7 +92,7 @@ export function saveLocationToServer(details , history) {
 export function saveUnitTypes(details) {
   return async dispatch => {
     dispatch({ type: "LOADING_TRUE" });
-    await axios.post(unitType, { details });
+    await axios.post(unitType, { ...details });
     dispatch({ type: "LOADING_FALSE" });
   };
 }

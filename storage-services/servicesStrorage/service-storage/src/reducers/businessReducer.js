@@ -3,8 +3,11 @@ const initialState = {
   businessLocations: [],
   loading: false,
   blocks: [],
-  unitTypes : []
+  unitTypes: [],
+  postError: []
 };
+
+// POST_ERROR
 
 export const businessReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -16,6 +19,9 @@ export const businessReducer = (state = initialState, action) => {
       return { ...state, unitTypes: [...action.payload] };
     case "GET_BLOCK_INFO":
       return { ...state, blocks: [...action.payload] };
+    case "POST_ERROR":
+      return { ...state, postError: [...action.payload] };
+
     case "LOADING_FLASE":
       return { ...state, loading: false };
     case "LOADING_TRUE":

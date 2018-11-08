@@ -1,9 +1,8 @@
-const {getLocation} = require("../src/queries/location");
+const { getLocation } = require("../src/queries/location");
 
 const businessInfoRoutes = app => {
   app.get("/businessinfo/:name", async (req, res) => {
     try {
-      
       const name = req.params.name;
       const locationForBusiness = await getLocation(name);
       res
@@ -12,7 +11,7 @@ const businessInfoRoutes = app => {
         .end();
     } catch (e) {
       console.log(e);
-      res.status(301).end();
+      res.status(400).end();
     }
   });
 };

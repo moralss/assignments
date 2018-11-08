@@ -45,7 +45,7 @@ class Form extends Component {
 
           <Field
             name="phoneNumbers"
-            label="phone numbers"
+            label="Phone number"
             component={this.renderInput}
             type="text"
           />

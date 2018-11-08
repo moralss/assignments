@@ -31,9 +31,9 @@ CREATE TABLE IF NOT EXISTS block (
 CREATE TABLE IF NOT EXISTS unit_type (
     id serial PRIMARY KEY,
     name varchar(255) NOT NULL,
-    length DECIMAL(18,4) NOT NULL,
-    width DECIMAL(18,4) NOT NULL,
-    height DECIMAL(18,4) NOT NULL,
+    length DECIMAL(18,2) NOT NULL,
+    width DECIMAL(18,2) NOT NULL,
+    height DECIMAL(18,2) NOT NULL,
     created_at timestamp NOT NULL DEFAULT NOW() NOT NULL,
     updated_at timestamp NOT NULL DEFAULT NOW() NOT NULL
 );

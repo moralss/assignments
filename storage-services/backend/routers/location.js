@@ -1,17 +1,27 @@
-const saveLocation = require('../src/commands/location');
-const locationRoutes = (app) => {
+const { saveLocation } = require("../src/commands/location");
+const { validateLocation } = require("../src/validations");
 
-app.post("/location", async (req, res) => {
-    try {
-      await saveLocation.saveLocation(req.body);
-      res.status(201).end();
-    } catch (e) {
-      console.log(e);
-      res.status(301).end()
+const locationRoutes = app => {
+  app.post("/location", async (req, res) => {
+    const location = req.body;
+
+    if (!validateLocation(location)) {
+      res.status(400);
+      res.json({
+        error: {
+          message: "Invalid request object"
+        }
+      });
+    } else {
+      try {
+        await saveLocation(location);
+        res.status(201).end();
+      } catch (e) {
+        console.log(e);
+        res.status(500).end();
+      }
     }
   });
-}
+};
 
-module.exports = {locationRoutes}
-
-// {"name":"google" ,"length":"20" ,"width":"43" ,"height":"18" ,"id":"1"}
+module.exports = { locationRoutes };
