@@ -2,7 +2,7 @@ const { getClient } = require("../db");
 
 const saveBusiness = async business => {
   const { businessName, phoneNumbers, email } = business;
-  console.log("business", business);
+
   const client = await getClient();
   const statement = `INSERT INTO business(name, contact_number, contact_email) 
     values($1, $2, $3) RETURNING id;`;
