@@ -34,7 +34,6 @@ class BusinessInfo extends Component {
     this.props.history.push(`/blocks/${id}`);
   }
 
-
   render() {
     if (!this.props.locations) {
       return <div>Loading</div>;
@@ -64,7 +63,9 @@ class BusinessInfo extends Component {
           );
         })}
 
-        {this.state.isInput && <RegisterBlock locationId={this.state.locationId}/>}
+        {this.state.isInput && (
+          <RegisterBlock locationId={this.state.locationId} />
+        )}
       </div>
     );
   }

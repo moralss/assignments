@@ -8,12 +8,10 @@ class Homepage extends Component {
     super();
   }
 
-  registerCustomer() {
-
-}
+  registerCustomer() {}
 
   registerOwner() {
-
+    this.props.history.push("/businessloginorsignup");
   }
 
   render() {
@@ -21,24 +19,17 @@ class Homepage extends Component {
       <div>
         <h1> Welcome to the home page </h1>
         <button onClick={this.registerCustomer()}>
-          Register as a Customer
+          Register or login as a Customer
         </button>
-        <button onClick={this.registerOwner()}>
-          Register as a business owner
+        <button onClick={() => this.registerOwner()}>
+          Register or login as a business owner
         </button>
       </div>
     );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    registerCustomer: userType => dispatch(actions.registerCustomer(userType)),
-    registerOwner: userType => dispatch(actions.registerOwner(userType))
-  };
-}
-
 export default connect(
   null,
-  mapDispatchToProps
+  null
 )(Homepage);

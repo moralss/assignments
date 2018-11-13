@@ -1,3 +1,12 @@
+CREATE TABLE IF NOT EXISTS business_owner (
+    id serial PRIMARY KEY,
+    email varchar(255) NOT NULL UNIQUE,
+    hashed_password varchar(225) NOT NULL UNIQUE,
+    created_at timestamp NOT NULL DEFAULT NOW() NOT NULL,
+    updated_at timestamp NOT NULL DEFAULT NOW() NOT NULL
+);                                                                                                                                                                                                                                                                                                                                                                                                                
+
+
 CREATE TABLE IF NOT EXISTS business (
     id serial PRIMARY KEY,
     name varchar(255) NOT NULL,

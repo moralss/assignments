@@ -5,7 +5,8 @@ const locationUrl = "http://localhost:3003/location";
 const blockUrl = "http://localhost:3003/block/";
 const unitType = "http://localhost:3003/unittype";
 const unitTypeUrl = "http://localhost:3003/unittype/";
-
+const ownerRegisterUrl = "http://localhost:3003/businessownersign";
+const loginInUrl = "http://localhost:3003/businessownerlogin";
 // http get requests
 export function getUnitTypes(id) {
   return async function(dispatch) {
@@ -103,6 +104,27 @@ export function registerCustomer(details) {
   return async dispatch => {};
 }
 
-export function registerOwner(details) {
-  return async dispatch => {};
+export function registerBusinessOwner(details, history) {
+  return async dispatch => {
+    dispatch({ type: "LOADING_TRUE" });
+    try {
+      let data = await axios.post(ownerRegisterUrl, { ...details });
+      history.push("/registerbusiness");
+    } catch (e) {
+      dispatch({ type: "AUTHENTICATION_ERROR" });
+    }
+  };
+}
+
+export function loginBusinessOwner(details, history) {
+  return async dispatch => {
+    dispatch({ type: "LOADING_TRUE" });
+
+    try {
+      let data = await axios.post(loginInUrl, { ...details });
+      history.push("/dashboard");
+    } catch (e) {
+      dispatch({ type: "AUTHENTICATION_ERROR" });
+    }
+  };
 }
