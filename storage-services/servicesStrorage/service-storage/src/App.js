@@ -11,7 +11,15 @@ import HomePage from "./component/HomePage";
 import Navbar from "./component/Navbar";
 import RegisterOwner from "./component/RegisterBusinessOwner";
 import BusinessLoginOrSignup from "./component/BusinessLoginOrSignup";
-import LoginOwner from './component/LoginFormOwner';
+import LoginOwner from "./component/LoginFormOwner";
+import store from "./config/store";
+
+const businessOwner = localStorage.getItem("businessOwner");
+if (businessOwner) {
+  store.dispatch({ type: "OWNER_AUTHENTICATED" });
+}else {
+  this.history()
+}
 
 class App extends Component {
   render() {

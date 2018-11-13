@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS business (
     name varchar(255) NOT NULL,
     contact_number varchar(25) NOT NULL UNIQUE,
     contact_email varchar(255) NOT NULL UNIQUE,
+    business_owner_id INT REFERENCES business_owner(id) NOT NULL,
     created_at timestamp NOT NULL DEFAULT NOW() NOT NULL,
     updated_at timestamp NOT NULL DEFAULT NOW() NOT NULL
 );                                                                                                                                                                                                                                                                                                                                                                                                                

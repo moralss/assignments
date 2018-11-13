@@ -1,10 +1,14 @@
 const { getBusinesses } = require("../src/queries/business");
 const { saveBusiness } = require("../src/commands/business");
 const { validateBusiness } = require("../src/validations");
+const passport = require("passport");
+const { jwtCheck } = require("../src/auth/jwtCheck");
 
 const businessRoutes = app => {
-  app.post("/business", async (req, res) => {
+  app.post("/business", jwtCheck, async (req, res) => {
     const business = req.body;
+    const businessOwnerId = Number(req.user.id);
+
     if (!validateBusiness(business)) {
       res.status(400);
       res.json({
@@ -13,7 +17,7 @@ const businessRoutes = app => {
         }
       });
     } else {
-      const id = await saveBusiness(business);
+      const id = await saveBusiness(business, businessOwnerId);
       if (id) {
         res.status(201).end();
       } else {
@@ -22,9 +26,10 @@ const businessRoutes = app => {
     }
   });
 
-  app.get("/business", async (req, res) => {
+  app.get("/business", jwtCheck, async (req, res) => {
+    const businessOwnerId = Number(req.user.id);
     try {
-      const businesses = await getBusinesses();
+      const businesses = await getBusinesses(businessOwnerId);
       res
         .json(businesses)
         .status(201)

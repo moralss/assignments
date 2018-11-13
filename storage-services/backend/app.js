@@ -10,7 +10,7 @@ const unitType = require("./routers/unit-type");
 const businessOwner = require("./routers/business-owner");
 const passport = require("passport");
 require("./src/auth/passport")(passport);
-
+require("./src/auth/Auth")(passport);
 
 app.use(bodyPaser.json());
 app.use(cors());

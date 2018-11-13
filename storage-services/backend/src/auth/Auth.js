@@ -15,7 +15,7 @@ module.exports = function(passport) {
       businessOwner = await getBusinessOwnerId(jwt_payload.sub);
         if (businessOwner.id === jwt_payload.sub) {
           console.log("found user");
-          return done(null, user);
+          return done(null, businessOwner);
         } else {
           console.log("cannot find user");
           return done(null, false);

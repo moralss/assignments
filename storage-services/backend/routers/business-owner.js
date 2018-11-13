@@ -2,7 +2,6 @@ const passport = require("passport");
 const { createToken } = require("../src/auth/createToken");
 const { getBusinessOwner } = require("../src/queries/business-owner");
 const { createBusinessOwner } = require("../src/commands/business-owner");
-// const jwtCheck = passport.authenticate("jwt", { session: false });
 
 let middeware = passport.authenticate("local");
 
