@@ -1,5 +1,6 @@
 export const GET_UNIT_TYPES = "GET_UNIT_TYPES";
 export const LOADING_TRUE = "LOADING_TRUE";
+
 export const LOADING_FALSE = "LOADING_FALSE"; 
 export const GET_BLOCK_INFO = "GET_BLOCK_INFO";
 export const GET_BUSINESS_LOCATION = "GET_BUSINESS_LOCATION";

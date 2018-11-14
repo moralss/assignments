@@ -30,7 +30,7 @@ const businessOwnerRoutes = app => {
       let token = createToken(businessOwner.id);
       res.send({ token }).end();
     } catch (e) {
-      res.send(401).end();
+      res.send(500).end();
       console.log(e);
     }
   });

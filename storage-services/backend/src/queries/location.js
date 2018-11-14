@@ -1,7 +1,7 @@
 const { getClient } = require("../db");
 
 const getLocation = async businessName => {
-
+  
   const client = await getClient();
   let selectQuery = `select location.id , location.street ,
     location.city , location.state from

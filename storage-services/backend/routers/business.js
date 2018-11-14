@@ -1,7 +1,6 @@
 const { getBusinesses } = require("../src/queries/business");
 const { saveBusiness } = require("../src/commands/business");
 const { validateBusiness } = require("../src/validations");
-const passport = require("passport");
 const { jwtCheck } = require("../src/auth/jwtCheck");
 
 

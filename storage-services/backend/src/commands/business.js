@@ -1,7 +1,6 @@
 const { getClient } = require("../db");
 
 const saveBusiness = async (business, ownerId) => {
-  console.log("current owner id", ownerId);
   const { businessName, phoneNumbers, email } = business;
 
   const client = await getClient();
