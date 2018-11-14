@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "../App.css";
+import "../../App.css";
 import { Field, reduxForm } from "redux-form";
-import * as actions from "../actions";
+import * as actions from "../../actions";
 import { connect } from "react-redux";
 
 class RegisterBlock extends Component {
@@ -15,7 +15,6 @@ class RegisterBlock extends Component {
   async handleFormSubmit(details) {
     let locationId = this.props.locationId;
     let data = { ...details, locationId };
-    console.log(data);
     await this.props.saveBlockToServer(data);
     this.setState({ isSuccessful: true });
   }

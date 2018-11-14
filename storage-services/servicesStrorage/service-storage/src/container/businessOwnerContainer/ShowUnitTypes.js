@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import "../App.css";
-import { Field, reduxForm } from "redux-form";
-import * as actions from "../actions";
+import "../../App.css";
+import * as actions from "../../actions";
 import { connect } from "react-redux";
 
 class showUnitTypes extends Component {

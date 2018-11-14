@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import "../App.css";
 import { Field, reduxForm } from "redux-form";
-import * as actions from "../actions";
+import * as actions from "../../actions/customerActions/";
 import { connect } from "react-redux";
 
-class Form extends Component {
+class RegisterCustomer extends Component {
   constructor() {
     super();
   }
 
   async handleFormSubmit(details) {
-    await this.props.saveBusinessDetails(details, this.props.history);
+    await this.props.registerCustomer(details, this.props.history);
   }
 
   render() {
@@ -18,10 +17,12 @@ class Form extends Component {
 
     return (
       <div>
+        <h1> Register an account. </h1>
         <form
           className="form"
           onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
         >
+
           <label>email </label>
           <Field
             name="email"
@@ -47,14 +48,14 @@ class Form extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveBusinessDetails: (details, history) =>
-      dispatch(actions.saveBusinessDetails(details, history))
+    registerCustomer: (details, history) =>
+      dispatch(actions.registerCustomer(details, history))
   };
 }
 
 const currretForm = reduxForm({
-  form: "registerBusiness"
-})(Form);
+  form: "registerCustomer"
+})(RegisterCustomer);
 
 export default connect(
   null,

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import * as actions from "../actions";
+import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
 
 class Dashboard extends Component {
   constructor() {
@@ -14,7 +13,7 @@ class Dashboard extends Component {
   }
 
   async fetchBusiness() {
-    await this.props.getBusinessFromServer();
+    await this.props.getBusiness();
   }
 
   rigisterLocation(id) {
@@ -57,7 +56,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getBusinessFromServer: () => dispatch(actions.getBusinessFromServer())
+    getBusiness: () => dispatch(actions.getBusiness())
   };
 }
 

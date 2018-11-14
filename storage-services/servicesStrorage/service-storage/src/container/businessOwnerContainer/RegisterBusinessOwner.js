@@ -1,16 +1,17 @@
 import React, { Component } from "react";
-import "../App.css";
+import "../../App.css";
 import { Field, reduxForm } from "redux-form";
-import * as actions from "../actions";
+import * as actions from "../../actions";
 import { connect } from "react-redux";
 
-class LoginFormOwner extends Component {
+class RegisterBusinessOwner extends Component {
   constructor() {
     super();
   }
 
   async handleFormSubmit(details) {
-    await this.props.loginBusinessOwner(details, this.props.history);
+    // console.log("sign up details" , details);
+    await this.props.registerBusinessOwner(details, this.props.history);
   }
 
   renderInput = ({ input, meta, label }) => {
@@ -29,15 +30,14 @@ class LoginFormOwner extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-
+    console.log("login form", this.props.history);
     return (
       <div>
-          <h1> Login in </h1>
+        <h1> sign up </h1>
         <form
           className="form"
           onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
         >
-
           <Field
             name="email"
             label="email"
@@ -61,15 +61,14 @@ class LoginFormOwner extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loginBusinessOwner: (details, history) =>
-      dispatch(actions.loginBusinessOwner(details, history))
+    registerBusinessOwner: (details, history) =>
+      dispatch(actions.registerBusinessOwner(details, history))
   };
 }
 
-
 const currretForm = reduxForm({
   form: "registerBusinessOwner"
-})(LoginFormOwner);
+})(RegisterBusinessOwner);
 
 export default connect(
   null,

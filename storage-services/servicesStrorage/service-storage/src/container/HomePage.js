@@ -8,7 +8,9 @@ class Homepage extends Component {
     super();
   }
 
-  registerCustomer() {}
+  registerCustomer() {
+    this.props.history.push("/customerloginorsignup");
+  }
 
   registerOwner() {
     this.props.history.push("/businessloginorsignup");
@@ -18,7 +20,7 @@ class Homepage extends Component {
     return (
       <div>
         <h1> Welcome to the home page </h1>
-        <button onClick={this.registerCustomer()}>
+        <button onClick={() => this.registerCustomer()}>
           Register or login as a Customer
         </button>
         <button onClick={() => this.registerOwner()}>

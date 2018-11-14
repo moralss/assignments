@@ -4,11 +4,12 @@ const { validateBusiness } = require("../src/validations");
 const passport = require("passport");
 const { jwtCheck } = require("../src/auth/jwtCheck");
 
+
 const businessRoutes = app => {
   app.post("/business", jwtCheck, async (req, res) => {
     const business = req.body;
     const businessOwnerId = Number(req.user.id);
-
+    
     if (!validateBusiness(business)) {
       res.status(400);
       res.json({

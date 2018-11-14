@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import "../App.css";
-import { connect } from "react-redux";
-import * as actions from "../actions";
-import RegisterOwner from "./RegisterBusinessOwner";
-import LoginFormOwner from "./LoginFormOwner";
+import "../../App.css";
 import { NavLink } from "react-router-dom";
 
 class BusinessLoginOrSignup extends Component {
@@ -26,7 +22,4 @@ class BusinessLoginOrSignup extends Component {
   }
 }
 
-export default connect(
-  null,
-  null
-)(BusinessLoginOrSignup);
+export default BusinessLoginOrSignup;
