@@ -1,7 +1,6 @@
-import * as actions from '../actionTypes';
+import * as actions from "../actionTypes";
 import axios from "axios";
-let businessOwnerToken = localStorage.getItem("businessOwner");
-axios.defaults.headers.common["authorization"] = businessOwnerToken;
+import { setAxiosHeader } from "../auth";
 
 const businessUrl = "http://localhost:3003/business";
 const businessInfoUrl = "http://localhost:3003/businessinfo/";
@@ -17,7 +16,7 @@ const loginInUrl = "http://localhost:3003/businessownerlogin";
 export function getUnitTypes(id) {
   return async function(dispatch) {
     dispatch({ type: actions.LOADING_TRUE });
-    let unitTypes = await axios.get(unitTypeUrl + `${id}`);
+    let unitTypes = await axios.get(unitTypeUrl + `${id}`, setAxiosHeader());
     dispatch({ type: actions.GET_UNIT_TYPES, payload: unitTypes.data });
   };
 }
@@ -25,7 +24,7 @@ export function getUnitTypes(id) {
 export function getBlocks(id) {
   return async function(dispatch) {
     dispatch({ type: actions.LOADING_TRUE });
-    let blocks = await axios.get(blockUrl + `${id}`);
+    let blocks = await axios.get(blockUrl + `${id}`, setAxiosHeader());
     dispatch({ type: actions.GET_BLOCK_INFO, payload: blocks.data });
   };
 }
@@ -33,7 +32,10 @@ export function getBlocks(id) {
 export function getBusinessInfo(name) {
   return async function(dispatch) {
     dispatch({ type: actions.LOADING_TRUE });
-    let businessInfo = await axios.get(businessInfoUrl + `${name}`);
+    let businessInfo = await axios.get(
+      businessInfoUrl + `${name}`,
+      setAxiosHeader()
+    );
     dispatch({
       type: actions.GET_BUSINESS_LOCATION,
       payload: businessInfo.data
@@ -44,7 +46,7 @@ export function getBusinessInfo(name) {
 export function getBusiness() {
   return async function(dispatch) {
     dispatch({ type: actions.LOADING_TRUE });
-    const businesses = await axios.get(businessUrl);
+    const businesses = await axios.get(businessUrl, setAxiosHeader());
     dispatch({ type: actions.GET_BUSINESS_DETAILS, payload: businesses.data });
   };
 }
@@ -55,7 +57,7 @@ export function getBusiness() {
 export const saveBlockToServer = details => {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
-    await axios.post(blockUrl, { ...details });
+    await axios.post(blockUrl, { ...details }, setAxiosHeader());
   };
 };
 
@@ -63,7 +65,7 @@ export const saveBusinessDetails = (details, history) => {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {
-      await axios.post(businessUrl, { ...details });
+      await axios.post(businessUrl, { ...details }, setAxiosHeader());
       history.push("/dashboard");
       dispatch({ type: actions.SAVED_BUSINESS_SUCCESS });
     } catch (e) {
@@ -75,7 +77,7 @@ export const saveBusinessDetails = (details, history) => {
 export function saveLocationToServer(details, history) {
   return async function(dispatch) {
     dispatch({ type: actions.LOADING_TRUE });
-    await axios.post(locationUrl, { ...details });
+    await axios.post(locationUrl, { ...details }, setAxiosHeader());
     history.push(`/dashboard`);
   };
 }
@@ -83,7 +85,7 @@ export function saveLocationToServer(details, history) {
 export function saveUnitTypes(details) {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
-    await axios.post(unitType, { ...details });
+    await axios.post(unitType, { ...details }, setAxiosHeader());
   };
 }
 
@@ -94,9 +96,9 @@ export function registerBusinessOwner(details, history) {
     dispatch({ type: actions.LOADING_TRUE });
     try {
       let res = await axios.post(ownerRegisterUrl, { ...details });
-      history.push("/registerbusiness");
       localStorage.setItem("businessOwner", res.data.token);
       dispatch({ type: actions.OWNER_AUTHENTICATED });
+      history.push("/registerbusiness");
     } catch (e) {
       dispatch({ type: actions.OWNER_AUTHENTICATION_ERROR, payload: e });
     }
@@ -108,9 +110,9 @@ export function loginBusinessOwner(details, history) {
     dispatch({ type: actions.LOADING_TRUE });
     try {
       let res = await axios.post(loginInUrl, { ...details });
-      history.push("/dashboard");
       localStorage.setItem("businessOwner", res.data.token);
       dispatch({ type: actions.OWNER_AUTHENTICATED });
+      history.push("/dashboard");
     } catch (e) {
       dispatch({ type: actions.OWNER_AUTHENTICATION_ERROR, payload: e });
     }

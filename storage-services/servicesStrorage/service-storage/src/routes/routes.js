@@ -13,7 +13,16 @@ import LoginOwner from "../container/businessOwnerContainer/LoginFormOwner";
 import store from "../config/store";
 import RegisterCustomer from "../container/customerContainer/RegisterCustomer";
 import CustomerLoginOrSignup from "../container/customerContainer/CustomerLoginOrSignup";
+import BusinessUnites from "../container/customerContainer/BusinessUnites";
 import CustomerLogin from "../container/customerContainer/CustomerLogin";
+
+import * as actions from "../actionTypes";
+
+const businessOwner = localStorage.hasOwnProperty("businessOwner");
+
+if (businessOwner) {
+  store.dispatch({ type: actions.OWNER_AUTHENTICATED });
+}
 
 let authenticated = store.getState().businessOwnerAuth.authenticated;
 console.log("(authenticated", authenticated);
@@ -23,11 +32,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        !authenticated ? <Route {...rest} /> : <Redirect to="/" />
+        authenticated ? <Route {...rest} /> : <Redirect to="/" />
       }
     />
   );
 };
+
 
 export const makeMainRoutes = () => {
   return (
@@ -58,24 +68,28 @@ export const makeMainRoutes = () => {
           strict
           render={props => <BusinessLoginOrSignup {...props} />}
         />
+
         <Route
           path="/customerloginorsignup"
           exact
           strict
           render={props => <CustomerLoginOrSignup {...props} />}
         />
+
+        <Route
+          path="/businessunites"
+          exact
+          strict
+          render={props => <BusinessUnites {...props} />}
+        />
+
         <Route
           path="/registercustomer"
           exact
           strict
           render={props => <RegisterCustomer {...props} />}
         />
-        <Route
-          path="/login"
-          exact
-          strict
-          render={props => <RegisterCustomer {...props} />}
-        />
+
         <Route
           path="/customerlogin"
           exact
@@ -83,31 +97,34 @@ export const makeMainRoutes = () => {
           render={props => <CustomerLogin {...props} />}
         />
 
-        
-        <Route
+        <PrivateRoute
           exact
           path="/registerbusiness"
           render={props => <RegisterBusiness {...props} />}
         />
-        <Route
+
+        <PrivateRoute
           path="/businessinfo/:name"
           exact
           strict
           render={props => <BusinessInfo {...props} />}
         />
-        <Route
+
+        <PrivateRoute
           path="/dashboard"
           exact
           strict
           render={props => <Dashboard {...props} />}
         />
-        <Route
+
+        <PrivateRoute
           path="/registerLocation/:id"
           exact
           strict
           render={props => <RegisterLocation {...props} />}
         />
-        <Route
+
+        <PrivateRoute
           path="/blocks/:id"
           exact
           strict

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "../../App.css";
 import { Field, reduxForm } from "redux-form";
-import * as actions from "../../actions";
 import { connect } from "react-redux";
+import * as actions from "../../actions/customerActions/";
+
 
 class CustomerLogin extends Component {
   constructor() {
@@ -10,7 +11,7 @@ class CustomerLogin extends Component {
   }
 
   async handleFormSubmit(details) {
-    await this.props.loginBusinessOwner(details, this.props.history);
+    await this.props.loginCustomer(details, this.props.history);
   }
 
   renderInput = ({ input, meta, label }) => {
@@ -61,8 +62,8 @@ class CustomerLogin extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loginBusinessOwner: (details, history) =>
-      dispatch(actions.loginBusinessOwner(details, history))
+    loginCustomer: (details, history) =>
+      dispatch(actions.loginCustomer(details, history))
   };
 }
 

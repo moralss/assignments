@@ -4,21 +4,18 @@ import { makeMainRoutes } from "./routes/routes";
 import store from "./config/store";
 import * as actions from "./actionTypes";
 
-
-const businessOwner = localStorage.getItem("businessOwner");
-if (businessOwner) {
-  store.dispatch({ type: actions.OWNER_AUTHENTICATED });
-}
-
-
-
 class App extends Component {
 
-
   render() {
-    const route = makeMainRoutes();
+    let value = localStorage.hasOwnProperty("businessOwner");
+    if (value) {
+      store.dispatch({ type: actions.OWNER_AUTHENTICATED });
+    }
 
-    return <div>{route}</div>;
+    let authenticated = store.getState().businessOwnerAuth.authenticated;
+
+    const route = makeMainRoutes();
+    return <div>{makeMainRoutes()}</div>;
   }
 }
 

@@ -14,7 +14,7 @@ const purchase = require("./routers/purchase");
 
 require("./src/auth/passport")(passport);
 require("./src/auth/businessAuth")(passport);
-require("./src/auth/customerAuth")(passport);
+// require("./src/auth/customerAuth")(passport);
 
 app.use(bodyPaser.json());
 app.use(cors());
