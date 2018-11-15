@@ -12,8 +12,6 @@ class BusinessUnits extends Component {
       <div>
         <SearchBar />
 
-        <label> Search term </label>
-        <input name="searchTerm" value="" />
       </div>
     );
   }
