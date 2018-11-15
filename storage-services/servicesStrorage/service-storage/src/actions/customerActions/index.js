@@ -1,23 +1,23 @@
 import * as actions from '../../actionTypes';
 import axios from "axios";
 
-let businessOwnerToken = localStorage.getItem("businessOwner");
-axios.defaults.headers.common["authorization"] = businessOwnerToken;
+let customerToken = localStorage.getItem("customer");
+axios.defaults.headers.common["authorizationc"] = customerToken;
 
-const ownerRegisterUrl = "http://localhost:3003/businessownersign";
-const loginInUrl = "http://localhost:3003/businessownerlogin";
+const customerLoginUrl = "http://localhost:3003/customerlogin";
+const customerSignUpUrl = "http://localhost:3003/customersign";
 
 
 export function registerCustomer(details, history) {
     return async dispatch => {
       dispatch({ type: actions.LOADING_TRUE });
       try {
-        let res = await axios.post(ownerRegisterUrl, { ...details });
+        let res = await axios.post(customerSignUpUrl, { ...details });
         history.push("/registerbusiness");
-        localStorage.setItem("businessOwner", res.data.token);
-        dispatch({ type: actions.OWNER_AUTHENTICATED });
+        localStorage.setItem("customer", res.data.token);
+        dispatch({ type: actions.CUSTOMER_AUTHENTICATED });
       } catch (e) {
-        dispatch({ type: actions.OWNER_AUTHENTICATION_ERROR, payload: e });
+        dispatch({ type: actions.CUSTOMER_AUTHENTICATION_ERROR, payload: e });
       }
     };
   }
@@ -26,12 +26,12 @@ export function registerCustomer(details, history) {
     return async dispatch => {
       dispatch({ type: actions.LOADING_TRUE });
       try {
-        let res = await axios.post(loginInUrl, { ...details });
+        let res = await axios.post(customerLoginUrl, { ...details });
         history.push("/dashboard");
-        localStorage.setItem("businessOwner", res.data.token);
-        dispatch({ type: actions.OWNER_AUTHENTICATED });
+        localStorage.setItem("customer", res.data.token);
+        dispatch({ type: actions.CUSTOMER_AUTHENTICATED });
       } catch (e) {
-        dispatch({ type: actions.OWNER_AUTHENTICATION_ERROR, payload: e });
+        dispatch({ type: actions.CUSTOMER_AUTHENTICATION_ERROR, payload: e });
       }
     };
   }

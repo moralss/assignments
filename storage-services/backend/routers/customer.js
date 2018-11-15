@@ -1,8 +1,8 @@
 const passport = require("passport");
 const { createToken } = require("../src/auth/createToken");
 const { getCustomerInfo } = require("../src/queries/customer");
-const { createCustomer, createPurchase } = require("../src/commands/customer");
-const { jwtCheck } = require("../src/auth/jwtCheck");
+const { createCustomer } = require("../src/commands/customer");
+
 let middeware = passport.authenticate("local");
 
 const customerRoutes = app => {
@@ -32,21 +32,6 @@ const customerRoutes = app => {
       res.send(500).end();
       console.log(e);
     }
-  });
-
-  app.post("/purchaseunit", jwtCheck, async (req, res) => {
-    console.log("user " , req.user);
-    res.send(201).end();
-    
-
-    // const unitId = req.body;
-    // try {
-    //   await createPurchase(unitId);
-    //   res.send(201).end();
-    // } catch (e) {
-    //   res.send(500).end();
-    //   console.log(e);
-    // }
   });
 };
 
