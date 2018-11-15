@@ -11,6 +11,7 @@ const businessOwner = require("./routers/business-owner");
 const passport = require("passport");
 const customer = require('./routers/customer');
 const purchase = require("./routers/purchase");
+const search =  require("./routers/customer-search");
 
 require("./src/auth/passport")(passport);
 require("./src/auth/businessAuth")(passport);
@@ -21,7 +22,7 @@ app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+search.customerSearchRoutes(app);
 purchase.purchaseRoutes(app);
 customer.customerRoutes(app);
 businessOwner.businessOwnerRoutes(app);

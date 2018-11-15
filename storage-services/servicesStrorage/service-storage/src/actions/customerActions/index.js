@@ -4,8 +4,10 @@ import axios from "axios";
 let customerToken = localStorage.getItem("customer");
 axios.defaults.headers.common["authorizationc"] = customerToken;
 
+const customerSearchTerm = "http://localhost:3003/searchunittype/";
 const customerLoginUrl = "http://localhost:3003/customerlogin";
 const customerSignUpUrl = "http://localhost:3003/customersign";
+const purchaseUrl = "http://localhost:3003/purchaseunit";
 
 export function registerCustomer(details, history) {
   return async dispatch => {
@@ -21,7 +23,6 @@ export function registerCustomer(details, history) {
   };
 }
 
-
 export function loginCustomer(details, history) {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
@@ -32,6 +33,33 @@ export function loginCustomer(details, history) {
       dispatch({ type: actions.CUSTOMER_AUTHENTICATED });
     } catch (e) {
       dispatch({ type: actions.CUSTOMER_AUTHENTICATION_ERROR, payload: e });
+    }
+  };
+}
+
+export function searchForUnitType(data) {
+  return async dispatch => {
+    dispatch({ type: actions.LOADING_TRUE });
+    try {
+      let res = await axios.get(customerSearchTerm + `${data}`);
+      dispatch({
+        type: actions.RECEVIED_CUSTOMER_SEARCH_RESULTS,
+        payload: res.data
+      });
+    } catch (e) {
+      dispatch({ type: "CUSTOMER_ERROR", payload: e });
+    }
+  };
+}
+
+export function purchaseUnit(unitId) {
+  return async dispatch => {
+    dispatch({ type: actions.LOADING_TRUE });
+    try {
+      await axios.post(purchaseUrl, { unitId });
+      dispatch({ type: "PURCHASE_SUCCESFUL" });
+    } catch (e) {
+      dispatch({ type: "PURCHASE_ERROR", payload: e });
     }
   };
 }

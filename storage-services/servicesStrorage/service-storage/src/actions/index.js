@@ -50,8 +50,8 @@ export function getBusiness() {
     dispatch({ type: actions.GET_BUSINESS_DETAILS, payload: businesses.data });
   };
 }
-// http get requests
 
+// http get requests
 // http post request to server
 
 export const saveBlockToServer = details => {
@@ -65,9 +65,13 @@ export const saveBusinessDetails = (details, history) => {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {
-      await axios.post(businessUrl, { ...details }, setAxiosHeader());
-      history.push("/dashboard");
+      let businessOwnerToken = localStorage.getItem("businessOwner");
+      console.log(businessOwnerToken);
+      const headers = { headers: { authorization: businessOwnerToken } };
+
+      await axios.post(businessUrl, { ...details }, headers);
       dispatch({ type: actions.SAVED_BUSINESS_SUCCESS });
+      history.push("/dashboard");
     } catch (e) {
       dispatch({ type: actions.POST_ERROR, payload: e });
     }

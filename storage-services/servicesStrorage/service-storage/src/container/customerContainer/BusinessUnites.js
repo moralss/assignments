@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../../App.css";
 import SearchBar from "./SearchBar";
+import DisplaySearchResults from "./DisplaySearchResults";
 
 class BusinessUnits extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class BusinessUnits extends Component {
     return (
       <div>
         <SearchBar />
-
+        <DisplaySearchResults />
       </div>
     );
   }

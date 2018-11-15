@@ -7,7 +7,7 @@ import * as actions from "./actionTypes";
 class App extends Component {
 
   render() {
-    let value = localStorage.hasOwnProperty("businessOwner");
+    let value = localStorage.getItem("businessOwner");
     if (value) {
       store.dispatch({ type: actions.OWNER_AUTHENTICATED });
     }

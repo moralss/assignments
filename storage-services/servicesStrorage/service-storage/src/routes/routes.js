@@ -18,7 +18,7 @@ import CustomerLogin from "../container/customerContainer/CustomerLogin";
 
 import * as actions from "../actionTypes";
 
-const businessOwner = localStorage.hasOwnProperty("businessOwner");
+const businessOwner = localStorage.getItem("businessOwner");
 
 if (businessOwner) {
   store.dispatch({ type: actions.OWNER_AUTHENTICATED });
