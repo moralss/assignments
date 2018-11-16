@@ -10,14 +10,11 @@ class SearchBar extends Component {
   }
 
   async handleFormSubmit(data) {
-    // console.log(data.searchTerm);
     await this.props.searchForUnitType(data.searchTerm);
   }
 
   render() {
     const { handleSubmit } = this.props;
-    console.log(this.props.searchResults);
-
     return (
       <div>
         <h1> Filter by:</h1>

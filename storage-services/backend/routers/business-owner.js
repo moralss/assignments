@@ -8,7 +8,6 @@ let middeware = passport.authenticate("local");
 const businessOwnerRoutes = app => {
   app.post("/businessownerlogin", middeware, async (req, res) => {
     let { email } = req.body;
-
     try {
       const ownerDetails = await getBusinessOwner(email);
       if (!ownerDetails) {

@@ -8,33 +8,28 @@ class DisplaySearchResults extends Component {
     super();
   }
 
-
-async purchase(unitId){
-  await this.props.purchaseUnit(unitId);
-    console.log(result);
+  async purchase(unitId) {
+    await this.props.purchaseUnit(unitId);
   }
 
-
   render() {
-
-
-    console.log("search results", this.props.searchResults);
+    const { searchResults } = this.props;
     return (
       <div>
         <h1> Search results </h1>
 
-        {this.props.searchResults.map(results => {
+        {searchResults.map(result => {
           return (
             <div>
               <ul style={{ display: "inline-block" }}>
-                <li> unit type : {results.name} </li>
-                <li> city : {results.city} </li>
-                <li> state : {results.state} </li>
-                <li> street : {results.street} </li>
-                <li> height : {results.height} </li>
-                <li> width : {results.width} </li>
-                <li> length : {results.length} </li>
-                <button onClick={() => this.purchase(results.id)}>
+                <li> city : {result.city} </li>
+                <li> state : {result.state} </li>
+                <li> street : {result.street} </li>
+                <li> unit type : {result.name} </li>
+                <li> height : {result.height} </li>
+                <li> width : {result.width} </li>
+                <li> length : {result.length} </li>
+                <button onClick={() => this.purchase(result.id)}>
                   purchase unit type
                 </button>
               </ul>
@@ -54,11 +49,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    searchForUnitType: (details, history) =>
-      dispatch(actions.searchForUnitType(details, history))
+    purchaseUnit: details => dispatch(actions.purchaseUnit(details))
   };
 }
-
 
 export default connect(
   mapStateToProps,
