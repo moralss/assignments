@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import {AppWrapper} from '../styles/homePage';
 
 class Homepage extends Component {
   constructor() {
@@ -18,7 +18,7 @@ class Homepage extends Component {
 
   render() {
     return (
-      <div>
+      <AppWrapper>
         <h1> Welcome to the home page </h1>
         <button onClick={() => this.registerCustomer()}>
           Register or login as a Customer
@@ -26,7 +26,7 @@ class Homepage extends Component {
         <button onClick={() => this.registerOwner()}>
           Register or login as a business owner
         </button>
-      </div>
+        </AppWrapper>
     );
   }
 }

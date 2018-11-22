@@ -7,7 +7,8 @@ module.exports = function(passport) {
 
   let opts = {
     jwtFromRequest: ExtractJwt.fromHeader("authorization"),
-    secretOrKey: secret
+    secretOrKey: secret,
+    scope: 'openid profile'
   };
 
   const loginIn = new JwtStrategy(opts, async function(jwt_payload, done) {

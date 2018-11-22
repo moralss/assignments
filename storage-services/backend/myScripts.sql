@@ -4,8 +4,8 @@ select * from blocks;
 
 select unit_type.name , location.city , location.state , 
 location.street , unit_type.height ,  unit_type.width ,
-  unit_type.length from business inner join  location on
-   business.id = location.business_id
+unit_type.length from business inner join  location on
+business.id = location.business_id
 inner join  block on location.id = block.location_id
 inner join  unit on block.id = unit.block_id 
 inner join  unit_type on  unit.unit_type_id = unit_type.id 

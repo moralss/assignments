@@ -2,7 +2,7 @@ const { getUnitTypeInfo } = require("../src/queries/customer-search");
 
 const customerSearchRoutes = app => {
   app.get("/searchunittype/:search", async (req, res) => {
-      
+          
     const searchTerm = req.params.search;
     console.log(searchTerm);
 
