@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
 import { connect } from "react-redux";
-import {AppWrapper} from '../styles/homePage';
+import { AppWrapper } from "../styles/homePage";
 
 class Homepage extends Component {
   constructor() {
@@ -19,13 +19,13 @@ class Homepage extends Component {
   render() {
     return (
       <AppWrapper>
-        <h1> Welcome to the home page </h1>
-        <button onClick={() => this.registerCustomer()}>
-          Register or login as a Customer
-        </button>
-        <button onClick={() => this.registerOwner()}>
-          Register or login as a business owner
-        </button>
+          <h1> Welcome to the home page </h1>
+          <button onClick={() => this.registerCustomer()}>
+            Register or login as a Customer
+          </button>
+          <button onClick={() => this.registerOwner()}>
+            Register or login as a business owner
+          </button>
         </AppWrapper>
     );
   }

@@ -25,8 +25,8 @@ const customerRoutes = app => {
     const customerDetails = req.body;
     try {
       await createCustomer(customerDetails);
-      let businessOwner = await getCustomerInfo(customerDetails.email);
-      let token = createToken(businessOwner.id , "customer");
+      let customer = await getCustomerInfo(customerDetails.email);
+      let token = createToken(customer.id , "customer");
       res.send({ token }).end();
     } catch (e) {
       res.send(500).end();
@@ -34,5 +34,6 @@ const customerRoutes = app => {
     }
   });
 };
+
 
 module.exports = { customerRoutes };

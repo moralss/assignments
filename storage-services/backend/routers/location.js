@@ -6,12 +6,9 @@ const locationRoutes = app => {
     const location = req.body;
 
     if (!validateLocation(location)) {
-      res.status(400);
-      res.json({
-        error: {
-          message: "Invalid request object"
-        }
-      });
+      return res
+        .status(400)
+        .json({ error: { message: "Invalid request object" } });
     } else {
       try {
         await saveLocation(location);

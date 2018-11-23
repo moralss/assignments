@@ -15,7 +15,6 @@ const search =  require("./routers/customer-search");
 
 require("./src/auth/passport")(passport);
 require("./src/auth/businessAuth")(passport);
-
 require("./src/auth/passport1")(passport);
 // require("./src/auth/customerAuth")(passport);
 
@@ -24,7 +23,6 @@ app.use(bodyPaser.json());
 app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
-
 search.customerSearchRoutes(app);
 purchase.purchaseRoutes(app);
 customer.customerRoutes(app);
