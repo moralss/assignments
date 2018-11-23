@@ -3,7 +3,7 @@ const { createToken } = require("../src/auth/createToken");
 const { getBusinessOwner } = require("../src/queries/business-owner");
 const { createBusinessOwner } = require("../src/commands/business-owner");
 
-let middeware = passport.authenticate("local");
+let middeware = passport.authenticate("business-owner");
 
 const businessOwnerRoutes = app => {
   app.post("/businessownerlogin", middeware, async (req, res) => {
@@ -13,7 +13,7 @@ const businessOwnerRoutes = app => {
       if (!ownerDetails) {
         res.json("incorrect password").end();
       } else {
-        let token = createToken(ownerDetails.id);
+        let token = createToken(ownerDetails.id, "business-owner");
         res.send({ token }).end();
       }
     } catch (e) {
@@ -26,7 +26,8 @@ const businessOwnerRoutes = app => {
     try {
       await createBusinessOwner(ownerDetails);
       let businessOwner = await getBusinessOwner(ownerDetails.email);
-      let token = createToken(businessOwner.id);
+
+      let token = createToken(businessOwner.id, "business-owner");
       res.send({ token }).end();
     } catch (e) {
       res.send(500).end();

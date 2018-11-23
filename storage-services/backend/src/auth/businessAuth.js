@@ -1,5 +1,6 @@
 let secret = "dbnnf45d";
 const { getBusinessOwnerId } = require("../queries/business-owner");
+const { getCustomerById } = require("../queries/customer");
 
 module.exports = function(passport) {
   let JwtStrategy = require("passport-jwt").Strategy;
@@ -8,15 +9,21 @@ module.exports = function(passport) {
   let opts = {
     jwtFromRequest: ExtractJwt.fromHeader("authorization"),
     secretOrKey: secret,
-    scope: 'openid profile'
+    scope: "openid profile"
   };
 
   const loginIn = new JwtStrategy(opts, async function(jwt_payload, done) {
     try {
-      businessOwner = await getBusinessOwnerId(jwt_payload.sub);
-      if (businessOwner.id === jwt_payload.sub) {
-        console.log("found user");
+      if ("customer" === jwt_payload.authority) {
+        let customer = await getCustomerById(jwt_payload.sub);
+        console.log("found customer");
+        return done(null, customer);
+
+      } else if ("business-owner" == jwt_payload.authority) {
+        let businessOwner = await getBusinessOwnerId(jwt_payload.sub);
+        console.log("found businessOwner");
         return done(null, businessOwner);
+        
       } else {
         console.log("cannot find user");
         return done(null, false);

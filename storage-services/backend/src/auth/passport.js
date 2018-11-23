@@ -4,7 +4,7 @@ const {getBusinessOwner} = require('../queries/business-owner');
 
 
 module.exports = function(passport) {
-  passport.use(
+  passport.use('business-owner' ,
     new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'

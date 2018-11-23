@@ -59,10 +59,10 @@ class Blocks extends Component {
                 <div style={{ display: "block" }}>
                   <li> {block.block_name}</li>
                   <button onClick={() => this.addUnitType(block.id)}>
-                    Register a Unit Type for current block
+                    Register a Unit for current block
                   </button>
                   <button onClick={() => this.viewUnitTypes(block.id)}>
-                    View Unit Types for current block
+                    View Units and Unit Types for current block
                   </button>
                 </div>
               );

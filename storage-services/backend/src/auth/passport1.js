@@ -4,7 +4,7 @@ const {getCustomerInfo} = require('../queries/customer');
 
 
 module.exports = function(passport) {
-  passport.use(
+  passport.use('customer' , 
     new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'

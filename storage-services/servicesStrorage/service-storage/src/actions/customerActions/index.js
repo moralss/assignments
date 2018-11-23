@@ -1,6 +1,6 @@
 import * as actions from "../../actionTypes";
 import axios from "axios";
-import { setAxiosHeaderForCustomer } from "../../auth";
+import { setAxiosHeader } from "../../auth";
 
 let customerToken = localStorage.getItem("customer");
 axios.defaults.headers.common["authorizationc"] = customerToken;
@@ -16,7 +16,7 @@ export function registerCustomer(details, history) {
     try {
       let res = await axios.post(customerSignUpUrl, { ...details });
       history.push("/businessunites");
-      localStorage.setItem("customer", res.data.token);
+      localStorage.setItem("authorization", res.data.token);
       dispatch({ type: actions.CUSTOMER_AUTHENTICATED });
     } catch (e) {
       dispatch({ type: actions.CUSTOMER_AUTHENTICATION_ERROR, payload: e });
@@ -29,7 +29,7 @@ export function loginCustomer(details, history) {
     dispatch({ type: actions.LOADING_TRUE });
     try {
       let res = await axios.post(customerLoginUrl, { ...details });
-      localStorage.setItem("customer", res.data.token);
+      localStorage.setItem("authorization", res.data.token);
       dispatch({ type: actions.CUSTOMER_AUTHENTICATED });
       history.push("/businessunites");
     } catch (e) {
@@ -57,7 +57,7 @@ export function purchaseUnit(unitId) {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {
-      await axios.post(purchaseUrl, { unitId }, setAxiosHeaderForCustomer());
+      await axios.post(purchaseUrl, { unitId }, setAxiosHeader());
       dispatch({ type: "PURCHASE_SUCCESFUL" });
     } catch (e) {
       dispatch({ type: "PURCHASE_ERROR", payload: e });

@@ -2,8 +2,8 @@ const passport = require("passport");
 const { createToken } = require("../src/auth/createToken");
 const { getCustomerInfo } = require("../src/queries/customer");
 const { createCustomer } = require("../src/commands/customer");
-
-let middeware = passport.authenticate("local");
+ 
+let middeware = passport.authenticate("customer");
 
 const customerRoutes = app => {
   app.post("/customerlogin", middeware, async (req, res) => {
@@ -13,7 +13,7 @@ const customerRoutes = app => {
       if (!customerDetails) {
         res.json("incorrect password").end();
       } else {
-        let token = createToken(customerDetails.id);
+        let token = createToken(customerDetails.id , "customer");
         res.send({ token }).end();
       }
     } catch (e) {
@@ -26,7 +26,7 @@ const customerRoutes = app => {
     try {
       await createCustomer(customerDetails);
       let businessOwner = await getCustomerInfo(customerDetails.email);
-      let token = createToken(businessOwner.id);
+      let token = createToken(businessOwner.id , "customer");
       res.send({ token }).end();
     } catch (e) {
       res.send(500).end();
