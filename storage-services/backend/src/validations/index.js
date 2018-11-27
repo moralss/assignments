@@ -1,3 +1,5 @@
+
+
 const validateBusiness = business => {
   return business.businessName && business.phoneNumbers && business.email
     ? true

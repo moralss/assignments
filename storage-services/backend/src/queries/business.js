@@ -19,6 +19,45 @@ const getBusinesses = async ownerId => {
   }
 };
 
+const getBusinessByName = async name => {
+  const client = await getClient();
+  let selectQuery = `SELECT * FROM business where 
+    name = $1
+    `;
+
+  let parameters = [name];
+  const res = await client.query(selectQuery, parameters);
+  try {
+    const businesses = res.rows;
+    await client.release();
+    return businesses;
+  } catch (e) {
+    console.log(e);
+    await client.release();
+  }
+};
+
+const getBusinessByEmail = async email => {
+  const client = await getClient();
+  let selectQuery = `SELECT * FROM business where 
+  contact_email = $1
+  `;
+
+  let parameters = [email];
+  const res = await client.query(selectQuery, parameters);
+  try {
+    await client.release();
+    const businesses = res.rows;
+    return businesses;
+  } catch (e) {
+    console.log(e);
+    await client.release();
+    return
+  }
+};
+
 module.exports = {
-  getBusinesses
+  getBusinesses,
+  getBusinessByName,
+  getBusinessByEmail
 };
