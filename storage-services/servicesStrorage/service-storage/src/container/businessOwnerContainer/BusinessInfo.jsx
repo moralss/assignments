@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import * as actions from "../../actions/businessOwner";
 import "../../App.css";
 import RegisterBlock from "./RegisterBlock";
+import { Info, Header } from "../../styles/register";
+import { ButtonContainer, ButtonSmall } from "../../styles/register";
 
 class BusinessInfo extends Component {
   constructor() {
@@ -41,24 +43,30 @@ class BusinessInfo extends Component {
 
     return (
       <div>
-        <label> Current locations </label>
-        <span> number of locations {this.props.locations.length}</span>
+        <Header>number of locations ({this.props.locations.length})</Header>
 
         {this.props.locations.map(object => {
           return (
             <div>
-              <ul style={{ display: "inline-block" }}>
-                <li> city : {object.city} </li>
-                <li> street : {object.street} </li>
-                <li> state : {object.state} </li>
+              <div style={{border:"0.1px solid"}}>
+                <Info>
+                  <label> City </label>
+                  <span> {object.city} </span>
+                  <label> Street </label>
+                  <span> {object.street} </span>
+                  <label> State </label>
+                  <span> {object.state} </span>
+                </Info>
 
-                <button onClick={() => this.ViewBlocks(object.id)}>
-                  View Blocks
-                </button>
-                <button onClick={() => this.addBlock(object.id)}>
-                  add block name
-                </button>
-              </ul>
+                <ButtonContainer>
+                  <ButtonSmall onClick={() => this.ViewBlocks(object.id)}>
+                    View Blocks
+                  </ButtonSmall>
+                  <ButtonSmall onClick={() => this.addBlock(object.id)}>
+                    Add block 
+                  </ButtonSmall>
+                </ButtonContainer>
+              </div>
             </div>
           );
         })}

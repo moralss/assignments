@@ -4,6 +4,7 @@ import * as actions from "../../actions/businessOwner";
 import "../../App.css";
 import RegisterUnitType from "./RegisterUnitType";
 import ShowUnitTypes from "./ShowUnitTypes";
+import {Header} from "../../styles/register"
 
 class Blocks extends Component {
   constructor() {
@@ -53,16 +54,16 @@ class Blocks extends Component {
       <div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
           <div>
-            <h1> Number of blocks for location {blocks.length}</h1>
+            <Header> Number of blocks for location {blocks.length}</Header>
             {blocks.map(block => {
               return (
                 <div style={{ display: "block" }}>
                   <li> {block.block_name}</li>
                   <button onClick={() => this.addUnitType(block.id)}>
-                    Register a Unit for current block
+                    Register a Unit 
                   </button>
                   <button onClick={() => this.viewUnitTypes(block.id)}>
-                    View Units and Unit Types for current block
+                    View Units and Unit Types 
                   </button>
                 </div>
               );

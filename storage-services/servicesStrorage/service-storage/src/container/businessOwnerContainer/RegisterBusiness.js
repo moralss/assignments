@@ -3,7 +3,7 @@ import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner/index";
 import { connect } from "react-redux";
-import { Button, Form } from "../../styles/register";
+import { Button, Form, ButtonMedium } from "../../styles/register";
 import renderInput from "../component/Input";
 
 class registerBusiness extends Component {
@@ -36,7 +36,9 @@ class registerBusiness extends Component {
 
         <Field name="email" label="email" component={renderInput} type="text" />
 
-        <input disabled={this.props.invalid} type="submit" />
+        <ButtonMedium disabled={this.props.invalid} type="submit">
+          Submit
+        </ButtonMedium>
       </Form>
     );
   }

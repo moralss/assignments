@@ -3,27 +3,13 @@ import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
+import { Header, Form, ButtonMedium } from "../../styles/register";
+import renderInput from "../component/Input";
 
 class RegisterLocation extends Component {
   constructor() {
     super();
   }
-
-
-  renderInput = ({ input, meta, label }) => {
-    return (
-      <div>
-        <label>{label}</label>
-        <input {...input} />
-        {meta.error && meta.touched ? (
-          <span style={{color:"red"}}> {meta.error}</span>
-        ) : (
-          <span> </span>
-        )}
-      </div>
-    );
-  };
-
 
   async handleFormSubmit(details) {
     const id = Number(this.props.match.params.id);
@@ -36,19 +22,22 @@ class RegisterLocation extends Component {
 
     return (
       <div>
-        <form
+        <Header> Register a location </Header>
+        <Form
           className="form"
           onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
         >
-          <Field name="city"
-           component={this.renderInput}
-           type="text"
-           label="city"
-           placeholder="city" />
+          <Field
+            name="city"
+            component={renderInput}
+            type="text"
+            label="city"
+            placeholder="city"
+          />
 
           <Field
             name="state"
-            component={this.renderInput}
+            component={renderInput}
             label="state"
             type="text"
             placeholder="state"
@@ -57,13 +46,15 @@ class RegisterLocation extends Component {
           <Field
             name="street"
             label="street"
-            component={this.renderInput}
+            component={renderInput}
             type="text"
             placeholder="street"
           />
 
-          <input disabled={this.props.invalid} type="submit" />
-        </form>
+          <ButtonMedium disabled={this.props.invalid} type="submit">
+            submit
+          </ButtonMedium>
+        </Form>
       </div>
     );
   }

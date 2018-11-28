@@ -3,6 +3,7 @@ import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
+import {Form} from "../../styles/register";
 
 class RegisterUnitType extends Component {
   constructor() {
@@ -39,8 +40,8 @@ class RegisterUnitType extends Component {
     return (
       <div style={{ display: "inline-block" }}>
         {!this.state.isSuccessful ? (
-          <form
-            className="form"
+          <Form
+
             onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
           >
             <Field
@@ -79,7 +80,7 @@ class RegisterUnitType extends Component {
             />
 
             <input disabled={this.props.invalid} type="submit" />
-          </form>
+          </Form>
         ) : (
           <div> Successfully Submited </div>
         )}
