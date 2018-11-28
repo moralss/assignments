@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import "../../App.css";
 import { Field, reduxForm } from "redux-form";
-import * as actions from "../../actions";
+import * as actions from "../../actions/businessOwner/index";
 import { connect } from "react-redux";
+import { Button, Form } from "../../styles/register";
+import renderInput from "../component/Input";
 
-
-class Form extends Component {
+class registerBusiness extends Component {
   constructor() {
     super();
   }
@@ -14,53 +15,29 @@ class Form extends Component {
     await this.props.saveBusinessDetails(details, this.props.history);
   }
 
-  renderInput = ({ input, meta, label }) => {
-    return (
-      <div>
-        <label>{label}</label>
-        <input {...input} placeholder={label} />
-        {meta.error && meta.touched ? (
-          <span style={{ color: "red" }}> {meta.error}</span>
-        ) : (
-          <span> </span>
-        )}
-      </div>
-    );
-  };
-
   render() {
     const { handleSubmit } = this.props;
 
     return (
-      <div>
-        <form
-          className="form"
-          onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
-        >
-          <Field
-            name="businessName"
-            label="business name"
-            component={this.renderInput}
-            type="text"
-          />
+      <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+        <Field
+          name="businessName"
+          label="Business name"
+          component={renderInput}
+          type="text"
+        />
 
-          <Field
-            name="phoneNumbers"
-            label="Phone number"
-            component={this.renderInput}
-            type="text"
-          />
+        <Field
+          name="phoneNumbers"
+          label="Phone number"
+          component={renderInput}
+          type="text"
+        />
 
-          <Field
-            name="email"
-            label="email"
-            component={this.renderInput}
-            type="text"
-          />
+        <Field name="email" label="email" component={renderInput} type="text" />
 
-          <input disabled={this.props.invalid} type="submit" />
-        </form>
-      </div>
+        <input disabled={this.props.invalid} type="submit" />
+      </Form>
     );
   }
 }
@@ -102,7 +79,7 @@ function validateEmail(email) {
 const currretForm = reduxForm({
   form: "registerBusiness",
   validate
-})(Form);
+})(registerBusiness);
 
 export default connect(
   null,

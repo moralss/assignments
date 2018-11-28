@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
   text-align: center;
 }
 *{
@@ -12,12 +12,6 @@
   right:150px;
 }
 
-.form{
-  font-size:15px;
-  display: grid;
-  justify-content: center;
-  margin:15px
-}
 
 
 /* 
@@ -25,3 +19,6 @@
 .form > label {
   margin:10px;
 } */
+
+
+

@@ -1,6 +1,6 @@
 const { getBusinesses } = require("../src/queries/business");
 const { saveBusiness } = require("../src/commands/business");
-const { validateBusinessInfo } = require("../src/validations");
+const { validateBusinessInfo } = require("../src/validations/business");
 const { jwtCheck } = require("../src/auth/jwtCheck");
 
 const businessRoutes = app => {
@@ -9,20 +9,16 @@ const businessRoutes = app => {
     const businessOwnerId = Number(req.user.id);
     const { errors, isValid } = await validateBusinessInfo(business);
 
-    if (!validateBusinessInfo(business)) {
-      res.status(400);
-      res.json({
-        error: {
-          message: "Invalid request object"
-        }
-      });
-    } else {
-      const id = await saveBusiness(business, businessOwnerId);
-      if (id) {
-        res.status(201).end();
-      } else {
-        res.status(500).end();
-      }
+    if (!isValid) {
+      return res.status(400).json({ errors });
+    }
+
+    try {
+      await saveBusiness(business, businessOwnerId);
+      return res.status(201).end();
+    } catch (e) {
+      console.log(e);
+      return res.status(500).end();
     }
   });
 

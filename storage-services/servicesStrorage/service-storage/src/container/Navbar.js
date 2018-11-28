@@ -1,22 +1,26 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "../App.css";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
+import { NavBar } from "../styles/register";
 
 class Navbar extends Component {
   businessOwnerNav() {
-    
     return (
-      <div>
-        <NavLink
-          to="/registerbusiness"
-        >
-          register business
-        </NavLink>
-        <NavLink to="/dashboard"  >
-          dashboard
-        </NavLink>
-      </div>
+      <NavBar>
+        <ul>
+          <li>
+            <a href="">
+              <NavLink to="/registerbusiness">Register business</NavLink>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <NavLink to="/dashboard">Dashboard</NavLink>
+            </a>
+          </li>
+        </ul>
+      </NavBar>
     );
   }
 
@@ -33,4 +37,7 @@ function mapStateToProps(state) {
   return { ownerAuth: state.businessOwnerAuth.authenticated };
 }
 
-export default connect(mapStateToProps, null)(Navbar);
+export default connect(
+  mapStateToProps,
+  null
+)(Navbar);

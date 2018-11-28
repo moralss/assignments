@@ -18,16 +18,15 @@ import CustomerLogin from "../container/customerContainer/CustomerLogin";
 
 import * as actions from "../actionTypes";
 
-const businessOwner = localStorage.getItem("businessOwner");
-console.log("this has ran")
+const businessOwner = localStorage.getItem("authorization");
+
 if (businessOwner) {
   store.dispatch({ type: actions.OWNER_AUTHENTICATED });
 }
 
-
 const PrivateRoute = ({ component: Component, ...rest }) => {
   let authenticated = store.getState().businessOwnerAuth.authenticated;
-console.log("(authenticated", authenticated);
+  console.log("(authenticated", authenticated);
 
   return (
     <Route
@@ -38,7 +37,6 @@ console.log("(authenticated", authenticated);
     />
   );
 };
-
 
 export const makeMainRoutes = () => {
   return (

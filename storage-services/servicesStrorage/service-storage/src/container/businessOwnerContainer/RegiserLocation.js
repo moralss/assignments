@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../App.css";
 import { Field, reduxForm } from "redux-form";
-import * as actions from "../../actions";
+import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
 
 class RegisterLocation extends Component {

@@ -9,7 +9,7 @@ const getBusinessOwner = async email => {
     return res.rows[0];
   } catch (e) {
     await client.release();
-    return { message: "user not found!" };
+    return 
   }
 };
 
@@ -22,9 +22,8 @@ const getBusinessOwnerId = async id => {
     return res.rows[0];
   } catch (e) {
     await client.release();
-    return { message: "user not found!" };
+    return 
   }
 };
 
-
-module.exports = { getBusinessOwner, getBusinessOwnerId , checkBusinessByEmail};
+module.exports = { getBusinessOwner, getBusinessOwnerId };

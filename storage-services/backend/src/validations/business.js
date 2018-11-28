@@ -1,39 +1,43 @@
 const _ = require("lodash");
 const { getBusinessOwner } = require("../queries/business-owner");
+const { getBusinessByName } = require("../queries/business");
+const { getBusinessByEmail } = require("../queries/business");
 
-const validateNewOwner = async data => {
-  let bussinessOwner = await getBusinessOwner(data.email);
+const validateBusinessInfo = async data => {
+  // name, contact_number,
+  // contact_email , business_owner_id
+  //   businessName, phoneNumbers, email
+
+  let businessName = await getBusinessByName(data.businessName);
+  let businessEmail = await getBusinessByEmail(data.email);
+
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const errors = {};
 
-  if (bussinessOwner !== undefined) {
-    errors.email = "email already exits";
+  if (businessName.length !== 0) {
+    errors.businessName = "business name already exists";
   }
 
-  if (data.email === undefined) {
-    errors.email = " email required";
+  if (businessEmail.length !== 0) {
+    errors.businessEmail = "business email already exists";
   }
 
-  
   if (!re.test(data.email)) {
-      errors.email = "email is invalid";
-  }
-  if (data.password === undefined) {
-    errors.password = "password required";
+    errors.businessEmail = "email is invalid";
   }
 
-  if (!data.password.match(/^[a-z0-9]{5,20}$/)) {
-    errors.pasword = "password should consist of numbers and letters";
+  if (data.email === "") {
+    errors.businessEmail = "email is required";
   }
 
-  let passwordLength = data.password.split("");
-
-  if (passwordLength.length < 6) {
-    errors.pasword = "password should be geater then 5";
+  if (data.businessName === "") {
+    errors.businessName = " business name required";
   }
 
-  console.log(errors);
+  if (data.phoneNumbers === "") {
+    errors.phoneNumbers = "phone number required";
+  }
 
   return {
     errors,
@@ -42,5 +46,5 @@ const validateNewOwner = async data => {
 };
 
 module.exports = {
-  validateNewOwner
+  validateBusinessInfo
 };

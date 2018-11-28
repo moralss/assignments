@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../App.css";
-import * as actions from "../../actions";
+import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
 
 class showUnitTypes extends Component {

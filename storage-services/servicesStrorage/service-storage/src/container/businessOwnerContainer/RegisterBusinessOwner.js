@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "../../App.css";
 import { Field, reduxForm } from "redux-form";
-import * as actions from "../../actions";
+import * as actions from "../../actions/businessOwner/public";
 import { connect } from "react-redux";
+import renderInput from "../component/Input";
+import { Button, Form } from "../../styles/register";
 
 class RegisterBusinessOwner extends Component {
   constructor() {
@@ -10,50 +12,37 @@ class RegisterBusinessOwner extends Component {
   }
 
   async handleFormSubmit(details) {
-    // console.log("sign up details" , details);
     await this.props.registerBusinessOwner(details, this.props.history);
   }
 
-  renderInput = ({ input, meta, label }) => {
-    return (
-      <div>
-        <label>{label}</label>
-        <input {...input} placeholder={label} />
-        {meta.error && meta.touched ? (
-          <span style={{ color: "red" }}> {meta.error}</span>
-        ) : (
-          <span> </span>
-        )}
-      </div>
-    );
-  };
-
   render() {
     const { handleSubmit } = this.props;
-    console.log("login form", this.props.history);
+
     return (
       <div>
         <h1> sign up </h1>
-        <form
-          className="form"
-          onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
-        >
+        <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
             name="email"
             label="email"
-            component={this.renderInput}
+            component={renderInput}
             type="text"
           />
 
           <Field
             name="password"
             label="password"
-            component={this.renderInput}
+            component={renderInput}
             type="text"
           />
 
-          <input disabled={this.props.invalid} type="submit" />
-        </form>
+          <Button
+            disabled={this.props.invalid}
+            onClick={this.handleFormSubmit.bind(this)}
+          >
+            submit
+          </Button>
+        </Form>
       </div>
     );
   }

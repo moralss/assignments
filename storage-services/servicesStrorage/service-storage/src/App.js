@@ -3,9 +3,9 @@ import "./App.css";
 import { makeMainRoutes } from "./routes/routes";
 import store from "./config/store";
 import * as actions from "./actionTypes";
+import { GlobalStyle } from "./styles/register";
 
 class App extends Component {
-
   render() {
     let value = localStorage.getItem("businessOwner");
     if (value) {
@@ -15,7 +15,12 @@ class App extends Component {
     let authenticated = store.getState().businessOwnerAuth.authenticated;
 
     const route = makeMainRoutes();
-    return <div>{makeMainRoutes()}</div>;
+    return (
+      <div>
+        <GlobalStyle />
+        {makeMainRoutes()}
+      </div>
+    );
   }
 }
 
