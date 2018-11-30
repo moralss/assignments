@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import * as actions from "../../actions/customerActions/";
-
+import * as actions from "../../actions/customerActions/public";
+import renderInput from "../component/Input";
+import { Form, ButtonMedium, Header } from "../../styles/register";
 
 class CustomerLogin extends Component {
   constructor() {
@@ -14,47 +15,31 @@ class CustomerLogin extends Component {
     await this.props.loginCustomer(details, this.props.history);
   }
 
-  renderInput = ({ input, meta, label }) => {
-    return (
-      <div>
-        <label>{label}</label>
-        <input {...input} placeholder={label} />
-        {meta.error && meta.touched ? (
-          <span style={{ color: "red" }}> {meta.error}</span>
-        ) : (
-          <span> </span>
-        )}
-      </div>
-    );
-  };
-
   render() {
     const { handleSubmit } = this.props;
 
     return (
       <div>
-          <h1> Login in </h1>
-        <form
-          className="form"
-          onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
-        >
-
+        <Header> Login in </Header>
+        <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
             name="email"
             label="email"
-            component={this.renderInput}
+            component={renderInput}
             type="text"
           />
 
           <Field
             name="password"
             label="password"
-            component={this.renderInput}
+            component={renderInput}
             type="text"
           />
 
-          <input disabled={this.props.invalid} type="submit" />
-        </form>
+          <ButtonMedium disabled={this.props.invalid} type="submit">
+            submit
+          </ButtonMedium>
+        </Form>
       </div>
     );
   }
@@ -66,7 +51,6 @@ function mapDispatchToProps(dispatch) {
       dispatch(actions.loginCustomer(details, history))
   };
 }
-
 
 const currretForm = reduxForm({
   form: "loginCustomer"

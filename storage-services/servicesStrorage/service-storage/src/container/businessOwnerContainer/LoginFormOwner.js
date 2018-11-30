@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import "../../App.css";
+// import "../../App.css";
 import { Field, reduxForm } from "redux-form";
-import * as actions from "../../actions";
+import * as actions from "../../actions/businessOwner/public";
 import { connect } from "react-redux";
+import renderInput from "../component/Input";
+import { Header ,Form, ButtonMedium } from "../../styles/register";
 
 class LoginFormOwner extends Component {
   constructor() {
@@ -13,47 +15,27 @@ class LoginFormOwner extends Component {
     await this.props.loginBusinessOwner(details, this.props.history);
   }
 
-  renderInput = ({ input, meta, label }) => {
-    return (
-      <div>
-        <label>{label}</label>
-        <input {...input} placeholder={label} />
-        {meta.error && meta.touched ? (
-          <span style={{ color: "red" }}> {meta.error}</span>
-        ) : (
-          <span> </span>
-        )}
-      </div>
-    );
-  };
-
   render() {
     const { handleSubmit } = this.props;
 
     return (
       <div>
-          <h1> Login in </h1>
-        <form
-          className="form"
-          onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
-        >
-
+        <Header> Login in </Header>
+        <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
             name="email"
             label="email"
-            component={this.renderInput}
+            component={renderInput}
             type="text"
           />
-
           <Field
             name="password"
             label="password"
-            component={this.renderInput}
+            component={renderInput}
             type="text"
           />
-
-          <input disabled={this.props.invalid} type="submit" />
-        </form>
+          <ButtonMedium disabled={this.props.invalid}> submit </ButtonMedium>
+        </Form>
       </div>
     );
   }
@@ -65,7 +47,6 @@ function mapDispatchToProps(dispatch) {
       dispatch(actions.loginBusinessOwner(details, history))
   };
 }
-
 
 const currretForm = reduxForm({
   form: "loginBusinessOwner"

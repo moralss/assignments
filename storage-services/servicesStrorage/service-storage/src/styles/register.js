@@ -157,6 +157,14 @@ export const Info = styled.div`
 
 // Info
 
+// Container 
+
+export const Container = styled.div`
+  text-align:center;
+`;
+
+// Container
+
 
 // buttonContainer
 

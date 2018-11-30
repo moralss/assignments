@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../../App.css";
 import { NavLink } from "react-router-dom";
+import { NavBar, Header } from "../../styles/register";
 
 class BusinessLoginOrSignup extends Component {
   constructor() {
@@ -10,13 +11,22 @@ class BusinessLoginOrSignup extends Component {
   render() {
     return (
       <div>
-        <h1> Business owner </h1>
-        <NavLink to="/registerowner" class="link-tag">
-          sign up
-        </NavLink>
-        <NavLink to="/loginowner" class="link-tag">
-          login
-        </NavLink>
+        <NavBar>
+          <ul>
+            <li>
+              <a href="">
+                <NavLink to="/registerowner">sign up</NavLink>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <NavLink to="/loginowner">login</NavLink>
+              </a>
+            </li>
+          </ul>
+        </NavBar>
+
+        <Header> Business owner </Header>
       </div>
     );
   }

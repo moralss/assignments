@@ -15,9 +15,9 @@ export function registerCustomer(details, history) {
     dispatch({ type: actions.LOADING_TRUE });
     try {
       let res = await axios.post(customerSignUpUrl, { ...details });
-      history.push("/businessunites");
       localStorage.setItem("authorization", res.data.token);
       dispatch({ type: actions.CUSTOMER_AUTHENTICATED });
+      history.push("/businessunites");
     } catch (e) {
       dispatch({ type: actions.CUSTOMER_AUTHENTICATION_ERROR, payload: e });
     }

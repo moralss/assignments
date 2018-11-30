@@ -3,6 +3,11 @@ import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/customerActions";
 import { connect } from "react-redux";
+import {
+  SelectField,
+  listOfProvinces,
+  listOfUnits
+} from "../../component/selectInput";
 
 class SearchBar extends Component {
   constructor() {
@@ -17,30 +22,24 @@ class SearchBar extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <h1> Filter by:</h1>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-          <Field name="category" component="input" type="radio" value="city" />
-          <label> City </label>
-          <Field
-            name="category"
-            component="input"
-            type="radio"
-            value="province"
-          />
-          <label> Province </label>
-          <Field
-            name="category"
-            component="input"
-            type="radio"
-            value="unitType"
-          />
-          <label> unit type </label>
-          <label> Search term </label>
-          <Field name="searchTerm" component="input" type="text" />
-          <input type="submit" />
-        </form>
+          <Field label="Province" component={SelectField}>
+            <option />
+            {listOfProvinces.map(province => {
+              return <option value={province}> {province} </option>;
+            })}
+            >
+          </Field>
 
-        <input name="searchTerm" value="" />
+          <Field label="Unit Types" component={SelectField}>
+          <option />
+            {listOfUnits.map(unit => {
+              return <option value={unit}> {unit} </option>;
+            })}
+          </Field>
+
+          <button type="submit"> submit</button>
+        </form>
       </div>
     );
   }
@@ -53,18 +52,17 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-
 function mapStateToProps(state) {
-    return {
-      searchResults: state.customer.customerSearchResults
-    };
-  }
+  return {
+    searchResults: state.customer.customerSearchResults
+  };
+}
 
 const currretForm = reduxForm({
   form: "searchCategory"
 })(SearchBar);
 
 export default connect(
-    mapStateToProps,
+  mapStateToProps,
   mapDispatchToProps
 )(currretForm);

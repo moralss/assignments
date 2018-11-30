@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import * as actions from "../../actions/customerActions/";
+import * as actions from "../../actions/customerActions/public";
 import { connect } from "react-redux";
+import { Form, Header, ButtonMedium } from "../../styles/register";
+import renderInput from "../component/Input";
 
 class RegisterCustomer extends Component {
   constructor() {
@@ -17,30 +19,26 @@ class RegisterCustomer extends Component {
 
     return (
       <div>
-        <h1> Register an account. </h1>
-        <form
-          className="form"
-          onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
-        >
-
-          <label>email </label>
+        <Header> Register an account. </Header>
+        <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
+            label="Email"
             name="email"
-            component="input"
+            component={renderInput}
             type="text"
             placeholder="email"
           />
 
-          <label> password </label>
           <Field
+            label="Password"
             name="password"
-            component="input"
+            component={renderInput}
             type="text"
             placeholder="email"
           />
 
-          <button action="submit"> submit </button>
-        </form>
+          <ButtonMedium action="submit"> submit </ButtonMedium>
+        </Form>
       </div>
     );
   }

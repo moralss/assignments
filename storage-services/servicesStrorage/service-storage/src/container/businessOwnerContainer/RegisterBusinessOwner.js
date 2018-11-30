@@ -4,7 +4,7 @@ import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner/public";
 import { connect } from "react-redux";
 import renderInput from "../component/Input";
-import { ButtonMedium, Form } from "../../styles/register";
+import { ButtonMedium, Form , Header} from "../../styles/register";
 
 class RegisterBusinessOwner extends Component {
   constructor() {
@@ -20,7 +20,7 @@ class RegisterBusinessOwner extends Component {
 
     return (
       <div>
-        <h1> sign up </h1>
+        <Header> sign up </Header>
         <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
             name="email"
