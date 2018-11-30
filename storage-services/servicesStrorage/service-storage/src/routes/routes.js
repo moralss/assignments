@@ -1,7 +1,7 @@
 import React from "react";
 import RegisterBusiness from "../container/businessOwnerContainer/RegisterBusiness";
 import Dashboard from "../container/businessOwnerContainer/Dashboard";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { Router, Route, Redirect } from "react-router-dom";
 import RegisterLocation from "../container/businessOwnerContainer/RegiserLocation";
 import BusinessInfo from "../container/businessOwnerContainer/BusinessInfo";
 import Blocks from "../container/businessOwnerContainer/Blocks";
@@ -15,16 +15,21 @@ import RegisterCustomer from "../container/customerContainer/RegisterCustomer";
 import CustomerLoginOrSignup from "../container/customerContainer/CustomerLoginOrSignup";
 import BusinessUnites from "../container/customerContainer/BusinessUnites";
 import CustomerLogin from "../container/customerContainer/CustomerLogin";
-
+import history from "../history/index";
 import * as actions from "../actionTypes";
 
 const businessOwner = localStorage.getItem("authorization");
 
+
 if (businessOwner) {
-  store.dispatch({ type: actions.OWNER_AUTHENTICATED });
+  store.dispatch({ type: actions.OWNER_AUTHENTICATED, payload: true });
+} else {
+  store.dispatch({ type: actions.OWNER_AUTHENTICATED, payload: false });
 }
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+
+const PrivateRoute = ({ component: Component, ...rest }) => {  
+  console.log("businessOwner", businessOwner);
   let authenticated = store.getState().businessOwnerAuth.authenticated;
   console.log("(authenticated", authenticated);
 
@@ -40,7 +45,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 export const makeMainRoutes = () => {
   return (
-    <Router>
+    <Router history={history}>
       <div className="App">
         <Navbar />
         <Route

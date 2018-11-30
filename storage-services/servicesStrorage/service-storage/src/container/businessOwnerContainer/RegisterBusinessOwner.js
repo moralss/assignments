@@ -4,7 +4,7 @@ import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner/public";
 import { connect } from "react-redux";
 import renderInput from "../component/Input";
-import { Button, Form } from "../../styles/register";
+import { ButtonMedium, Form } from "../../styles/register";
 
 class RegisterBusinessOwner extends Component {
   constructor() {
@@ -36,12 +36,12 @@ class RegisterBusinessOwner extends Component {
             type="text"
           />
 
-          <Button
+          <ButtonMedium
             disabled={this.props.invalid}
             onClick={this.handleFormSubmit.bind(this)}
           >
             submit
-          </Button>
+          </ButtonMedium>
         </Form>
       </div>
     );

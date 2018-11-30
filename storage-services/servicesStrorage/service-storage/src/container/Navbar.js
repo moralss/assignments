@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "../App.css";
 import { connect } from "react-redux";
-import { NavBar } from "../styles/register";
+import { NavBar, ButtonPrimary } from "../styles/register";
+import * as actions from "../actions/businessOwner/public";
 
 class Navbar extends Component {
+  LogOut() {
+    this.props.logOut();
+  }
+
   businessOwnerNav() {
     return (
       <NavBar>
@@ -19,6 +24,7 @@ class Navbar extends Component {
               <NavLink to="/dashboard">Dashboard</NavLink>
             </a>
           </li>
+          <ButtonPrimary onClick={() => this.LogOut()}>Log out</ButtonPrimary>
         </ul>
       </NavBar>
     );
@@ -37,7 +43,13 @@ function mapStateToProps(state) {
   return { ownerAuth: state.businessOwnerAuth.authenticated };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    logOut: () => dispatch(actions.logOut())
+  };
+}
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Navbar);

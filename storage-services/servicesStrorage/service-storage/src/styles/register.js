@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 
   html{
     background-color:#D1CFCF;
+    font-weight: 150;
   }
 `;
 
@@ -28,6 +29,22 @@ export const Input = styled.input`
 // input
 
 // header
+
+export const Header2 = styled.h1`
+color: blue;
+text-align: left;
+font-weight: 200;
+font-size: 25px;
+margin: 20px;
+
+:after
+{
+  content:' ';
+  display:block;
+  margin:1px;
+}
+`;
+
 export const Header = styled.h1`
   color: blue;
   text-align: center;
@@ -67,27 +84,26 @@ export const ButtonMedium = styled.button`
   }
 `;
 
-// button
 
-// info
-export const Info = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+// button primary
 
-  span {
-    justify-self: start;
-  }
+export const ButtonPrimary = styled.button`
+  position:absolute;
+  right: 20px;
+  top: 20px;
+  color: blue;
+  padding: 5px;
+  border:none;
+  borderRadius:2px;
 
-  label {
-    text-align: left;
-    color: #024242;
-    margin-bottom:20px;
-    margin-left: 350px;
+  &:hover {
+    cursor: pointer;
   }
 `;
-// info
 
 // button small
+
+
 
 export const ButtonSmall = styled.button`
   padding: 5px;
@@ -105,6 +121,43 @@ export const ButtonSmall = styled.button`
 
 // button small
 
+
+
+// button primary
+
+
+
+// button
+
+// info
+export const Info = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  width:300px;
+  border:0.1px solid black;
+  margin:10px;
+  justify-items:center;
+
+  span {
+  }
+
+  label {
+    display:block;
+    text-align: left;
+    color: #024242;
+  }
+
+  > div {
+    justify-self:center;
+
+  }
+`;
+
+
+
+// Info
+
+
 // buttonContainer
 
 export const ButtonContainer = styled.div`
@@ -116,8 +169,7 @@ export const ButtonContainer = styled.div`
   justify-content:center;
   
 
-  button:nth-child(1) {
-    background-color:black;
+button:nth-child(1) {
 }
 
 button:nth-child(2) {

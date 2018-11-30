@@ -3,8 +3,9 @@ import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner/index";
 import { connect } from "react-redux";
-import { Button, Form, ButtonMedium } from "../../styles/register";
+import { Form, ButtonMedium } from "../../styles/register";
 import renderInput from "../component/Input";
+import validate from "../../validations/registerBusiness";
 
 class registerBusiness extends Component {
   constructor() {
@@ -49,33 +50,6 @@ function mapDispatchToProps(dispatch) {
     saveBusinessDetails: (details, history) =>
       dispatch(actions.saveBusinessDetails(details, history))
   };
-}
-
-function validate(value) {
-  let error = {};
-
-  if (!value.businessName) {
-    error.businessName = "business name required";
-  }
-
-  if (!value.phoneNumbers) {
-    error.phoneNumbers = "phone number required";
-  }
-
-  if (!value.email) {
-    error.email = "email required";
-  }
-
-  if (!validateEmail(value.email) && value.email) {
-    error.email = "invalid email required";
-  }
-
-  return error;
-}
-
-function validateEmail(email) {
-  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
 }
 
 const currretForm = reduxForm({

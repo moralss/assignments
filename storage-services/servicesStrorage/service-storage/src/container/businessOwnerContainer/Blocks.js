@@ -4,7 +4,12 @@ import * as actions from "../../actions/businessOwner";
 import "../../App.css";
 import RegisterUnitType from "./RegisterUnitType";
 import ShowUnitTypes from "./ShowUnitTypes";
-import {Header} from "../../styles/register"
+import {
+  Header,
+  ButtonSmall,
+  ButtonContainer,
+  Header2
+} from "../../styles/register";
 
 class Blocks extends Component {
   constructor() {
@@ -54,17 +59,25 @@ class Blocks extends Component {
       <div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
           <div>
-            <Header> Number of blocks for location {blocks.length}</Header>
+            <Header>
+              <span style={{ color: "#024242" }}> Number of blocks </span>
+              <span style={{ color: "black" }}>{blocks.length}</span>
+            </Header>
             {blocks.map(block => {
               return (
-                <div style={{ display: "block" }}>
-                  <li> {block.block_name}</li>
-                  <button onClick={() => this.addUnitType(block.id)}>
-                    Register a Unit 
-                  </button>
-                  <button onClick={() => this.viewUnitTypes(block.id)}>
-                    View Units and Unit Types 
-                  </button>
+                <div>
+                  <Header2>
+                    <span style={{ color: "#024242" }}>Block name</span>
+                    <span style={{ color: "black" }}> {block.block_name}</span>
+                  </Header2>
+                  <ButtonContainer>
+                    <ButtonSmall onClick={() => this.addUnitType(block.id)}>
+                      Register a Unit
+                    </ButtonSmall>
+                    <ButtonSmall onClick={() => this.viewUnitTypes(block.id)}>
+                      View Units
+                    </ButtonSmall>
+                  </ButtonContainer>
                 </div>
               );
             })}

@@ -21,10 +21,6 @@ class BusinessInfo extends Component {
     this.props.getBusinessInfo(businessName);
   }
 
-  handleChange(e) {
-    this.setState({ blockName: e.target.value });
-  }
-
   addBlock = id => {
     this.setState({ locationId: id });
     !this.state.isInput
@@ -48,14 +44,14 @@ class BusinessInfo extends Component {
         {this.props.locations.map(object => {
           return (
             <div>
-              <div style={{border:"0.1px solid"}}>
+              <div >
                 <Info>
-                  <label> City </label>
-                  <span> {object.city} </span>
-                  <label> Street </label>
-                  <span> {object.street} </span>
-                  <label> State </label>
-                  <span> {object.state} </span>
+                    <label> City </label>
+                    <span> {object.city} </span>
+                    <label> Street </label>
+                    <span> {object.street} </span>
+                    <label> State </label>
+                    <span> {object.state} </span>
                 </Info>
 
                 <ButtonContainer>
@@ -63,16 +59,17 @@ class BusinessInfo extends Component {
                     View Blocks
                   </ButtonSmall>
                   <ButtonSmall onClick={() => this.addBlock(object.id)}>
-                    Add block 
+                    Add block
                   </ButtonSmall>
                 </ButtonContainer>
               </div>
             </div>
           );
         })}
-
-        {this.state.isInput && (
+        {this.state.isInput ? (
           <RegisterBlock locationId={this.state.locationId} />
+        ) : (
+          <span> </span>
         )}
       </div>
     );

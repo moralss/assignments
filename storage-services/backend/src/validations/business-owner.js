@@ -6,26 +6,31 @@ const validateNewOwner = async data => {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const errors = {};
-  
+
   if (businessOwner !== undefined) {
     errors.email = "email already exits";
   }
 
-  if (data.email === "") {
+  if (data.email === undefined) {
     errors.email = " email required";
   }
 
-  if (!re.test(data.email)) {
+  if (data.email !== undefined && !re.test(data.email)) {
     errors.email = "email is invalid";
   }
-  
-  if (data.password === "") {
+
+  if (data.password === undefined) {
     errors.password = "password required";
   }
 
-  if (!data.password.match(/^[a-z0-9]{5,20}$/)) {
+  if (data.password !== undefined && !data.password.match(/^[a-z0-9]{5,20}$/)) {
+    console.log("password");
+
+    // if (!data.password.match(/^[a-z0-9]{5,20}$/)) {
     errors.pasword = "password should consist of numbers and letters";
+    // }
   }
+  console.log(errors);
 
   return {
     errors,

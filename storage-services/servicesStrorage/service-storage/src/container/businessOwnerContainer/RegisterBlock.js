@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import "../../App.css";
+// import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
+import renderInput from "../component/Input";
 
 class RegisterBlock extends Component {
   constructor() {
@@ -33,15 +34,16 @@ class RegisterBlock extends Component {
             className="form"
             onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
           >
-            <label>block name</label>
+            {/* <label>block name</label> */}
             <Field
+              label="block name"
               name="blockName"
-              component="input"
+              component={renderInput}
               type="text"
               placeholder="enter block"
             />
 
-            <button action="submit"> submit block </button>
+            <input type="submit" />
           </form>
         ) : (
           " Successfully submitted"

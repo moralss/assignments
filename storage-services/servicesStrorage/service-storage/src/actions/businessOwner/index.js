@@ -2,6 +2,8 @@ import * as actions from "../../actionTypes";
 import axios from "axios";
 import { setAxiosHeader } from "../../auth";
 
+
+
 const businessUrl = "http://localhost:3003/business";
 const businessInfoUrl = "http://localhost:3003/businessinfo/";
 const locationUrl = "http://localhost:3003/location";
@@ -65,7 +67,6 @@ export const saveBusinessDetails = (details, history) => {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {
-      
       await axios.post(businessUrl, { ...details }, setAxiosHeader());
       dispatch({ type: actions.SAVED_BUSINESS_SUCCESS });
       history.push("/dashboard");

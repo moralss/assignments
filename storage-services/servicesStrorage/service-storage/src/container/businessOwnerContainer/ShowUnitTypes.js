@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../../App.css";
 import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
+import {Info , Header2} from "../../styles/register"
 
 class showUnitTypes extends Component {
   constructor() {
@@ -19,32 +20,22 @@ class showUnitTypes extends Component {
     const { unitTypes } = this.props;
     return (
       <div>
-        <h1> Unit Types </h1>
-        <h1> number of unit types {unitTypes.length} </h1>
+
+        <Header2> Number of unit types {unitTypes.length} </Header2>
         {unitTypes.map(unitType => {
           return (
-            <div style={{ border: "3px solid green" }}>
-              <div>
+            <Info>
                 <label> unit name </label>
                 <span> {unitType.unit_name} </span>
-              </div>
-              <div>
                 <label> unit type name </label>
                 <span> {unitType.name} </span>
-              </div>
-              <div>
                 <label> unit length </label>
                 <span> {unitType.length} </span>
-              </div>
-              <div>
                 <label> unit type width</label>
                 <span> {unitType.width} </span>
-              </div>
-              <div>
                 <label> unit type height</label>
                 <span> {unitType.height} </span>
-              </div>
-            </div>
+            </Info>
           );
         })}
       </div>
