@@ -3,6 +3,7 @@ const { bcryptPassword } = require("../auth/bcryptPassword");
 
 const createBusinessOwner = async businessOwner => {
   let { email, password} = businessOwner;
+  let getBusinessOwnerId
     console.log("businessOwner" , businessOwner);
 
   const client = await getClient();

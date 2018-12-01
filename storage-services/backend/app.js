@@ -14,6 +14,7 @@ const purchase = require("./routers/purchase");
 const search =  require("./routers/customer-search");
 
 require("./src/auth/passport")(passport);
+
 require("./src/auth/businessAuth")(passport);
 require("./src/auth/passport1")(passport);
 

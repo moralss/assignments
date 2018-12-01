@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../App.css";
 import { Field, reduxForm } from "redux-form";
-import * as actions from "../../actions/customerActions";
+import * as actions from "../../actions/customerActions/index";
 import { connect } from "react-redux";
 import {
   SelectField,
@@ -15,7 +15,11 @@ class SearchBar extends Component {
   }
 
   async handleFormSubmit(data) {
-    await this.props.searchForUnitType(data.searchTerm);
+    // console.log("data", data);
+    const searchInfo = JSON.stringify({ data });
+    // console.log("searchInfo" , typeof(searchInfo));
+
+    await this.props.searchForUnitType(searchInfo);
   }
 
   render() {
@@ -23,22 +27,21 @@ class SearchBar extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-          <Field label="Province" component={SelectField}>
+          <Field label="Province" name="province" component={SelectField}>
             <option />
             {listOfProvinces.map(province => {
               return <option value={province}> {province} </option>;
             })}
-            >
           </Field>
 
-          <Field label="Unit Types" component={SelectField}>
-          <option />
+          <Field label="UnitTypes" name="unitType" component={SelectField}>
+            <option />
             {listOfUnits.map(unit => {
               return <option value={unit}> {unit} </option>;
             })}
           </Field>
 
-          <button type="submit"> submit</button>
+          <button type="submit"> Search </button>
         </form>
       </div>
     );

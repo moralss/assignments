@@ -42,7 +42,7 @@ export function searchForUnitType(data) {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {
-      let res = await axios.get(customerSearchTerm + `${data}`);
+      let res = await axios.get(customerSearchTerm  ,`${data}`);
       dispatch({
         type: actions.RECEVIED_CUSTOMER_SEARCH_RESULTS,
         payload: res.data

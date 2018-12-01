@@ -44,14 +44,16 @@ class BusinessInfo extends Component {
         {this.props.locations.map(object => {
           return (
             <div>
-              <div >
+              <div>
                 <Info>
-                    <label> City </label>
-                    <span> {object.city} </span>
-                    <label> Street </label>
-                    <span> {object.street} </span>
-                    <label> State </label>
-                    <span> {object.state} </span>
+                  <label> Province </label>
+                  <span> {object.province} </span>
+                  <label> City </label>
+                  <span> {object.city} </span>
+                  <label> Street </label>
+                  <span> {object.street} </span>
+                  <label> State </label>
+                  <span> {object.state} </span>
                 </Info>
 
                 <ButtonContainer>

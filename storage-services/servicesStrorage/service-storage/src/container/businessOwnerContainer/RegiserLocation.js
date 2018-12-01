@@ -5,6 +5,7 @@ import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
 import { Header, Form, ButtonMedium } from "../../styles/register";
 import renderInput from "../component/Input";
+import { SelectField, listOfProvinces } from "../../component/selectInput";
 
 class RegisterLocation extends Component {
   constructor() {
@@ -12,6 +13,7 @@ class RegisterLocation extends Component {
   }
 
   async handleFormSubmit(details) {
+    console.log("details" , details);
     const id = Number(this.props.match.params.id);
     let locationInfo = { ...details, id };
     await this.props.saveLocationToServer(locationInfo, this.props.history);
@@ -27,6 +29,13 @@ class RegisterLocation extends Component {
           className="form"
           onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
         >
+          <Field name="province" label="Province" component={SelectField}>
+            <option />
+            {listOfProvinces.map(province => {
+              return <option value={province}> {province} </option>;
+            })}
+          </Field>
+
           <Field
             name="city"
             component={renderInput}

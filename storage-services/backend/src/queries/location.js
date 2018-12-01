@@ -4,7 +4,7 @@ const getLocation = async businessName => {
   
   const client = await getClient();
   let selectQuery = `select location.id , location.street ,
-    location.city , location.state from
+    location.city , location.state , location.province from
     business left join  location on business.id = location.business_id
     where business.name = $1`;
   let storageInfo;

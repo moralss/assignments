@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS business_owner (
 
 CREATE TABLE IF NOT EXISTS business (
     id serial PRIMARY KEY,
-    name varchar(255) NOT NULL,
-    contact_number varchar(25) NOT NULL UNIQUE,
+    name varchar(255) NOT NULL UNIQUE,
+    contact_number varchar(25) NOT NULL,
     contact_email varchar(255) NOT NULL UNIQUE,
     business_owner_id INT REFERENCES business_owner(id) NOT NULL,
     created_at timestamp NOT NULL DEFAULT NOW() NOT NULL,
@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS business (
 
 CREATE TABLE IF NOT EXISTS location (
     id serial PRIMARY KEY,
+    province varchar(25) NOT NULL,
     city varchar(255) NOT NULL,
     state varchar(255) NOT NULL,
     street varchar(255) NOT NULL,
@@ -69,8 +70,8 @@ CREATE TABLE IF NOT EXISTS customers (
 CREATE TABLE IF NOT EXISTS customer_purchase (
     id serial PRIMARY KEY,
     customer_id INT REFERENCES customers(id) NOT NULL,
-    unit_id INT REFERENCES unit(id) NOT NULL,
     created_at timestamp NOT NULL DEFAULT NOW() NOT NULL,
+    unit_id INT REFERENCES unit(id) NOT NULL,
     updated_at timestamp NOT NULL DEFAULT NOW() NOT NULL
 );                                                                                                                                                                                                                                                                                                                                                                                                                
 
