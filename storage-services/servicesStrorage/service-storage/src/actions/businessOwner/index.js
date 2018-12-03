@@ -10,8 +10,6 @@ const locationUrl = "http://localhost:3003/location";
 const blockUrl = "http://localhost:3003/block/";
 const unitType = "http://localhost:3003/unittype";
 const unitTypeUrl = "http://localhost:3003/unittype/";
-const ownerRegisterUrl = "http://localhost:3003/businessownersign";
-const loginInUrl = "http://localhost:3003/businessownerlogin";
 
 // http get requests
 

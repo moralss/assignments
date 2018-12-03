@@ -7,26 +7,27 @@ import { Router, Route, Redirect } from "react-router-dom";
 const token = localStorage.getItem("authorization");
 
 // export const determineAuthentication = () => {
-const decodedToken = jwtDecode(token);
+let decodedToken;
 
-if (decodedToken.authority === "customer") {
-  store.dispatch({
-    type: actions.CUSTOMER_AUTHENTICATED,
-    payload: true
-  });
-}
+if (token) {
+  decodedToken = jwtDecode(token);
 
-if (decodedToken.authority === "business-owner") {
-  store.dispatch({ type: actions.OWNER_AUTHENTICATED, payload: true });
+  if (decodedToken.authority === "customer") {
+    store.dispatch({
+      type: actions.CUSTOMER_AUTHENTICATED,
+      payload: true
+    });
+  }
+
+  if (decodedToken.authority === "business-owner") {
+    store.dispatch({ type: actions.OWNER_AUTHENTICATED, payload: true });
+  }
 }
 
 if (!token) {
   store.dispatch({ type: actions.OWNER_AUTHENTICATED, payload: false });
   store.dispatch({ type: actions.CUSTOMER_AUTHENTICATED, payload: false });
 }
-// };
-
-// determineAuthentication();
 
 export const PrivateRouteCustomer = ({ component: Component, ...rest }) => {
   let authenticated = store.getState().customerAuth.authenticated;

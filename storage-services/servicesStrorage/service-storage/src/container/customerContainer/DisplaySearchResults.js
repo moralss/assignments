@@ -17,7 +17,6 @@ class DisplaySearchResults extends Component {
     return (
       <div style={{ textAlign: "center" }}>
         <h1> Search results </h1>
-
         {searchResults.map(result => {
           return (
             <div>

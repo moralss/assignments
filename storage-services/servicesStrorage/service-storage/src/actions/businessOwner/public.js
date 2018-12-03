@@ -7,11 +7,17 @@ const ownerRegisterUrl = "http://localhost:3003/businessownersign";
 const loginInUrl = "http://localhost:3003/businessownerlogin";
 
 export function logOut() {
-  return  dispatch => {
+  return dispatch => {
     dispatch({
       type: actions.OWNER_AUTHENTICATED,
       payload: false
     });
+
+    dispatch({
+      type: actions.CUSTOMER_AUTHENTICATED,
+      payload: false
+    });
+
     localStorage.clear();
     history.push("/");
   };
