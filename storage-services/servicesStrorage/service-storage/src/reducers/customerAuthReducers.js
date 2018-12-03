@@ -8,7 +8,8 @@ let initialState = {
 export const customerAuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.CUSTOMER_AUTHENTICATED:
-      return { ...state, authenticated: true };
+    console.log("action payload" , action.payload)
+      return { ...state, authenticated: action.payload };
     case actions.CUSTOMER_AUTHENTICATION_ERROR:
       return { ...state, error: action.payload };
 

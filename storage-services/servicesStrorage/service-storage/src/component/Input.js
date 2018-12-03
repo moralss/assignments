@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input } from "../../styles/register";
+import { Input } from ".././styles/register";
 
 const renderInput = ({ input, meta, label }) => {
   return (

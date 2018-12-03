@@ -4,7 +4,7 @@ import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
 import { Header, Form, ButtonMedium } from "../../styles/register";
-import renderInput from "../component/Input";
+import renderInput from "../../component/Input";
 import { SelectField, listOfProvinces } from "../../component/selectInput";
 
 class RegisterLocation extends Component {

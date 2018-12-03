@@ -3,7 +3,7 @@ import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import * as actions from "../../actions/customerActions/public";
-import renderInput from "../component/Input";
+import renderInput from "../../component/Input";
 import { Form, ButtonMedium, Header } from "../../styles/register";
 
 class CustomerLogin extends Component {

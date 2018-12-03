@@ -16,10 +16,9 @@ class SearchBar extends Component {
 
   async handleFormSubmit(data) {
     // console.log("data", data);
-    const searchInfo = JSON.stringify({ data });
     // console.log("searchInfo" , typeof(searchInfo));
 
-    await this.props.searchForUnitType(searchInfo);
+    await this.props.searchForUnitType(data);
   }
 
   render() {

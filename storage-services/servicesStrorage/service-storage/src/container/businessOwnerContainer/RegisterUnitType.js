@@ -4,7 +4,7 @@ import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
 import { Form , ButtonMedium } from "../../styles/register";
-import renderInput from "../component/Input";
+import renderInput from "../../component/Input";
 import validate from "../../validations/registerUnit";
 
 class RegisterUnitType extends Component {

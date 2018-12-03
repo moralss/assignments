@@ -3,7 +3,7 @@ import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner/public";
 import { connect } from "react-redux";
-import renderInput from "../component/Input";
+import renderInput from "../../component/Input";
 import { ButtonMedium, Form , Header} from "../../styles/register";
 
 class RegisterBusinessOwner extends Component {

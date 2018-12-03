@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/customerActions/public";
 import { connect } from "react-redux";
 import { Form, Header, ButtonMedium } from "../../styles/register";
-import renderInput from "../component/Input";
+import renderInput from "../../component/Input";
 
 class RegisterCustomer extends Component {
   constructor() {

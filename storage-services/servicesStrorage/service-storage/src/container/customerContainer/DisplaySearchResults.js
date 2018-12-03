@@ -15,13 +15,13 @@ class DisplaySearchResults extends Component {
   render() {
     const { searchResults } = this.props;
     return (
-      <div>
+      <div style={{ textAlign: "center" }}>
         <h1> Search results </h1>
 
         {searchResults.map(result => {
           return (
             <div>
-              <ul style={{ display: "inline-block" }}>
+              <ul style={{ display: "inline-block", textAlign: "center" }}>
                 <li> city : {result.city} </li>
                 <li> state : {result.state} </li>
                 <li> street : {result.street} </li>
@@ -30,7 +30,7 @@ class DisplaySearchResults extends Component {
                 <li> width : {result.width} </li>
                 <li> length : {result.length} </li>
                 <button onClick={() => this.purchase(result.id)}>
-                  purchase unit type
+                  Reserve a unit type
                 </button>
               </ul>
             </div>

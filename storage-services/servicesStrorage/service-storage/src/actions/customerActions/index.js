@@ -1,7 +1,7 @@
 import * as actions from "../../actionTypes";
 import axios from "axios";
 import { setAxiosHeader } from "../../auth";
-
+import history from "../../history";
 let customerToken = localStorage.getItem("customer");
 axios.defaults.headers.common["authorizationc"] = customerToken;
 
@@ -39,14 +39,21 @@ export function loginCustomer(details, history) {
 }
 
 export function searchForUnitType(data) {
+  console.log("data", data);
+
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {
-      let res = await axios.get(customerSearchTerm  ,`${data}`);
+      let res = await axios.get(customerSearchTerm, {
+        params: {
+          ...data
+        }
+      });
       dispatch({
         type: actions.RECEVIED_CUSTOMER_SEARCH_RESULTS,
         payload: res.data
       });
+      history.push("/reservedunits");
     } catch (e) {
       dispatch({ type: "CUSTOMER_ERROR", payload: e });
     }
