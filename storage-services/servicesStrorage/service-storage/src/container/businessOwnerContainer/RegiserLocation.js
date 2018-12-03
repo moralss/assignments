@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Header, Form, ButtonMedium } from "../../styles/register";
 import renderInput from "../../component/Input";
 import { SelectField, listOfProvinces } from "../../component/selectInput";
+import { validate } from "../../validations/registerLocations";
 
 class RegisterLocation extends Component {
   constructor() {
@@ -13,7 +14,7 @@ class RegisterLocation extends Component {
   }
 
   async handleFormSubmit(details) {
-    console.log("details" , details);
+    console.log("details", details);
     const id = Number(this.props.match.params.id);
     let locationInfo = { ...details, id };
     await this.props.saveLocationToServer(locationInfo, this.props.history);
@@ -74,24 +75,6 @@ function mapDispatchToProps(dispatch) {
     saveLocationToServer: (details, history) =>
       dispatch(actions.saveLocationToServer(details, history))
   };
-}
-
-function validate(value) {
-  let error = {};
-
-  if (!value.city) {
-    error.city = "city is required";
-  }
-
-  if (!value.state) {
-    error.state = "state is required";
-  }
-
-  if (!value.street) {
-    error.street = "street is required";
-  }
-
-  return error;
 }
 
 const registerLocation = reduxForm({

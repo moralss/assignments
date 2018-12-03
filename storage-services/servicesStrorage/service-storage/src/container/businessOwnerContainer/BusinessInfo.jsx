@@ -39,12 +39,12 @@ class BusinessInfo extends Component {
 
     return (
       <div>
-        <Header>number of locations ({this.props.locations.length})</Header>
+        <Header>Number of locations ({this.props.locations.length})</Header>
 
         {this.props.locations.map(object => {
           return (
             <div>
-              <div>
+              <div style={{ display: "grid", justifyContent: "center" }}>
                 <Info>
                   <label> Province </label>
                   <span> {object.province} </span>

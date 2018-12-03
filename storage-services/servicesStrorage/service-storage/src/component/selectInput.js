@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 export const listOfUnits = ["garage", "office"];
 
@@ -20,17 +20,15 @@ export const SelectField = ({
   meta: { touched, error },
   children
 }) => (
-  <div className="field">
-    <label className="label">{label}</label>
-    <div className="control">
-      <div
-        className={
-          "select " + (touched ? (error ? "is-danger" : "is-success") : "")
-        }
-      >
-        <select {...input}>{children}</select>
-        {touched && (error && <p className="help is-danger">{error}</p>)}
-      </div>
-    </div>
+  <div>
+    <label>{label}</label>
+      <select {...input}>{children}</select>
+      {error && touched ? (
+        <span style={{ display: "block", color: "red", fontSize: "10px" }}>
+          {error}
+        </span>
+      ) : (
+        <span> </span>
+      )}
   </div>
 );

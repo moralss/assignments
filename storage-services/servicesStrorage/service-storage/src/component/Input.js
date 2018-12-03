@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Input } from ".././styles/register";
 
 const renderInput = ({ input, meta, label }) => {
@@ -7,7 +7,7 @@ const renderInput = ({ input, meta, label }) => {
         
       <Input {...input} placeholder={label} />
       {meta.error && meta.touched ? (
-        <span style={{ display: "block", color: "red" , fontSize:"10px" }}> {meta.error}</span>
+         <span style={{ display: "block", color: "red" , fontSize:"10px" }}> {meta.error}</span>
       ) : (
         <span> </span>
       )}

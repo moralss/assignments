@@ -3,11 +3,9 @@ import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner/index";
 import { connect } from "react-redux";
-
-import { Form, ButtonMedium } from "../../styles/register";
+import { Form, ButtonMedium  , Header} from "../../styles/register";
 import renderInput from "../../component/Input";
 import validate from "../../validations/registerBusiness";
-
 
 class registerBusiness extends Component {
   constructor() {
@@ -22,27 +20,35 @@ class registerBusiness extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-        <Field
-          name="businessName"
-          label="Business name"
-          component={renderInput}
-          type="text"
-        />
+      <div>
+      <Header> Register Business</Header>
+        <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+          <Field
+            name="businessName"
+            label="Business name"
+            component={renderInput}
+            type="text"
+          />
 
-        <Field
-          name="phoneNumbers"
-          label="Phone number"
-          component={renderInput}
-          type="text"
-        />
+          <Field
+            name="phoneNumbers"
+            label="Phone number"
+            component={renderInput}
+            type="text"
+          />
 
-        <Field name="email" label="email" component={renderInput} type="text" />
+          <Field
+            name="email"
+            label="email"
+            component={renderInput}
+            type="text"
+          />
 
-        <ButtonMedium disabled={this.props.invalid} type="submit">
-          Submit
-        </ButtonMedium>
-      </Form>
+          <ButtonMedium disabled={this.props.invalid} type="submit">
+            Submit
+          </ButtonMedium>
+        </Form>
+      </div>
     );
   }
 }
