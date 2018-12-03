@@ -53,7 +53,6 @@ export function searchForUnitType(data) {
         type: actions.RECEVIED_CUSTOMER_SEARCH_RESULTS,
         payload: res.data
       });
-      history.push("/reservedunits");
     } catch (e) {
       dispatch({ type: "CUSTOMER_ERROR", payload: e });
     }
@@ -66,6 +65,7 @@ export function purchaseUnit(unitId) {
     try {
       await axios.post(purchaseUrl, { unitId }, setAxiosHeader());
       dispatch({ type: "PURCHASE_SUCCESFUL" });
+      history.push("/reservedunits");
     } catch (e) {
       dispatch({ type: "PURCHASE_ERROR", payload: e });
     }

@@ -30,17 +30,41 @@ class Navbar extends Component {
     );
   }
 
+  customerNav() {
+    return (
+      <NavBar>
+        <ul>
+          <li>
+            <a href="">
+              <NavLink to="/businessunites">Business units</NavLink>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <NavLink to="/reservedunits">Reserved Units</NavLink>
+            </a>
+          </li>
+          <ButtonPrimary onClick={() => this.LogOut()}>Log out</ButtonPrimary>
+        </ul>
+      </NavBar>
+    );
+  }
+
   render() {
     return (
       <div className="navbar">
         {this.props.ownerAuth ? this.businessOwnerNav() : null}
+        {this.props.customerAuth ? this.customerNav() : null}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { ownerAuth: state.businessOwnerAuth.authenticated };
+  return {
+    ownerAuth: state.businessOwnerAuth.authenticated,
+    customerAuth: state.customerAuth.authenticated
+  };
 }
 
 function mapDispatchToProps(dispatch) {

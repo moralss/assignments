@@ -8,8 +8,8 @@ const getUnitTypeInfo = async searchTerm => {
 
   let selectQuery = `select  unit_type.name , unit.id , location.city , location.state , 
     location.street , unit_type.height ,  unit_type.width ,
-    unit_type.length from business inner join  location on
-    business.id = location.business_id
+    unit_type.length from business 
+    inner join  location on business.id = location.business_id
     inner join  block on location.id = block.location_id
     inner join  unit on block.id = unit.block_id 
     inner join  unit_type on  unit.unit_type_id = unit_type.id 
@@ -18,16 +18,7 @@ const getUnitTypeInfo = async searchTerm => {
     ;  
     `;
 
-    // searchParams { province: 'Free State', unitType: 'garage' }
-
-    // SELECT  *
-    // FROM    Call
-    // WHERE   phone_number NOT IN (SELECT phone_number FROM Phone_book)
-
-
-  //     FROM customers
-  // WHERE favorite_website = 'techonthenet.com'
-  // AND customer_id > 6000;
+  // searchParams { province: 'Free State', unitType: 'garage' }
 
   let parameters = [unitType, province];
   let unitInfo = "";
