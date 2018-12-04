@@ -1,4 +1,4 @@
-import * as actions from '../actionTypes'
+import * as actions from "../actionTypes";
 
 const initialState = {
   businessInfo: [],
@@ -6,7 +6,8 @@ const initialState = {
   loading: false,
   blocks: [],
   unitTypes: [],
-  postError: []
+  postError: [],
+  businessReservedUnits: []
 };
 
 // POST_ERROR
@@ -23,7 +24,8 @@ export const businessReducer = (state = initialState, action) => {
       return { ...state, blocks: [...action.payload] };
     case actions.POST_ERROR:
       return { ...state, postError: [...action.payload] };
-
+    case actions.RECEIVED_BUSINESS_RESERVED_UNITS:
+      return { ...state, businessReservedUnits: [...action.payload] };
     case actions.LOADING_FALSE:
       return { ...state, loading: false };
     case actions.LOADING_TRUE:

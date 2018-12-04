@@ -16,11 +16,11 @@ import BusinessUnites from "../container/customerContainer/BusinessUnites";
 import CustomerLogin from "../container/customerContainer/CustomerLogin";
 import history from "../history/index";
 import CustomerReservedUnits from "../container/customerContainer/CustomerReseverdUnits";
+import BusinessReservedUnits from "../container/businessOwnerContainer/BusinessReservedUnits";
 import {
   PrivateRouteCustomer,
   PrivateRouteBusinessOwner
 } from "./privateRoutes";
-
 
 export const makeMainRoutes = () => {
   return (
@@ -68,7 +68,7 @@ export const makeMainRoutes = () => {
 
         <PrivateRouteCustomer
           exact
-          path="/reservedunits"
+          path="/customerreservedunits"
           render={props => <CustomerReservedUnits {...props} />}
         />
 
@@ -88,6 +88,12 @@ export const makeMainRoutes = () => {
 
         <PrivateRouteBusinessOwner
           exact
+          path="/businessreservedunits"
+          render={props => <BusinessReservedUnits {...props} />}
+        />
+
+        <PrivateRouteBusinessOwner
+          exact
           path="/registerbusiness"
           render={props => <RegisterBusiness {...props} />}
         />
@@ -101,6 +107,13 @@ export const makeMainRoutes = () => {
 
         <PrivateRouteBusinessOwner
           path="/dashboard"
+          exact
+          strict
+          render={props => <Dashboard {...props} />}
+        />
+
+        <PrivateRouteBusinessOwner
+          path="/revsered"
           exact
           strict
           render={props => <Dashboard {...props} />}

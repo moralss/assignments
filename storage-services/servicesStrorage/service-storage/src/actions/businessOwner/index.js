@@ -2,14 +2,15 @@ import * as actions from "../../actionTypes";
 import axios from "axios";
 import { setAxiosHeader } from "../../auth";
 
+const url = "http://localhost:3003/";
 
-
-const businessUrl = "http://localhost:3003/business";
-const businessInfoUrl = "http://localhost:3003/businessinfo/";
-const locationUrl = "http://localhost:3003/location";
-const blockUrl = "http://localhost:3003/block/";
-const unitType = "http://localhost:3003/unittype";
-const unitTypeUrl = "http://localhost:3003/unittype/";
+const businessReservedUnitsUrl = `${url}businessreservedunits`;
+const businessUrl = `${url}business`;
+const businessInfoUrl = `${url}businessinfo/`;
+const locationUrl = `${url}location`;
+const blockUrl = `${url}block/`;
+const unitType = `${url}unittype`;
+const unitTypeUrl = `${url}unittype/`;
 
 // http get requests
 
@@ -46,8 +47,19 @@ export function getBusinessInfo(name) {
 export function getBusiness() {
   return async function(dispatch) {
     dispatch({ type: actions.LOADING_TRUE });
-    const businesses = await axios.get(businessUrl, setAxiosHeader());
-    dispatch({ type: actions.GET_BUSINESS_DETAILS, payload: businesses.data });
+    const res = await axios.get(businessUrl, setAxiosHeader());
+    dispatch({ type: actions.GET_BUSINESS_DETAILS, payload: res.data });
+  };
+}
+
+export function getBusinessReservedUnits() {
+  return async dispatch => {
+    dispatch({ type: actions.LOADING_TRUE });
+    const res = await axios.get(businessReservedUnitsUrl, setAxiosHeader());
+    dispatch({
+      type: actions.RECEIVED_BUSINESS_RESERVED_UNITS,
+      payload: res.data
+    });
   };
 }
 
@@ -90,4 +102,3 @@ export function saveUnitTypes(details) {
 }
 
 // http post request to server
-

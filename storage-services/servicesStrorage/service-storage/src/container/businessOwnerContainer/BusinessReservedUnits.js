@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions/businessOwner";
 import "../../App.css";
-import RegisterBlock from "./RegisterBlock";
 import { Info, Header } from "../../styles/register";
-import { ButtonContainer, ButtonSmall } from "../../styles/register";
+// import { ButtonContainer, ButtonSmall } from "../../styles/register";
 
 class BusinessInfo extends Component {
   constructor() {
@@ -16,10 +15,30 @@ class BusinessInfo extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getBusinessReservedUnits();
+  }
+
   render() {
     return (
       <div>
         <Header>Business Units</Header>
+        {this.props.businessReservedUnits.map(object => {
+          return (
+            <div>
+              <div style={{ display: "grid", justifyContent: "center" }}>
+                <Info>
+                  <label> City </label>
+                  <span> {object.city} </span>
+                  <label> Street </label>
+                  <span> {object.street} </span>
+                  <label> State </label>
+                  <span> {object.state} </span>
+                </Info>
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -27,14 +46,13 @@ class BusinessInfo extends Component {
 
 function mapStateToProps(state) {
   return {
-    locations: state.business.businessLocations,
-    blocks: state.business.block
+    businessReservedUnits: state.business.businessReservedUnits
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getBusinessInfo: name => dispatch(actions.getBusinessInfo(name))
+    getBusinessReservedUnits: () => dispatch(actions.getBusinessReservedUnits())
   };
 }
 

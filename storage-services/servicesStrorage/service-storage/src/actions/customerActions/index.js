@@ -7,12 +7,9 @@ axios.defaults.headers.common["authorizationc"] = customerToken;
 
 const customerSearchTerm = "http://localhost:3003/searchunittype/";
 const purchaseUrl = "http://localhost:3003/purchaseunit";
-const reservedUnitsUrl = "http://localhost:3003/reservedunits";
-
+const reservedUnitsUrl = "http://localhost:3003/customerreservedunits";
 
 export function searchForUnitType(data) {
-  console.log("data", data);
-
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {
@@ -37,7 +34,7 @@ export function purchaseUnit(unitId) {
     try {
       await axios.post(purchaseUrl, { unitId }, setAxiosHeader());
       dispatch({ type: "PURCHASE_SUCCESFUL" });
-      history.push("/reservedunits");
+      history.push("/customerreservedunits");
     } catch (e) {
       dispatch({ type: "PURCHASE_ERROR", payload: e });
     }
@@ -50,7 +47,7 @@ export function getReservedUnits() {
     try {
       let res = await axios.get(reservedUnitsUrl, setAxiosHeader());
       dispatch({ type: actions.RECEIVED_RESERVED_UNITS, payload: res.data });
-      history.push("/reservedunits");
+      history.push("/customerreservedunits");
     } catch (e) {
       dispatch({ type: "PURCHASE_ERROR", payload: e });
     }

@@ -2,9 +2,6 @@ const passport = require("passport");
 const { createToken } = require("../src/auth/createToken");
 const { getCustomerInfo } = require("../src/queries/customer");
 const { createCustomer } = require("../src/commands/customer");
-const { getReservedUnits } = require("../src/queries/customer-reserved-units");
-const { jwtCheck } = require("../src/auth/jwtCheck");
-
 
 let middeware = passport.authenticate("customer");
 
@@ -37,26 +34,7 @@ const customerRoutes = app => {
     }
   });
 
-  app.get("/reservedunits", jwtCheck, async (req, res) => {
-    console.log(req.user);
-    try {
-      const reservedUnits = await getReservedUnits(req.user.id);
-      console.log("reserved units", reservedUnits);
-      res.json(reservedUnits);
-    } catch (e) {
-      console.log(e);
-    }
-    // const customerDetails = req.body;
-    // try {
-    //   await createCustomer(customerDetails);
-    //   let customer = await getCustomerInfo(customerDetails.email);
-    //   let token = createToken(customer.id, "customer");
-    //   res.send({ token }).end();
-    // } catch (e) {
-    //   res.send(500).end();
-    //   console.log(e);
-    // }
-  });
+
 };
 
 module.exports = { customerRoutes };

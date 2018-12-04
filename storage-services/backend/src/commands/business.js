@@ -4,7 +4,7 @@ const saveBusiness = async (business, ownerId) => {
   const { businessName, phoneNumbers, email } = business;
 
   const client = await getClient();
-  const statement = `INSERT INTO business(name, contact_number,
+  const statement = `INSERT INTO business(business_name, contact_number,
      contact_email , business_owner_id) values($1, $2, $3 , $4) RETURNING id;`;
 
   const parameters = [businessName, phoneNumbers, email, ownerId];

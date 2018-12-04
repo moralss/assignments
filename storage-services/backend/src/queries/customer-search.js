@@ -6,7 +6,7 @@ const getUnitTypeInfo = async searchTerm => {
 
   const client = await getClient();
 
-  let selectQuery = `select  unit_type.name , unit.id , location.city , location.state , 
+  let selectQuery = `select business.name ,  unit_type.name , unit.id , location.city , location.state , 
     location.street , unit_type.height ,  unit_type.width ,
     unit_type.length from business 
     inner join  location on business.id = location.business_id

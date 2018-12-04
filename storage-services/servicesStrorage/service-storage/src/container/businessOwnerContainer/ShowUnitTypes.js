@@ -28,7 +28,7 @@ class showUnitTypes extends Component {
                 <label> unit name </label>
                 <span> {unitType.unit_name} </span>
                 <label> unit type name </label>
-                <span> {unitType.name} </span>
+                <span> {unitType.unit_type_name} </span>
                 <label> unit length </label>
                 <span> {unitType.length} </span>
                 <label> unit type width</label>

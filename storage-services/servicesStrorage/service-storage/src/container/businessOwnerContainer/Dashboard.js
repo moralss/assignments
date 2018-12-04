@@ -35,10 +35,10 @@ class Dashboard extends Component {
           {this.props.businessInfo.map(business => {
             return (
               <Grid>
-                <label>Business name : {business.name}</label>
+                <label>Business name : {business.business_name}</label>
 
                 {/* <a href="#"> */}
-                  <Link to={`businessinfo/${business.name}`}>More info</Link>
+                  <Link to={`businessinfo/${business.business_name}`}>More info</Link>
                 {/* </a> */}
 
                 <ButtonMedium

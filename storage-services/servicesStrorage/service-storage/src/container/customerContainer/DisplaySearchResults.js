@@ -21,6 +21,7 @@ class DisplaySearchResults extends Component {
           return (
             <div>
               <ul style={{ display: "inline-block", textAlign: "center" }}>
+              <li> business name : {result.name} </li>
                 <li> city : {result.city} </li>
                 <li> state : {result.state} </li>
                 <li> street : {result.street} </li>

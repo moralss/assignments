@@ -11,6 +11,7 @@ class Navbar extends Component {
   }
 
   businessOwnerNav() {
+    
     return (
       <NavBar>
         <ul>
@@ -24,6 +25,12 @@ class Navbar extends Component {
               <NavLink to="/dashboard">Dashboard</NavLink>
             </a>
           </li>
+          <li>
+            <a href="">
+              <NavLink to="/businessreservedunits">Reserved units</NavLink>
+            </a>
+          </li>
+
           <ButtonPrimary onClick={() => this.LogOut()}>Log out</ButtonPrimary>
         </ul>
       </NavBar>
@@ -41,7 +48,7 @@ class Navbar extends Component {
           </li>
           <li>
             <a href="">
-              <NavLink to="/reservedunits">Reserved Units</NavLink>
+              <NavLink to="/customerreservedunits">Reserved Units</NavLink>
             </a>
           </li>
           <ButtonPrimary onClick={() => this.LogOut()}>Log out</ButtonPrimary>

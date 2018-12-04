@@ -6,7 +6,7 @@ const getLocation = async businessName => {
   let selectQuery = `select location.id , location.street ,
     location.city , location.state , location.province from
     business left join  location on business.id = location.business_id
-    where business.name = $1`;
+    where business.business_name = $1`;
   let storageInfo;
 
   try {
