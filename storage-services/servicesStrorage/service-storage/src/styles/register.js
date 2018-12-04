@@ -28,21 +28,24 @@ export const Input = styled.input`
 
 // input
 
+// errors span
+
+//
+
 // header
 
 export const Header2 = styled.h1`
-color: blue;
-text-align: left;
-font-weight: 200;
-font-size: 25px;
-margin: 20px;
+  color: blue;
+  text-align: left;
+  font-weight: 200;
+  font-size: 25px;
+  margin: 20px;
 
-:after
-{
-  content:' ';
-  display:block;
-  margin:1px;
-}
+  :after {
+    content: " ";
+    display: block;
+    margin: 1px;
+  }
 `;
 
 export const Header = styled.h1`
@@ -52,13 +55,18 @@ export const Header = styled.h1`
   font-size: 35px;
   margin: 20px;
 
-  :after
-{
-    content:' ';
-    display:block;
-    margin:1px;
-    border:0.5px solid black;
-}
+  :after {
+    content: " ";
+    display: block;
+    margin: 1px;
+    border: 0.5px solid black;
+  }
+`;
+
+export const ErrorSpan = styled.span`
+  display: block;
+  color: red;
+  fontsize: 10px;
 `;
 
 // header
@@ -84,17 +92,16 @@ export const ButtonMedium = styled.button`
   }
 `;
 
-
 // button primary
 
 export const ButtonPrimary = styled.button`
-  position:absolute;
+  position: absolute;
   right: 20px;
   top: 20px;
   color: blue;
   padding: 5px;
-  border:none;
-  borderRadius:2px;
+  border: none;
+  borderradius: 2px;
 
   &:hover {
     cursor: pointer;
@@ -103,13 +110,11 @@ export const ButtonPrimary = styled.button`
 
 // button small
 
-
-
 export const ButtonSmall = styled.button`
   padding: 5px;
   font-size: 10px;
-  width:60px;
-  margin:20px;
+  width: 60px;
+  margin: 20px;
   background-color: blue;
   color: white;
   border-radius: 13px;
@@ -121,11 +126,7 @@ export const ButtonSmall = styled.button`
 
 // button small
 
-
-
 // button primary
-
-
 
 // button
 
@@ -133,56 +134,50 @@ export const ButtonSmall = styled.button`
 export const Info = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  width:300px;
-  border:0.1px solid black;
-  margin:10px;
-  justify-items:center;
+  width: 300px;
+  border: 0.1px solid black;
+  margin: 10px;
+  justify-items: center;
 
   span {
   }
 
   label {
-    display:block;
+    display: block;
     text-align: left;
     color: #024242;
   }
 
   > div {
-    justify-self:center;
-
+    justify-self: center;
   }
 `;
 
-
-
 // Info
 
-// Container 
+// Container
 
 export const Container = styled.div`
-  text-align:center;
+  text-align: center;
 `;
 
 // Container
 
-
 // buttonContainer
 
 export const ButtonContainer = styled.div`
-  display:flex;
+  display: flex;
   grid-gap: 20px;
-  flex:row;
-  flex-direction:row;
+  flex: row;
+  flex-direction: row;
   margin-bottom: 20px;
-  justify-content:center;
-  
+  justify-content: center;
 
-button:nth-child(1) {
-}
+  button:nth-child(1) {
+  }
 
-button:nth-child(2) {
-}
-
+  button:nth-child(2) {
+  }
 `;
 
 // buttonContainer

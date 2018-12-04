@@ -1,13 +1,12 @@
 import React from "react";
-import { Input } from ".././styles/register";
+import { Input, ErrorSpan } from ".././styles/register";
 
-const renderInput = ({ input, meta, label }) => {
+const renderInput = ({ type, input, meta, label }) => {
   return (
     <div>
-        
-      <Input {...input} placeholder={label} />
+      <Input {...input} type={type} placeholder={label} />
       {meta.error && meta.touched ? (
-         <span style={{ display: "block", color: "red" , fontSize:"10px" }}> {meta.error}</span>
+        <ErrorSpan> {meta.error}</ErrorSpan>
       ) : (
         <span> </span>
       )}

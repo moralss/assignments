@@ -81,7 +81,11 @@ export const saveBusinessDetails = (details, history) => {
       dispatch({ type: actions.SAVED_BUSINESS_SUCCESS });
       history.push("/dashboard");
     } catch (e) {
-      dispatch({ type: actions.POST_ERROR, payload: e });
+      console.log("errors", e.response.data.errors);
+      dispatch({
+        type: actions.SAVE_BUSINESS_ERROR,
+        payload: e.response.data.errors
+      });
     }
   };
 };

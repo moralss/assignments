@@ -3,7 +3,7 @@ import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner/index";
 import { connect } from "react-redux";
-import { Form, ButtonMedium  , Header} from "../../styles/register";
+import { ErrorSpan, Form, ButtonMedium, Header } from "../../styles/register";
 import renderInput from "../../component/Input";
 import validate from "../../validations/registerBusiness";
 
@@ -17,11 +17,11 @@ class registerBusiness extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
 
     return (
       <div>
-      <Header> Register Business</Header>
+        <Header> Register Business</Header>
         <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
             name="businessName"
@@ -29,6 +29,7 @@ class registerBusiness extends Component {
             component={renderInput}
             type="text"
           />
+          <ErrorSpan> {this.props.errors.businessName}</ErrorSpan>
 
           <Field
             name="phoneNumbers"
@@ -36,6 +37,7 @@ class registerBusiness extends Component {
             component={renderInput}
             type="text"
           />
+          <ErrorSpan> {this.props.errors.phoneNumbers}</ErrorSpan>
 
           <Field
             name="email"
@@ -43,8 +45,9 @@ class registerBusiness extends Component {
             component={renderInput}
             type="text"
           />
+          <ErrorSpan> {this.props.errors.email}</ErrorSpan>
 
-          <ButtonMedium disabled={this.props.invalid} type="submit">
+          <ButtonMedium disabled={pristine || submitting} type="submit">
             Submit
           </ButtonMedium>
         </Form>
@@ -60,12 +63,16 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+function mapStateToProps(state) {
+  return { errors: state.errors };
+}
+
 const currretForm = reduxForm({
   form: "registerBusiness",
   validate
 })(registerBusiness);
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(currretForm);
