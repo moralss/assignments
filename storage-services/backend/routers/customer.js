@@ -2,6 +2,7 @@ const passport = require("passport");
 const { createToken } = require("../src/auth/createToken");
 const { getCustomerInfo } = require("../src/queries/customer");
 const { createCustomer } = require("../src/commands/customer");
+const { validateNewCustomer } = require("../src/validations/customer");
 
 let middeware = passport.authenticate("customer");
 
@@ -23,6 +24,13 @@ const customerRoutes = app => {
 
   app.post("/customersign", async (req, res) => {
     const customerDetails = req.body;
+
+    const { errors, isValid } = await validateNewCustomer(customerDetails);
+
+    if (!isValid) {
+      return res.status(400).json({ errors });
+    }
+
     try {
       await createCustomer(customerDetails);
       let customer = await getCustomerInfo(customerDetails.email);
@@ -33,8 +41,6 @@ const customerRoutes = app => {
       console.log(e);
     }
   });
-
-
 };
 
 module.exports = { customerRoutes };

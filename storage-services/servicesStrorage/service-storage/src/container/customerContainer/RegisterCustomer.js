@@ -4,6 +4,7 @@ import * as actions from "../../actions/customerActions/public";
 import { connect } from "react-redux";
 import { Form, Header, ButtonMedium } from "../../styles/register";
 import renderInput from "../../component/Input";
+import validate from "../../validations/registerCustomer";
 
 class RegisterCustomer extends Component {
   constructor() {
@@ -19,7 +20,7 @@ class RegisterCustomer extends Component {
 
     return (
       <div>
-        <Header> Register an account. </Header>
+        <Header> Register for account. </Header>
         <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
             label="Email"
@@ -30,11 +31,24 @@ class RegisterCustomer extends Component {
           />
 
           <Field
+            label="User Name"
+            name="phoneNumber"
+            component={renderInput}
+            type="text"
+          />
+
+          <Field
             label="Password"
             name="password"
             component={renderInput}
             type="text"
-            placeholder="email"
+          />
+
+          <Field
+            label="Confirm Password"
+            name="confirmPassword"
+            component={renderInput}
+            type="text"
           />
 
           <ButtonMedium action="submit"> submit </ButtonMedium>
@@ -52,7 +66,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 const currretForm = reduxForm({
-  form: "registerCustomer"
+  form: "registerCustomer",
+  validate
 })(RegisterCustomer);
 
 export default connect(
