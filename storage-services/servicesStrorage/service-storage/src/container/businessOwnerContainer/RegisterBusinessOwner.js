@@ -5,6 +5,7 @@ import * as actions from "../../actions/businessOwner/public";
 import { connect } from "react-redux";
 import renderInput from "../../component/Input";
 import { ButtonMedium, Form, Header } from "../../styles/register";
+import validate from "../../validations/registerCustomer";
 
 class RegisterBusinessOwner extends Component {
   constructor() {
@@ -30,18 +31,27 @@ class RegisterBusinessOwner extends Component {
           />
 
           <Field
+            label="User Name"
+            name="userName"
+            component={renderInput}
+            type="text"
+          />
+
+          <Field
             name="password"
             label="Password"
             component={renderInput}
             type="password"
           />
 
-          <ButtonMedium
-            disabled={this.props.invalid}
-            onClick={this.handleFormSubmit.bind(this)}
-          >
-            submit
-          </ButtonMedium>
+          <Field
+            name="confirmPassword"
+            label="Confirm Password"
+            component={renderInput}
+            type="password"
+          />
+
+          <ButtonMedium action="submit"> submit </ButtonMedium>
         </Form>
       </div>
     );
@@ -56,7 +66,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 const currretForm = reduxForm({
-  form: "registerBusinessOwner"
+  form: "registerBusinessOwner",
+  validate
 })(RegisterBusinessOwner);
 
 export default connect(

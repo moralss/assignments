@@ -20,10 +20,13 @@ class BusinessInfo extends Component {
   }
 
   render() {
+    const { businessReservedUnits } = this.props;
     return (
       <div>
         <Header>Business Units</Header>
-        {this.props.businessReservedUnits.map(object => {
+        <span>Currently {businessReservedUnits.length} reserved units </span>
+
+        {businessReservedUnits.map(object => {
           return (
             <div>
               <div style={{ display: "grid", justifyContent: "center" }}>

@@ -22,17 +22,21 @@ class CustomerReservedUnits extends Component {
 
         {this.props.reservedUnits.map(object => {
           return (
-            <div style={{display:"grid" , justifyContent :"center"}}>
-              <Info>
-                <label> Block Name </label>
-                <span> {object.block_name} </span>
-                <label> City </label>
-                <span> {object.city} </span>
-                <label> Street </label>
-                <span> {object.street} </span>
-                <label> State </label>
-                <span> {object.state} </span>
-              </Info>
+            <div style={{ display: "grid", justifyContent: "center" }}>
+              <ul style={{ display: "inline-block", textAlign: "center" }}>
+                <li> Business name : {object.business_name} </li>
+                <li> Business email : {object.contact_email} </li>
+                <li> Phone numbers : {object.contact_number} </li>
+                <li> Province : {object.province} </li>
+                <li> City : {object.city} </li>
+                <li> State : {object.state} </li>
+                <li> Street : {object.street} </li>
+                <li> Block name : {object.block_name} </li>
+                <li> unit type : {object.unit_type_name} </li>
+                <li> height : {object.height} m </li>
+                <li> width : {object.width} m </li>
+                <li> length : {object.length} m </li>
+              </ul>
             </div>
           );
         })}

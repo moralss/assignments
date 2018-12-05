@@ -7,10 +7,10 @@ const saveUnitType = async unitTypeInfo => {
   const client = await getClient();
   
   let parameters = [unitType, length, width, height];
-  let insertQuery = `INSERT INTO unit_type(unit_type_name , length, width , height )
+  let insertQuery = `INSERT INTO unit_types(unit_type_name , length, width , height )
     VALUES($1 , $2 , $3 , $4) RETURNING ID`;
 
-  let insertQuery2 = `INSERT INTO unit( unit_name , block_id, unit_type_id )
+  let insertQuery2 = `INSERT INTO units( unit_name , block_id, unit_type_id )
   VALUES($1 , $2 , $3)`;
 
   try { 

@@ -1,12 +1,8 @@
 const _ = require("lodash");
-const { getBusinessOwner } = require("../queries/business-owner");
 const { getBusinessByName } = require("../queries/business");
 const { getBusinessByEmail } = require("../queries/business");
 
 const validateBusinessInfo = async data => {
-  // name, contact_number,
-  // contact_email , business_owner_id
-  //   businessName, phoneNumbers, email
 
   let businessName = await getBusinessByName(data.businessName);
   let businessEmail = await getBusinessByEmail(data.email);

@@ -2,15 +2,15 @@ import * as actions from "../actionTypes";
 
 let initialState = {
   authenticated: false,
-  error: []
+  error: { password: "", userName: "", email: "", confirmPassword: "" }
 };
 
 export const authBusinessOwnerReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.OWNER_AUTHENTICATED:
-      return { ...state, authenticated: action.payload  };
+      return { ...state, authenticated: action.payload };
     case actions.OWNER_AUTHENTICATION_ERROR:
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload};
 
     default:
       return state;

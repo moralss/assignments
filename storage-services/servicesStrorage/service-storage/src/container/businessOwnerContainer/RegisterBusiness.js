@@ -47,9 +47,7 @@ class registerBusiness extends Component {
           />
           <ErrorSpan> {this.props.errors.email}</ErrorSpan>
 
-          <ButtonMedium disabled={pristine || submitting} type="submit">
-            Submit
-          </ButtonMedium>
+          <ButtonMedium action="submit"> submit </ButtonMedium>
         </Form>
       </div>
     );

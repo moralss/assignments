@@ -9,8 +9,12 @@ const businessRoutes = app => {
     const businessOwnerId = Number(req.user.id);
     const { errors, isValid } = await validateBusinessInfo(business);
 
-    if (!isValid) {
-      return res.status(400).json({ errors });
+    try {
+      if (!isValid) {
+        return res.status(400).json({ errors });
+      }
+    } catch (e) {
+      console.log(e);
     }
 
     try {

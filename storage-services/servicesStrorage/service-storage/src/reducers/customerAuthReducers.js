@@ -1,17 +1,16 @@
-import * as actions from '../actionTypes';
+import * as actions from "../actionTypes";
 
 let initialState = {
   authenticated: false,
-  error: []
+  errors: { password: "", userName: "", email: "", confirmPassword: "" }
 };
 
 export const customerAuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.CUSTOMER_AUTHENTICATED:
-    console.log("action payload" , action.payload)
       return { ...state, authenticated: action.payload };
     case actions.CUSTOMER_AUTHENTICATION_ERROR:
-      return { ...state, error: action.payload };
+      return { ...state, errors: action.payload };
 
     default:
       return state;

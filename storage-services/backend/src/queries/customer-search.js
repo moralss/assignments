@@ -6,15 +6,16 @@ const getUnitTypeInfo = async searchTerm => {
 
   const client = await getClient();
 
-  let selectQuery = `select business.name ,  unit_type.name , unit.id , location.city , location.state , 
-    location.street , unit_type.height ,  unit_type.width ,
-    unit_type.length from business 
-    inner join  location on business.id = location.business_id
-    inner join  block on location.id = block.location_id
-    inner join  unit on block.id = unit.block_id 
-    inner join  unit_type on  unit.unit_type_id = unit_type.id 
-    where unit_type.name = $1  and location.province = $2
-    and unit.id NOT IN (SELECT unit_id FROM customer_purchase)
+  let selectQuery = `select businesses.business_name , businesses.contact_email,
+  businesses.contact_number , units.id , locations.city , locations.state , 
+    locations.street , unit_types.unit_type_name ,blocks.block_name ,
+     unit_types.height ,unit_types.width , unit_types.length from businesses 
+    inner join  locations on businesses.id = locations.business_id
+    inner join  blocks on locations.id = blocks.location_id
+    inner join  units on blocks.id = units.block_id 
+    inner join  unit_types on  units.unit_type_id = unit_types.id 
+    where unit_types.unit_type_name = $1  and locations.province = $2
+    and units.id NOT IN (SELECT unit_id FROM customer_purchases)
     ;  
     `;
 

@@ -4,6 +4,7 @@ const { getBlocks } = require("../src/queries/block");
 const blockRoutes = app => {
   app.post("/block", async (req, res) => {
     const block = req.body;
+    console.log("block", block);
 
     try {
       await saveBlock(block);

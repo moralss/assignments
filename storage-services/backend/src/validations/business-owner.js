@@ -11,8 +11,8 @@ const validateNewOwner = async data => {
     errors.email = "email already exits";
   }
 
-  if (data.email === undefined) {
-    errors.email = " email required";
+  if (data.userName === undefined) {
+    errors.userName = "user name is required";
   }
 
   if (data.email !== undefined && !re.test(data.email)) {
@@ -20,18 +20,26 @@ const validateNewOwner = async data => {
   }
 
   if (data.password === undefined) {
-    errors.password = "password required";
+    errors.password = "password is required";
   }
 
   if (data.password !== undefined && !data.password.match(/^[a-z0-9]{5,20}$/)) {
-    console.log("password");
-
-    // if (!data.password.match(/^[a-z0-9]{5,20}$/)) {
     errors.pasword = "password should consist of numbers and letters";
     // }
   }
-  console.log(errors);
 
+  if (data.confirmPassword === undefined) {
+    errors.confirmPassword = "password confirm is required";
+  }
+
+  if (
+    data.confirmPassword === undefined &&
+    data.confirmPassword !== data.password
+  ) {
+    errors.confirmPassword = "password does not match";
+  }
+
+  console.log(errors);
   return {
     errors,
     isValid: _.isEmpty(errors)

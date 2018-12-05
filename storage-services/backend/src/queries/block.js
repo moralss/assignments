@@ -4,9 +4,9 @@ const getBlocks = async locationId => {
   const client = await getClient();
   console.log(typeof locationId);
 
-  let selectQuery2 = `select block.block_name , block.id from block
-   inner join location on block.location_id =
-   location.id where location.id = $1`;
+  let selectQuery2 = `select blocks.block_name , blocks.id from blocks
+   inner join locations on blocks.location_id =
+   locations.id where locations.id = $1`;
   let parameters = [locationId];
 
   let blockInfo = "";

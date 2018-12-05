@@ -2,7 +2,7 @@ const { getClient } = require("../db");
 
 const getBusinessOwner = async email => {
   const client = await getClient();
-  let statement = `SELECT * FROM business_owner WHERE  email = $1`;
+  let statement = `SELECT * FROM business_owners WHERE  email = $1`;
   const res = await client.query(statement, [email]);
   try {
     await client.release();
@@ -15,7 +15,7 @@ const getBusinessOwner = async email => {
 
 const getBusinessOwnerId = async id => {
   const client = await getClient();
-  let statement = `SELECT * FROM business_owner WHERE  id = $1`;
+  let statement = `SELECT * FROM business_owners WHERE  id = $1`;
   const res = await client.query(statement, [id]);
   try {
     await client.release();

@@ -3,10 +3,10 @@ const { getClient } = require("../db");
 const getLocation = async businessName => {
   
   const client = await getClient();
-  let selectQuery = `select location.id , location.street ,
-    location.city , location.state , location.province from
-    business left join  location on business.id = location.business_id
-    where business.business_name = $1`;
+  let selectQuery = `select locations.id , locations.street ,
+    locations.city , locations.state , locations.province from
+    businesses left join  locations on businesses.id = locations.business_id
+    where businesses.business_name = $1`;
   let storageInfo;
 
   try {

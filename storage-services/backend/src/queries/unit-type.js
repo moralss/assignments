@@ -3,10 +3,10 @@ const { getClient } = require("../db");
 const getUnitTypes = async blockId => {
   const client = await getClient();
   
-  let selectQuery = `select unit.unit_name , unit_type.unit_type_name , 
-  unit_type.length , unit_type.width , unit_type.height  
-   from unit  inner join block on unit.block_id = block.id  
-  inner join  unit_type on  unit.unit_type_id = unit_type.id 
+  let selectQuery = `select units.unit_name , unit_types.unit_type_name , 
+  unit_types.length , unit_types.width , unit_types.height  
+   from units  inner join blocks on units.block_id = blocks.id  
+  inner join  unit_types on  units.unit_type_id = unit_types.id 
   where block_id = $1;
   `;
 

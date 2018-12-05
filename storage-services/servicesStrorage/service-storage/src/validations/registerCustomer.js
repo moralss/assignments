@@ -5,8 +5,8 @@ const validate = value => {
       error.email = "email is required";
     }
   
-    if (!value.phoneNumber) {
-      error.phoneNumber = "phone number required";
+    if (!value.userName) {
+      error.userName = "user name required";
     }
   
     if (!value.password) {
@@ -34,4 +34,4 @@ const validate = value => {
   };
   
   export default validate;
-  
+    

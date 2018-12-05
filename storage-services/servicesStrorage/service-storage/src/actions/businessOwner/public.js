@@ -32,7 +32,11 @@ export function registerBusinessOwner(details, history) {
       localStorage.setItem("authorization", res.data.token);
       history.push("/registerbusiness");
     } catch (e) {
-      dispatch({ type: actions.OWNER_AUTHENTICATION_ERROR, payload: e });
+      console.log(e.response.data);
+      dispatch({
+        type: actions.OWNER_AUTHENTICATION_ERROR,
+        payload: e.response.data.errors
+      });
     }
   };
 }

@@ -16,7 +16,11 @@ export function registerCustomer(details, history) {
       dispatch({ type: actions.CUSTOMER_AUTHENTICATED, payload: true });
       history.push("/businessunites");
     } catch (e) {
-      dispatch({ type: actions.CUSTOMER_AUTHENTICATION_ERROR, payload: e });
+      console.log(e.response.data);
+      dispatch({
+        type: actions.CUSTOMER_AUTHENTICATION_ERROR,
+        payload: e.response.data.errors
+      });
     }
   };
 }

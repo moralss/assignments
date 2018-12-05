@@ -14,6 +14,7 @@ class DisplaySearchResults extends Component {
 
   render() {
     const { searchResults } = this.props;
+
     return (
       <div style={{ textAlign: "center" }}>
         <h1> Search results </h1>
@@ -21,14 +22,16 @@ class DisplaySearchResults extends Component {
           return (
             <div>
               <ul style={{ display: "inline-block", textAlign: "center" }}>
-              <li> business name : {result.name} </li>
-                <li> city : {result.city} </li>
-                <li> state : {result.state} </li>
-                <li> street : {result.street} </li>
-                <li> unit type : {result.name} </li>
-                <li> height : {result.height} </li>
-                <li> width : {result.width} </li>
-                <li> length : {result.length} </li>
+              <li> Business name : {result.business_name} </li>
+                <li> Business email : {result.contact_email} </li>
+                <li> Phone numbers : {result.contact_number} </li>
+                <li> City : {result.city} </li>
+                <li> State : {result.state} </li>
+                <li> Street : {result.street} </li>
+                <li> unit type : {result.unit_type_name} </li>
+                <li> height : {result.height} m </li>
+                <li> width : {result.width} m </li>
+                <li> length : {result.length} m </li>
                 <button onClick={() => this.purchase(result.id)}>
                   Reserve a unit type
                 </button>

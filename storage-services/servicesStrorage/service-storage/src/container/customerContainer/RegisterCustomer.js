@@ -32,7 +32,7 @@ class RegisterCustomer extends Component {
 
           <Field
             label="User Name"
-            name="phoneNumber"
+            name="userName"
             component={renderInput}
             type="text"
           />
@@ -41,14 +41,14 @@ class RegisterCustomer extends Component {
             label="Password"
             name="password"
             component={renderInput}
-            type="text"
+            type="password"
           />
 
           <Field
             label="Confirm Password"
             name="confirmPassword"
             component={renderInput}
-            type="text"
+            type="password"
           />
 
           <ButtonMedium action="submit"> submit </ButtonMedium>
