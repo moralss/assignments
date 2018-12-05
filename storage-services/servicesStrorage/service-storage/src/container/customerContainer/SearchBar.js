@@ -3,21 +3,18 @@ import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/customerActions/index";
 import { connect } from "react-redux";
-import {
-  SelectField,
-  listOfProvinces,
-  listOfUnits
-} from "../../component/selectInput";
+import { Header, SearchForm, ButtonSmall } from "../../styles/register";
+import { SelectField } from "../../component/selectInput";
+import { listOfProvinces, listOfUnits } from "../../component/selectInput";
 
 class SearchBar extends Component {
   constructor() {
     super();
   }
 
-  async handleFormSubmit(data) {
-    // console.log("data", data);
-    // console.log("searchInfo" , typeof(searchInfo));
+  componentWillUnmount() {}
 
+  async handleFormSubmit(data) {
     await this.props.searchForUnitType(data);
   }
 
@@ -25,7 +22,9 @@ class SearchBar extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+        <Header> Search for unitTypes </Header>
+
+        <SearchForm onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field label="Province" name="province" component={SelectField}>
             <option />
             {listOfProvinces.map(province => {
@@ -40,8 +39,8 @@ class SearchBar extends Component {
             })}
           </Field>
 
-          <button type="submit"> Search </button>
-        </form>
+          <ButtonSmall type="submit"> Search </ButtonSmall>
+        </SearchForm>
       </div>
     );
   }

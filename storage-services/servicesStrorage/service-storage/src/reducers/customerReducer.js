@@ -11,8 +11,11 @@ export const customerReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.RECEVIED_CUSTOMER_SEARCH_RESULTS:
       return { ...state, customerSearchResults: [...action.payload] };
-      case actions.RECEIVED_RESERVED_UNITS:
-      return { ...state, customerReservedUnits: [...action.payload] };  
+    case actions.RECEIVED_RESERVED_UNITS:
+      return { ...state, customerReservedUnits: [...action.payload] };
+    case actions.CLEAR_SEARCH_RESULTS:
+      return { ...state, customerSearchResults: [...action.payload] };
+
     default:
       return state;
   }

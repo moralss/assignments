@@ -24,7 +24,7 @@ class BusinessInfo extends Component {
     return (
       <div>
         <Header>Business Units</Header>
-        <span>Currently {businessReservedUnits.length} reserved units </span>
+        <span>Currently {businessReservedUnits.length} reserved units .</span>
 
         {businessReservedUnits.map(object => {
           return (

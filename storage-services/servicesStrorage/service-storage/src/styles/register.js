@@ -108,6 +108,18 @@ export const ButtonPrimary = styled.button`
   }
 `;
 
+
+export const Button = styled.button`
+  width: 100px;
+  // margin: 0 auto;
+
+  &:hover {
+    color: blue;
+    cursor: pointer;
+  }
+`;
+
+
 // button small
 
 export const ButtonSmall = styled.button`
@@ -231,12 +243,14 @@ export const NavBar = styled.div`
   }
 `;
 
-export const Button = styled.button`
-  width: 100px;
-  // margin: 0 auto;
+// Search form
+export const SearchForm = styled.form`
+  display:grid;
+  grid-template-columns:repeat(3 , 1fr);
+  grid-template-rows:repeat(1 , 1fr);
+`
 
-  &:hover {
-    color: blue;
-    cursor: pointer;
-  }
-`;
+// Search form
+
+
+

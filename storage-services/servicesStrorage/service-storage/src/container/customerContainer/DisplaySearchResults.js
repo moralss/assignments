@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "../../App.css";
 import * as actions from "../../actions/customerActions";
+import * as normalActions from "../../actions";
 import { connect } from "react-redux";
+import { Header } from "../../styles/register";
 
 class DisplaySearchResults extends Component {
   constructor() {
@@ -12,17 +14,20 @@ class DisplaySearchResults extends Component {
     await this.props.purchaseUnit(unitId);
   }
 
+  componentWillUnmount() {
+    this.props.clearSearchResults();
+  }
+
   render() {
     const { searchResults } = this.props;
 
     return (
       <div style={{ textAlign: "center" }}>
-        <h1> Search results </h1>
         {searchResults.map(result => {
           return (
             <div>
               <ul style={{ display: "inline-block", textAlign: "center" }}>
-              <li> Business name : {result.business_name} </li>
+                <li> Business name : {result.business_name} </li>
                 <li> Business email : {result.contact_email} </li>
                 <li> Phone numbers : {result.contact_number} </li>
                 <li> City : {result.city} </li>
@@ -52,7 +57,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    purchaseUnit: details => dispatch(actions.purchaseUnit(details))
+    purchaseUnit: details => dispatch(actions.purchaseUnit(details)),
+    clearSearchResults: () => dispatch(normalActions.clearSearchResults())
   };
 }
 

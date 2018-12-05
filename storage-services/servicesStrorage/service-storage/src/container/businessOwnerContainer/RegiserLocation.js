@@ -14,7 +14,6 @@ class RegisterLocation extends Component {
   }
 
   async handleFormSubmit(details) {
-    console.log("details", details);
     const id = Number(this.props.match.params.id);
     let locationInfo = { ...details, id };
     await this.props.saveLocationToServer(locationInfo, this.props.history);

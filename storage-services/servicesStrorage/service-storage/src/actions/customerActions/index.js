@@ -3,7 +3,7 @@ import axios from "axios";
 import { setAxiosHeader } from "../../auth";
 import history from "../../history";
 let customerToken = localStorage.getItem("customer");
-axios.defaults.headers.common["authorizationc"] = customerToken;
+axios.defaults.headers.common["authorization"] = customerToken;
 
 const customerSearchTerm = "http://localhost:3003/searchunittype/";
 const purchaseUrl = "http://localhost:3003/purchaseunit";

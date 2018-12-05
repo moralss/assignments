@@ -46,8 +46,8 @@ class BusinessInfo extends Component {
             <div>
               <div style={{ display: "grid", justifyContent: "center" }}>
                 <Info>
-                  <label> Province </label>
                   <span> {object.province} </span>
+                  <label> Province </label>
                   <label> City </label>
                   <span> {object.city} </span>
                   <label> Street </label>

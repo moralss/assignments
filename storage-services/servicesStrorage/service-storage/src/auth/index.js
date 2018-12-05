@@ -1,5 +1,5 @@
 export const setAxiosHeader = () => {
   let token = localStorage.getItem("authorization");
-  const headers = { headers: { Authorization: token } };
+  const headers = { headers: { authorization: token } };
   return headers;
 };

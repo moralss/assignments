@@ -1,9 +1,6 @@
 import * as actions from "../../actionTypes";
 import axios from "axios";
 
-// let customerToken = localStorage.getItem("customer");
-// axios.defaults.headers.common["authorizationc"] = customerToken;
-
 const customerLoginUrl = "http://localhost:3003/customerlogin";
 const customerSignUpUrl = "http://localhost:3003/customersign";
 
@@ -16,7 +13,6 @@ export function registerCustomer(details, history) {
       dispatch({ type: actions.CUSTOMER_AUTHENTICATED, payload: true });
       history.push("/businessunites");
     } catch (e) {
-      console.log(e.response.data);
       dispatch({
         type: actions.CUSTOMER_AUTHENTICATION_ERROR,
         payload: e.response.data.errors
@@ -38,3 +34,5 @@ export function loginCustomer(details, history) {
     }
   };
 }
+
+

@@ -25,7 +25,6 @@ const validateNewOwner = async data => {
 
   if (data.password !== undefined && !data.password.match(/^[a-z0-9]{5,20}$/)) {
     errors.pasword = "password should consist of numbers and letters";
-    // }
   }
 
   if (data.confirmPassword === undefined) {

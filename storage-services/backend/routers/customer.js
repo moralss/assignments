@@ -24,7 +24,7 @@ const customerRoutes = app => {
 
   app.post("/customersign", async (req, res) => {
     const customerDetails = req.body;
-
+    
     const { errors, isValid } = await validateNewCustomer(customerDetails);
 
     if (!isValid) {
