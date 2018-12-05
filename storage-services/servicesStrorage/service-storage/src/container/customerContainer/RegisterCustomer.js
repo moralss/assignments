@@ -5,10 +5,15 @@ import { connect } from "react-redux";
 import { Form, Header, ButtonMedium } from "../../styles/register";
 import renderInput from "../../component/Input";
 import validate from "../../validations/registerCustomer";
+import { checkIsAuthNav } from "../../utils/checkAuth";
 
 class RegisterCustomer extends Component {
   constructor() {
     super();
+  }
+
+  componentDidMount() {
+    checkIsAuthNav();
   }
 
   async handleFormSubmit(details) {

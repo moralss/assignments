@@ -3,7 +3,6 @@ import "../../App.css";
 import * as actions from "../../actions/customerActions";
 import * as normalActions from "../../actions";
 import { connect } from "react-redux";
-import { Header } from "../../styles/register";
 
 class DisplaySearchResults extends Component {
   constructor() {
@@ -33,6 +32,7 @@ class DisplaySearchResults extends Component {
                 <li> City : {result.city} </li>
                 <li> State : {result.state} </li>
                 <li> Street : {result.street} </li>
+                <li> Block Name : {result.block_name} </li>
                 <li> unit type : {result.unit_type_name} </li>
                 <li> height : {result.height} m </li>
                 <li> width : {result.width} m </li>

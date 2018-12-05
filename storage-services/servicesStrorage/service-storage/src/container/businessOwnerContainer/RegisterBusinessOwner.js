@@ -6,11 +6,17 @@ import { connect } from "react-redux";
 import renderInput from "../../component/Input";
 import { ButtonMedium, Form, Header } from "../../styles/register";
 import validate from "../../validations/registerCustomer";
+import { checkIsAuthNav } from "../../utils/checkAuth";
 
 class RegisterBusinessOwner extends Component {
   constructor() {
     super();
   }
+
+  componentDidMount() {
+    checkIsAuthNav();
+  }
+
 
   async handleFormSubmit(details) {
     await this.props.registerBusinessOwner(details, this.props.history);

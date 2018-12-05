@@ -4,12 +4,19 @@ import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner/public";
 import { connect } from "react-redux";
 import renderInput from "../../component/Input";
-import { Header ,Form, ButtonMedium } from "../../styles/register";
+import { Header, Form, ButtonMedium } from "../../styles/register";
+import { checkIsAuthNav } from "../../utils/checkAuth";
+
 
 class LoginFormOwner extends Component {
   constructor() {
     super();
   }
+
+  componentDidMount() {
+    checkIsAuthNav();
+  }
+
 
   async handleFormSubmit(details) {
     await this.props.loginBusinessOwner(details, this.props.history);
@@ -28,13 +35,14 @@ class LoginFormOwner extends Component {
             component={renderInput}
             type="text"
           />
+
           <Field
             name="password"
             label="password"
             component={renderInput}
             type="text"
           />
-          <ButtonMedium disabled={this.props.invalid}> submit </ButtonMedium>
+          <ButtonMedium type="action"> submit </ButtonMedium>
         </Form>
       </div>
     );

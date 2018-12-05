@@ -5,11 +5,18 @@ import { connect } from "react-redux";
 import * as actions from "../../actions/customerActions/public";
 import renderInput from "../../component/Input";
 import { Form, ButtonMedium, Header } from "../../styles/register";
+import { checkIsAuthNav } from "../../utils/checkAuth";
+
 
 class CustomerLogin extends Component {
   constructor() {
     super();
   }
+
+  componentDidMount() {
+    checkIsAuthNav();
+  }
+
 
   async handleFormSubmit(details) {
     await this.props.loginCustomer(details, this.props.history);

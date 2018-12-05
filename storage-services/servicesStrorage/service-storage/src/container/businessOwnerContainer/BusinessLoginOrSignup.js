@@ -2,10 +2,15 @@ import React, { Component } from "react";
 import "../../App.css";
 import { NavLink } from "react-router-dom";
 import { NavBar, Header } from "../../styles/register";
+import { checkIsAuthNav } from "../../utils/checkAuth";
 
 class BusinessLoginOrSignup extends Component {
   constructor() {
     super();
+  }
+
+  componentDidMount() {
+    checkIsAuthNav();
   }
 
   render() {
