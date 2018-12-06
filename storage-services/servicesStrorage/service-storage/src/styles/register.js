@@ -92,6 +92,8 @@ export const ErrorSpan = styled.span`
 export const SideBar = styled.div`
   display: grid;
   justifly-content: center;
+  justifly-item:center;
+  align-conent:center;
   grid-template-columns: repeat(2, 180px);
   border:0.5px solid black;
   margin:5px;

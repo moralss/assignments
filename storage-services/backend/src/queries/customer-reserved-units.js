@@ -5,9 +5,9 @@ const getReservedUnits = async userId => {
   let selectQuery = `
   select businesses.business_name , businesses.contact_email,
   businesses.contact_number , units.id , locations.city , locations.state , 
-    blocks.block_name ,locations.province ,  locations.street , unit_types.unit_type_name  ,
-     unit_types.height ,unit_types.width , unit_types.length 
-  from customer_purchases   
+  blocks.block_name ,locations.province ,  locations.street , units.unit_name , 
+  unit_types.unit_type_name , unit_types.height ,unit_types.width ,
+  unit_types.length from customer_purchases   
   inner join  customers on customer_purchases.customer_id = customers.id
   inner join  units on customer_purchases.unit_id = units.id
   inner join  blocks on blocks.id = units.block_id 

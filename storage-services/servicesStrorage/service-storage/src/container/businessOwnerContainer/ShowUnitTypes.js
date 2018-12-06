@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../App.css";
 import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
-import {Info , Header2} from "../../styles/register"
+import {Info , Header2 , SideBar} from "../../styles/register"
 
 class showUnitTypes extends Component {
   constructor() {
@@ -24,17 +24,18 @@ class showUnitTypes extends Component {
         <Header2> Number of unit types {unitTypes.length} </Header2>
         {unitTypes.map(unitType => {
           return (
+            
             <Info>
-                <label> unit name </label>
+                <label> Unit name </label>
                 <span> {unitType.unit_name} </span>
-                <label> unit type name </label>
+                <label> Unit type name </label>
                 <span> {unitType.unit_type_name} </span>
-                <label> unit length </label>
-                <span> {unitType.length} </span>
-                <label> unit type width</label>
-                <span> {unitType.width} </span>
-                <label> unit type height</label>
-                <span> {unitType.height} </span>
+                <label> Unit length </label>
+                <span> {unitType.length} meters </span>
+                <label> Unit type width meters </label>
+                <span> {unitType.width} meters</span>
+                <label> Unit type height</label>
+                <span> {unitType.height} meters </span>
             </Info>
           );
         })}

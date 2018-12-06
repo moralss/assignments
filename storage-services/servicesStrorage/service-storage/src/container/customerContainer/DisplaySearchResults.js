@@ -3,6 +3,7 @@ import "../../App.css";
 import * as actions from "../../actions/customerActions";
 import * as normalActions from "../../actions";
 import { connect } from "react-redux";
+import { SideBar, ButtonSmall } from "../../styles/register";
 
 class DisplaySearchResults extends Component {
   constructor() {
@@ -21,26 +22,43 @@ class DisplaySearchResults extends Component {
     const { searchResults } = this.props;
 
     return (
-      <div style={{ textAlign: "center" }}>
+      <div>
         {searchResults.map(result => {
           return (
-            <div>
-              <ul style={{ display: "inline-block", textAlign: "center" }}>
-                <li> Business name : {result.business_name} </li>
-                <li> Business email : {result.contact_email} </li>
-                <li> Phone numbers : {result.contact_number} </li>
-                <li> City : {result.city} </li>
-                <li> State : {result.state} </li>
-                <li> Street : {result.street} </li>
-                <li> Block Name : {result.block_name} </li>
-                <li> unit type : {result.unit_type_name} </li>
-                <li> height : {result.height} m </li>
-                <li> width : {result.width} m </li>
-                <li> length : {result.length} m </li>
-                <button onClick={() => this.purchase(result.id)}>
-                  Reserve a unit type
-                </button>
-              </ul>
+            <div style={{ display: "grid", justifyContent: "center" }}>
+              <SideBar>
+                <label> Business name : </label>
+                <span> {result.business_name} </span>
+                <label> Business email : </label>
+                <span> {result.contact_email} </span>
+                <label> Phone numbers : </label>
+                <span> {result.contact_number} </span>
+                <label> City : </label>
+                <span>{result.city} </span>
+                <label> State : </label>
+                <span>{result.state} </span>
+                <label> Street : </label>
+                <span>{result.state} </span>
+                <label> Block Name :</label>
+                <span> {result.block_name} </span>
+                <label> unit_name :</label>
+                <span> {result.unit_name} </span>
+                <label> Unit type :</label>
+                <span> {result.unit_type_name} </span>
+                <label> Height :</label>
+                <span> {result.height} meters </span>
+                <label> Width :</label>
+                <span> {result.width} meters </span>
+                <label> Length :</label>
+                <span> {result.length} meters </span>
+              </SideBar>
+
+              <ButtonSmall
+                style={{ textAlign: "center" }}
+                onClick={() => this.purchase(result.id)}
+              >
+                Reserve a unit type
+              </ButtonSmall>
             </div>
           );
         })}

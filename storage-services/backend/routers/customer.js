@@ -20,7 +20,7 @@ const customerRoutes = app => {
       return res.status(400).json({ password: "password is incorrect" });
     }
 
-    let token = createToken(customerDetails.id, "business-owner");
+    let token = createToken(customerDetails.id, "customer");
     return res.json({ token }).end();
   });
 
