@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions/businessOwner";
 import "../../App.css";
-import { Info, Header } from "../../styles/register";
+import { Info, Header, SideBar, HeaderMedium } from "../../styles/register";
 // import { ButtonContainer, ButtonSmall } from "../../styles/register";
 
 class BusinessInfo extends Component {
@@ -24,25 +24,36 @@ class BusinessInfo extends Component {
     return (
       <div>
         <Header>Business Units</Header>
-        <span>Currently {businessReservedUnits.length} reserved units .</span>
+        <HeaderMedium>Currently {businessReservedUnits.length} reserved units .</HeaderMedium>
 
         {businessReservedUnits.map(object => {
           return (
             <div>
               <div style={{ display: "grid", justifyContent: "center" }}>
-                <Info>
-                <li> Customer Name : {object.user_name} </li>
-                <li> Customer Email : {object.email} </li>
-                <li> Province : {object.province} </li>
-                <li> State : {object.state} </li>
-                <li> Street : {object.street} </li>
-                <li> Block name : {object.block_name} </li>
-                <li> Unit name : {object.unit_name} m </li>
-                <li> Unit type : {object.unit_type_name} </li>
-                <li> Height : {object.height} m </li>
-                <li> Width : {object.width} m </li>
-                <li> Length : {object.length} m </li>
-                </Info>
+                <SideBar>
+                  <label> Customer Name </label>
+                  <span> {object.user_name} </span>
+                  <label> Customer Email </label>
+                  <span> {object.email} </span>
+                  <label> Province </label>
+                  <span> {object.province} </span>
+                  <label> State </label>
+                  <span> {object.state} </span>
+                  <label> Street </label>
+                  <span> {object.street} </span>
+                  <label> Block name </label>
+                  <span> {object.block_name} </span>
+                  <label> Unit name </label>
+                  <span> {object.unit_name} m </span>
+                  <label> Unit type </label>
+                  <span> {object.unit_type_name} </span>
+                  <label> Height </label>
+                  <span> {object.height} m </span>
+                  <label> Width </label>
+                  <span> {object.width} m </span>
+                  <label> Length </label>
+                  <span> {object.length} m </span>
+                </SideBar>
               </div>
             </div>
           );

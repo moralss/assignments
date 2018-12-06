@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Header, ButtonMedium , Grid, DashboardContainer } 
-from "../../styles/register";
+import {
+  Header,
+  ButtonMedium,
+  Grid,
+  DashboardContainer
+} from "../../styles/register";
 
 class Dashboard extends Component {
   constructor() {
@@ -35,12 +39,12 @@ class Dashboard extends Component {
           {this.props.businessInfo.map(business => {
             return (
               <Grid>
-                <label>Business name : {business.business_name}</label>
-
-                {/* <a href="#"> */}
-                  <Link to={`businessinfo/${business.business_name}`}>More info</Link>
-                {/* </a> */}
-
+                <label>
+                  Business name : <span style={{color:"black"}}> {business.business_name}</span>
+                </label>
+                <Link to={`businessinfo/${business.business_name}`}>
+                  More info
+                </Link>
                 <ButtonMedium
                   onClick={() => this.rigisterLocation(business.id)}
                 >

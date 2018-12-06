@@ -33,6 +33,21 @@ export const Input = styled.input`
 //
 
 // header
+export const HeaderMedium = styled.h2`
+  color: blue;
+  text-align: center;
+  font-weight: 200;
+  font-size: 18px;
+  margin: 10px;
+
+  :after {
+    content: " ";
+    display: block;
+    margin: 1px;
+  }
+`;
+
+
 
 export const Header2 = styled.h1`
   color: blue;
@@ -63,11 +78,40 @@ export const Header = styled.h1`
   }
 `;
 
+// errors
 export const ErrorSpan = styled.span`
   display: block;
   color: red;
   fontsize: 10px;
 `;
+
+// errors
+
+// SideBar
+
+export const SideBar = styled.div`
+  display: grid;
+  justifly-content: center;
+  grid-template-columns: repeat(2, 180px);
+  border:0.5px solid black;
+  margin:5px;
+  padding:10px;
+  label {
+    color:#024242;
+  }
+
+  >label {
+    border-bottom:0.5px solid black;
+    
+  }
+
+  > span {
+    border-bottom:0.5px solid black;
+    
+  }
+`;
+
+// SideBar
 
 // header
 
@@ -108,7 +152,6 @@ export const ButtonPrimary = styled.button`
   }
 `;
 
-
 export const Button = styled.button`
   width: 100px;
   // margin: 0 auto;
@@ -118,7 +161,6 @@ export const Button = styled.button`
     cursor: pointer;
   }
 `;
-
 
 // button small
 
@@ -245,12 +287,9 @@ export const NavBar = styled.div`
 
 // Search form
 export const SearchForm = styled.form`
-  display:grid;
-  grid-template-columns:repeat(3 , 1fr);
-  grid-template-rows:repeat(1 , 1fr);
-`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+`;
 
 // Search form
-
-
-

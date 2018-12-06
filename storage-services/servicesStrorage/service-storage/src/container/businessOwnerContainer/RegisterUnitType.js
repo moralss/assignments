@@ -30,35 +30,35 @@ class RegisterUnitType extends Component {
         {!this.state.isSuccessful ? (
           <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
             <Field
-              label="unit name"
+              label="Unit name"
               name="unitName"
               component={renderInput}
               type="text"
             />
 
             <Field
-              label="unit type"
+              label="Unit type"
               name="unitType"
               component={renderInput}
               type="text"
             />
 
             <Field
-              label="length"
+              label="Length"
               name="length"
               component={renderInput}
               type="text"
             />
 
             <Field
-              label="width"
+              label="Width"
               name="width"
               component={renderInput}
               type="text"
             />
 
             <Field
-              label="height"
+              label="Height"
               name="height"
               component={renderInput}
               type="text"

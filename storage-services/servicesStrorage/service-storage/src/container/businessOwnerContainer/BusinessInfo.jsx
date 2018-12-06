@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions/businessOwner";
 import "../../App.css";
 import RegisterBlock from "./RegisterBlock";
-import { Info, Header } from "../../styles/register";
+import { Info, Header ,SideBar } from "../../styles/register";
 import { ButtonContainer, ButtonSmall } from "../../styles/register";
 
 class BusinessInfo extends Component {
@@ -45,7 +45,7 @@ class BusinessInfo extends Component {
           return (
             <div>
               <div style={{ display: "grid", justifyContent: "center" }}>
-                <Info>
+                <SideBar>
                   <label> Province </label>
                   <span> {object.province} </span>
                   <label> City </label>
@@ -54,7 +54,7 @@ class BusinessInfo extends Component {
                   <span> {object.street} </span>
                   <label> State </label>
                   <span> {object.state} </span>
-                </Info>
+                </SideBar>
 
                 <ButtonContainer>
                   <ButtonSmall onClick={() => this.ViewBlocks(object.id)}>

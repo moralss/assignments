@@ -21,7 +21,7 @@ class registerBusiness extends Component {
 
     return (
       <div>
-        <Header> Register Business</Header>
+        <Header> Register a Business</Header>
         <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
             name="businessName"
@@ -41,7 +41,7 @@ class registerBusiness extends Component {
 
           <Field
             name="email"
-            label="email"
+            label="Email"
             component={renderInput}
             type="text"
           />
