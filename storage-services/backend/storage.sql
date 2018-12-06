@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS business_owners (
     id serial PRIMARY KEY,
     email varchar(255) NOT NULL UNIQUE,
     hashed_password varchar(225) NOT NULL UNIQUE,
-    user_name varchar(22) NOT NULL,
+    user_name varchar(22) NOT NULL UNIQUE,
     created_at timestamp NOT NULL DEFAULT NOW() NOT NULL,
     updated_at timestamp NOT NULL DEFAULT NOW() NOT NULL
 );                                                                                                                                                                                                                                                                                                                                                                                                                
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS businesses (
     id serial PRIMARY KEY,
     business_name varchar(255) NOT NULL UNIQUE,
     contact_number varchar(25) NOT NULL,
-    contact_email varchar(255) NOT NULL UNIQUE,
+    contact_email varchar(255) NOT NULL ,
     business_owner_id INT REFERENCES business_owners(id) NOT NULL,
     created_at timestamp NOT NULL DEFAULT NOW() NOT NULL,
     updated_at timestamp NOT NULL DEFAULT NOW() NOT NULL
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS customers (
     id serial PRIMARY KEY,
     email varchar(255) NOT NULL UNIQUE,
     hashed_password varchar(225) NOT NULL UNIQUE,
-    user_name varchar(22) NOT NULL,
+    user_name varchar(22) NOT NULL UNIQUE,
     created_at timestamp NOT NULL DEFAULT NOW() NOT NULL,
     updated_at timestamp NOT NULL DEFAULT NOW() NOT NULL
 );                                                                                                                                                                                                                                                                                                                                                                                                                

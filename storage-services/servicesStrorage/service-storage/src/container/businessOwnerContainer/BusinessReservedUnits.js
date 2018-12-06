@@ -31,12 +31,17 @@ class BusinessInfo extends Component {
             <div>
               <div style={{ display: "grid", justifyContent: "center" }}>
                 <Info>
-                  <label> City </label>
-                  <span> {object.city} </span>
-                  <label> Street </label>
-                  <span> {object.street} </span>
-                  <label> State </label>
-                  <span> {object.state} </span>
+                <li> Customer Name : {object.user_name} </li>
+                <li> Customer Email : {object.email} </li>
+                <li> Province : {object.province} </li>
+                <li> State : {object.state} </li>
+                <li> Street : {object.street} </li>
+                <li> Block name : {object.block_name} </li>
+                <li> Unit name : {object.unit_name} m </li>
+                <li> Unit type : {object.unit_type_name} </li>
+                <li> Height : {object.height} m </li>
+                <li> Width : {object.width} m </li>
+                <li> Length : {object.length} m </li>
                 </Info>
               </div>
             </div>

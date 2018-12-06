@@ -1,18 +1,27 @@
 const _ = require("lodash");
-const { getCustomerInfo } = require("../queries/customer");
+const {
+  getCustomerInfo,
+  getCustomerByUserName
+} = require("../queries/customer");
 
 const validateNewCustomer = async data => {
   let customer = await getCustomerInfo(data.email);
+  let customerUser = await getCustomerByUserName(data.userName);
+
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   console.log(data);
   const errors = {};
 
   if (customer !== undefined) {
-    errors.email = "email already exits";
+    errors.email = "Email already exists";
+  }
+
+  if (customerUser !== undefined) {
+    errors.userName = "User name already exists";
   }
 
   if (data.userName === undefined) {
-    errors.userName = "user name is required";
+    errors.userName = "User name is required";
   }
 
   if (data.email !== undefined && !re.test(data.email)) {

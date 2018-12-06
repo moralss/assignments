@@ -5,13 +5,13 @@ import { Router, Route, Redirect } from "react-router-dom";
 import RegisterLocation from "../container/businessOwnerContainer/RegiserLocation";
 import BusinessInfo from "../container/businessOwnerContainer/BusinessInfo";
 import Blocks from "../container/businessOwnerContainer/Blocks";
-import HomePage from "../container/HomePage";
+import HomePage from "../component/HomePage";
 import Navbar from "../container/Navbar";
 import RegisterOwner from "../container/businessOwnerContainer/RegisterBusinessOwner";
-import BusinessLoginOrSignup from "../container/businessOwnerContainer/BusinessLoginOrSignup";
+import BusinessLoginOrSignup from "../component/BusinessLoginOrSignup";
 import LoginOwner from "../container/businessOwnerContainer/LoginFormOwner";
 import RegisterCustomer from "../container/customerContainer/RegisterCustomer";
-import CustomerLoginOrSignup from "../container/customerContainer/CustomerLoginOrSignup";
+import CustomerLoginOrSignup from "../component/CustomerLoginOrSignup";
 import BusinessUnites from "../container/customerContainer/BusinessUnites";
 import CustomerLogin from "../container/customerContainer/CustomerLogin";
 import history from "../history/index";
@@ -59,19 +59,6 @@ export const makeMainRoutes = () => {
           render={props => <CustomerLoginOrSignup {...props} />}
         />
 
-        <PrivateRouteCustomer
-          path="/businessunites"
-          exact
-          strict
-          render={props => <BusinessUnites {...props} />}
-        />
-
-        <PrivateRouteCustomer
-          exact
-          path="/customerreservedunits"
-          render={props => <CustomerReservedUnits {...props} />}
-        />
-
         <Route
           path="/registercustomer"
           exact
@@ -84,6 +71,19 @@ export const makeMainRoutes = () => {
           exact
           strict
           render={props => <CustomerLogin {...props} />}
+        />
+
+        <PrivateRouteCustomer
+          path="/businessunites"
+          exact
+          strict
+          render={props => <BusinessUnites {...props} />}
+        />
+
+        <PrivateRouteCustomer
+          exact
+          path="/customerreservedunits"
+          render={props => <CustomerReservedUnits {...props} />}
         />
 
         <PrivateRouteBusinessOwner

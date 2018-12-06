@@ -18,7 +18,7 @@ export function getUnitTypes(id) {
   return async function(dispatch) {
     dispatch({ type: actions.LOADING_TRUE });
     let unitTypes = await axios.get(unitTypeUrl + `${id}`, setAxiosHeader());
-    dispatch({ type: actions.GET_UNIT_TYPES, payload: unitTypes.data });
+    dispatch({ type: actions.RECEIVED_UNIT_TYPES, payload: unitTypes.data });
   };
 }
 
@@ -26,7 +26,7 @@ export function getBlocks(id) {
   return async function(dispatch) {
     dispatch({ type: actions.LOADING_TRUE });
     let blocks = await axios.get(blockUrl + `${id}`, setAxiosHeader());
-    dispatch({ type: actions.GET_BLOCK_INFO, payload: blocks.data });
+    dispatch({ type: actions.RECEIVED_BLOCK_INFO, payload: blocks.data });
   };
 }
 
@@ -38,7 +38,7 @@ export function getBusinessInfo(name) {
       setAxiosHeader()
     );
     dispatch({
-      type: actions.GET_BUSINESS_LOCATION,
+      type: actions.RECEIVED_BUSINESS_LOCATION,
       payload: businessInfo.data
     });
   };
@@ -48,7 +48,7 @@ export function getBusiness() {
   return async function(dispatch) {
     dispatch({ type: actions.LOADING_TRUE });
     const res = await axios.get(businessUrl, setAxiosHeader());
-    dispatch({ type: actions.GET_BUSINESS_DETAILS, payload: res.data });
+    dispatch({ type: actions.RECEIVED_BUSINESS_DETAILS, payload: res.data });
   };
 }
 
@@ -79,6 +79,11 @@ export const saveBusinessDetails = (details, history) => {
     try {
       await axios.post(businessUrl, { ...details }, setAxiosHeader());
       dispatch({ type: actions.SAVED_BUSINESS_SUCCESS });
+      dispatch({
+        type: actions.SAVE_BUSINESS_ERROR,
+        payload: {}
+      });
+
       history.push("/dashboard");
     } catch (e) {
       console.log("errors", e.response.data.errors);

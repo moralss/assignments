@@ -9,7 +9,20 @@ const getBusinessOwner = async email => {
     return res.rows[0];
   } catch (e) {
     await client.release();
-    return 
+    return;
+  }
+};
+
+const getBusinessOwnerByUsername = async userName => {
+  const client = await getClient();
+  let statement = `SELECT * FROM business_owners WHERE  user_name = $1`;
+  const res = await client.query(statement, [userName]);
+  try {
+    await client.release();
+    return res.rows[0];
+  } catch (e) {
+    await client.release();
+    return;
   }
 };
 
@@ -22,8 +35,12 @@ const getBusinessOwnerId = async id => {
     return res.rows[0];
   } catch (e) {
     await client.release();
-    return 
+    return;
   }
 };
 
-module.exports = { getBusinessOwner, getBusinessOwnerId };
+module.exports = {
+  getBusinessOwner,
+  getBusinessOwnerId,
+  getBusinessOwnerByUsername
+};

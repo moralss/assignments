@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { NavBar, Header } from "../../styles/register";
-import { checkIsAuthNav } from "../../utils/checkAuth";
+import { NavBar, Header } from "../styles/register";
+import { checkIsAuthNav } from "../utils/checkAuth";
 
 class CustomerLoginOrSignup extends Component {
   constructor() {
@@ -20,14 +20,14 @@ class CustomerLoginOrSignup extends Component {
             <li>
               <a href="">
                 <Link to="/registercustomer" class="link-tag">
-                  sign up
+                  Sign up
                 </Link>
               </a>
             </li>
             <li>
               <a href="">
                 <Link to="/customerlogin" class="link-tag">
-                  login
+                  Login
                 </Link>
               </a>
             </li>

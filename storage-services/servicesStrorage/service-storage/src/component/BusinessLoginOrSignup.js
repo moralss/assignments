@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import "../../App.css";
 import { NavLink } from "react-router-dom";
-import { NavBar, Header } from "../../styles/register";
-import { checkIsAuthNav } from "../../utils/checkAuth";
+import { NavBar, Header } from "../styles/register";
+import { checkIsAuthNav } from "../utils/checkAuth";
 
 class BusinessLoginOrSignup extends Component {
   constructor() {
@@ -20,12 +19,12 @@ class BusinessLoginOrSignup extends Component {
           <ul>
             <li>
               <a href="">
-                <NavLink to="/registerowner">sign up</NavLink>
+                <NavLink to="/registerowner">Sign up</NavLink>
               </a>
             </li>
             <li>
               <a href="">
-                <NavLink to="/loginowner">login</NavLink>
+                <NavLink to="/loginowner">Login</NavLink>
               </a>
             </li>
           </ul>

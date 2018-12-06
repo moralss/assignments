@@ -4,19 +4,26 @@ import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import * as actions from "../../actions/customerActions/public";
 import renderInput from "../../component/Input";
-import { Form, ButtonMedium, Header } from "../../styles/register";
+import { Form, ButtonMedium, Header, ErrorSpan } from "../../styles/register";
 import { checkIsAuthNav } from "../../utils/checkAuth";
-
 
 class CustomerLogin extends Component {
   constructor() {
     super();
+    this.state = {
+      errors: {}
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   componentDidMount() {
     checkIsAuthNav();
   }
-
 
   async handleFormSubmit(details) {
     await this.props.loginCustomer(details, this.props.history);
@@ -24,28 +31,29 @@ class CustomerLogin extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-
+    // console.log("errors", this.state.errors);
+    const { errors } = this.state;
     return (
       <div>
-        <Header> Login in </Header>
+        <Header> Login as a Customer </Header>
         <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
             name="email"
-            label="email"
+            label="Email"
             component={renderInput}
             type="text"
           />
+          <ErrorSpan> {errors.email}</ErrorSpan>
 
           <Field
             name="password"
-            label="password"
+            label="Password"
             component={renderInput}
-            type="text"
+            type="password"
           />
+          <ErrorSpan> {errors.password}</ErrorSpan>
 
-          <ButtonMedium disabled={this.props.invalid} type="submit">
-            submit
-          </ButtonMedium>
+          <ButtonMedium type="submit">submit</ButtonMedium>
         </Form>
       </div>
     );
@@ -59,11 +67,17 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+function mapStateToProps(state) {
+  return {
+    errors: state.customerAuth.errors
+  };
+}
+
 const currretForm = reduxForm({
   form: "loginCustomer"
 })(CustomerLogin);
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(currretForm);

@@ -7,20 +7,21 @@ const initialState = {
   blocks: [],
   unitTypes: [],
   postError: [],
-  businessReservedUnits: []
+  businessReservedUnits: [],
+  errors: {}
 };
 
 // POST_ERROR
 
 export const businessReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.GET_BUSINESS_DETAILS:
+    case actions.RECEIVED_BUSINESS_DETAILS:
       return { ...state, businessInfo: [...action.payload] };
-    case actions.GET_BUSINESS_LOCATION:
+    case actions.RECEIVED_BUSINESS_LOCATION:
       return { ...state, businessLocations: [...action.payload] };
-    case actions.GET_UNIT_TYPES:
+    case actions.RECEIVED_UNIT_TYPES:
       return { ...state, unitTypes: [...action.payload] };
-    case actions.GET_BLOCK_INFO:
+    case actions.RECEIVED_BLOCK_INFO:
       return { ...state, blocks: [...action.payload] };
     case actions.POST_ERROR:
       return { ...state, postError: [...action.payload] };

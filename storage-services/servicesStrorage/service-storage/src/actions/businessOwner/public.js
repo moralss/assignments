@@ -50,7 +50,10 @@ export function loginBusinessOwner(details, history) {
       localStorage.setItem("authorization", res.data.token);
       history.push("/dashboard");
     } catch (e) {
-      dispatch({ type: actions.OWNER_AUTHENTICATION_ERROR, payload: e });
+      dispatch({
+        type: actions.OWNER_AUTHENTICATION_ERROR,
+        payload: e.response.data
+      });
     }
   };
 }

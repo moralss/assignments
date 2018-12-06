@@ -1,14 +1,21 @@
 const _ = require("lodash");
 const { getBusinessOwner } = require("../queries/business-owner");
+const { getBusinessOwnerByUsername } = require("../queries/business-owner");
 
 const validateNewOwner = async data => {
   let businessOwner = await getBusinessOwner(data.email);
+  let businessOwnerUserName = await getBusinessOwnerByUsername(data.userName);
+
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const errors = {};
 
   if (businessOwner !== undefined) {
-    errors.email = "email already exits";
+    errors.email = "email already exists";
+  }
+
+  if(businessOwnerUserName !== undefined){
+    errors.userName = "user name already exists";    
   }
 
   if (data.userName === undefined) {

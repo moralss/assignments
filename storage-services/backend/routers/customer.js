@@ -1,30 +1,32 @@
-const passport = require("passport");
 const { createToken } = require("../src/auth/createToken");
 const { getCustomerInfo } = require("../src/queries/customer");
 const { createCustomer } = require("../src/commands/customer");
 const { validateNewCustomer } = require("../src/validations/customer");
-
-let middeware = passport.authenticate("customer");
+const { checkPassword } = require("../src/auth/checkPassword");
 
 const customerRoutes = app => {
-  app.post("/customerlogin", middeware, async (req, res) => {
-    let { email } = req.body;
-    try {
-      const customerDetails = await getCustomerInfo(email);
-      if (!customerDetails) {
-        res.json("incorrect password").end();
-      } else {
-        let token = createToken(customerDetails.id, "customer");
-        res.send({ token }).end();
-      }
-    } catch (e) {
-      res.send(400).end();
+  app.post("/customerlogin", async (req, res) => {
+    let { email, password } = req.body;
+    const customerDetails = await getCustomerInfo(email);
+
+    if (!customerDetails) {
+      return res.status(404).json({ email: "user not found" });
     }
+
+    const { hashed_password } = customerDetails;
+    const isValidatePassword = await checkPassword(password, hashed_password);
+
+    if (!isValidatePassword) {
+      return res.status(400).json({ password: "password is incorrect" });
+    }
+
+    let token = createToken(customerDetails.id, "business-owner");
+    return res.json({ token }).end();
   });
 
   app.post("/customersign", async (req, res) => {
     const customerDetails = req.body;
-    
+
     const { errors, isValid } = await validateNewCustomer(customerDetails);
 
     if (!isValid) {

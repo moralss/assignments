@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/customerActions/public";
 import { connect } from "react-redux";
-import { Form, Header, ButtonMedium } from "../../styles/register";
+import { Form, Header, ButtonMedium, ErrorSpan } from "../../styles/register";
 import renderInput from "../../component/Input";
 import validate from "../../validations/registerCustomer";
 import { checkIsAuthNav } from "../../utils/checkAuth";
@@ -10,6 +10,15 @@ import { checkIsAuthNav } from "../../utils/checkAuth";
 class RegisterCustomer extends Component {
   constructor() {
     super();
+    this.state = {
+      errors: {}
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   componentDidMount() {
@@ -22,10 +31,10 @@ class RegisterCustomer extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-
+    const { errors } = this.state;
     return (
       <div>
-        <Header> Register for account. </Header>
+        <Header> Sign up as a Customer. </Header>
         <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
             label="Email"
@@ -34,6 +43,7 @@ class RegisterCustomer extends Component {
             type="text"
             placeholder="email"
           />
+          <ErrorSpan> {errors.email}</ErrorSpan>
 
           <Field
             label="User Name"
@@ -41,6 +51,7 @@ class RegisterCustomer extends Component {
             component={renderInput}
             type="text"
           />
+          <ErrorSpan> {errors.userName}</ErrorSpan>
 
           <Field
             label="Password"
@@ -48,6 +59,7 @@ class RegisterCustomer extends Component {
             component={renderInput}
             type="password"
           />
+          <ErrorSpan> {errors.password}</ErrorSpan>
 
           <Field
             label="Confirm Password"
@@ -55,6 +67,7 @@ class RegisterCustomer extends Component {
             component={renderInput}
             type="password"
           />
+          <ErrorSpan> {errors.confirmPassword}</ErrorSpan>
 
           <ButtonMedium action="submit"> submit </ButtonMedium>
         </Form>
@@ -70,12 +83,18 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+function mapStateToProps(state) {
+  return {
+    errors: state.customerAuth.errors
+  };
+}
+
 const currretForm = reduxForm({
   form: "registerCustomer",
   validate
 })(RegisterCustomer);
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(currretForm);

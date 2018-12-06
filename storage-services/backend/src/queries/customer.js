@@ -28,4 +28,19 @@ const getCustomerInfo = async email => {
   
   };
 
-  module.exports = {getCustomerInfo , getCustomerById};
+  const getCustomerByUserName = async name => {
+    const client = await getClient();
+    let statement = `SELECT * FROM customers WHERE  user_name = $1`;
+    const res = await client.query(statement, [name]);
+    try {
+      await client.release();
+      return res.rows[0];
+    } catch (e) {
+      await client.release();
+      return { message: "user not found!" };
+    }
+  };
+
+  
+
+  module.exports = {getCustomerInfo , getCustomerById , getCustomerByUserName};

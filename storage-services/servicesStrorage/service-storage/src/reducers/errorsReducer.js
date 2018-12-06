@@ -1,11 +1,7 @@
 import * as actions from "../actionTypes";
 
 const initialState = {
-  businessRegister: {
-    businessName: "",
-    phoneNumbers: "",
-    email: ""
-  }
+  businessRegister: {}
 };
 
 // POST_ERROR

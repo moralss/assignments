@@ -17,7 +17,7 @@ class registerBusiness extends Component {
   }
 
   render() {
-    const { handleSubmit, pristine, submitting } = this.props;
+    const { handleSubmit } = this.props;
 
     return (
       <div>
@@ -62,7 +62,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return { errors: state.errors };
+  return { errors: state.errors.businessRegister };
 }
 
 const currretForm = reduxForm({
