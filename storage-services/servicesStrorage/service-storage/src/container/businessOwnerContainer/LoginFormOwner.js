@@ -77,8 +77,8 @@ function mapDispatchToProps(dispatch) {
 
 const currretForm = reduxForm({
   form: "loginBusinessOwner",
-  validate
 })(LoginFormOwner);
+validate
 
 export default connect(
   mapStateToProps,

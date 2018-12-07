@@ -3,7 +3,7 @@ import "../../App.css";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/customerActions/index";
 import { connect } from "react-redux";
-import { Header, SearchForm, ButtonSmall } from "../../styles/register";
+import { Header, ButtonSearch, SearchForm } from "../../styles/register";
 import { SelectField } from "../../component/selectInput";
 import { listOfProvinces, listOfUnits } from "../../component/selectInput";
 
@@ -22,7 +22,7 @@ class SearchBar extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <Header> Search for unitTypes </Header>
+        <Header> Search for unit types </Header>
 
         <SearchForm onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field label="Province" name="province" component={SelectField}>
@@ -39,7 +39,7 @@ class SearchBar extends Component {
             })}
           </Field>
 
-          <ButtonSmall type="submit"> Search </ButtonSmall>
+          <ButtonSearch type="submit"> Search </ButtonSearch>
         </SearchForm>
       </div>
     );

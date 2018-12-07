@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../App.css";
 import * as actions from "../../actions/customerActions";
 import { connect } from "react-redux";
-import { Info } from "../../styles/register";
+import { SideBar , Header} from "../../styles/register";
 
 class CustomerReservedUnits extends Component {
   constructor() {
@@ -18,25 +18,38 @@ class CustomerReservedUnits extends Component {
 
     return (
       <div style={{ textAlign: "center" }}>
-        <h1> Current Reserved Units </h1>
+        <Header> Current Reserved Units </Header>
+ 
 
-        {this.props.reservedUnits.map(object => {
+        {this.props.reservedUnits.map(element => {
           return (
             <div style={{ display: "grid", justifyContent: "center" }}>
-              <ul style={{ display: "inline-block", textAlign: "center" }}>
-                <li> Business name : {object.business_name} </li>
-                <li> Business email : {object.contact_email} </li>
-                <li> Phone numbers : {object.contact_number} </li>
-                <li> Province : {object.province} </li>
-                <li> City : {object.city} </li>
-                <li> State : {object.state} </li>
-                <li> Street : {object.street} </li>
-                <li> Block name : {object.block_name} </li>
-                <li> unit type : {object.unit_type_name} </li>
-                <li> height : {object.height} m </li>
-                <li> width : {object.width} m </li>
-                <li> length : {object.length} m </li>
-              </ul>
+              <SideBar>
+                <label> Business name :</label>
+                <span> {element.business_name} </span>
+                <label> Business email :</label>
+                <span> {element.contact_email} </span>
+                <label> Phone numbers :</label>
+                <span> {element.contact_number} </span>
+                <label> City :</label>
+                <span>{element.city} </span>
+                <label> State :</label>
+                <span>{element.state} </span>
+                <label> Street :</label>
+                <span>{element.state} </span>
+                <label> Block Name :</label>
+                <span> {element.block_name} </span>
+                <label> unit_name :</label>
+                <span> {element.unit_name} </span>
+                <label> Unit type :</label>
+                <span> {element.unit_type_name} </span>
+                <label> Height :</label>
+                <span> {element.height} meters </span>
+                <label> Width :</label>
+                <span> {element.width} meters </span>
+                <label> Length :</label>
+                <span> {element.length} meters </span>
+              </SideBar>
             </div>
           );
         })}

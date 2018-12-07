@@ -22,7 +22,8 @@ class DisplaySearchResults extends Component {
     const { searchResults } = this.props;
 
     return (
-      <div>
+      <div style={{ textAlign: "center" }}>
+      
         {searchResults.map(result => {
           return (
             <div style={{ display: "grid", justifyContent: "center" }}>
@@ -41,7 +42,7 @@ class DisplaySearchResults extends Component {
                 <span>{result.state} </span>
                 <label> Block Name :</label>
                 <span> {result.block_name} </span>
-                <label> unit_name :</label>
+                <label> Unit name :</label>
                 <span> {result.unit_name} </span>
                 <label> Unit type :</label>
                 <span> {result.unit_type_name} </span>
@@ -54,7 +55,8 @@ class DisplaySearchResults extends Component {
               </SideBar>
 
               <ButtonSmall
-                style={{ textAlign: "center" }}
+                style={{  
+                margin: "0 auto "}}
                 onClick={() => this.purchase(result.id)}
               >
                 Reserve a unit type

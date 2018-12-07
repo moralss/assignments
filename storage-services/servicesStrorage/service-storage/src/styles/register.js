@@ -87,16 +87,31 @@ export const ErrorSpan = styled.span`
 
 // errors
 
+
+
+
+// Select
+export const Select = styled.select`
+  width:50%;
+
+`
+
+// Select
+
+
+
 // SideBar
 
 export const SideBar = styled.div`
   display: grid;
   justifly-content: center;
   justifly-item:center;
+  grid-row-gap:15px;
+  text-align:left;
   align-conent:center;
   grid-template-columns: repeat(2, 180px);
   border:0.5px solid black;
-  margin:5px;
+  margin:10px;
   padding:10px;
   label {
     color:#024242;
@@ -171,6 +186,19 @@ export const ButtonSmall = styled.button`
   font-size: 10px;
   width: 60px;
   margin: 20px;
+  background-color: blue;
+  color: white;
+  border-radius: 13px;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const ButtonSearch = styled.button`
+  padding: 5px;
+  font-size: 10px;
+  width: 60px;
   background-color: blue;
   color: white;
   border-radius: 13px;

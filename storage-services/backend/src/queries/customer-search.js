@@ -8,7 +8,7 @@ const getUnitTypeInfo = async searchTerm => {
 
   let selectQuery = `select businesses.business_name , businesses.contact_email,
   businesses.contact_number , units.id , locations.city , locations.state , 
-    locations.street , unit_types.unit_type_name ,blocks.block_name ,
+    locations.street , unit_types.unit_type_name ,blocks.block_name , units.unit_name, 
      unit_types.height ,unit_types.width , unit_types.length from businesses 
     inner join  locations on businesses.id = locations.business_id
     inner join  blocks on locations.id = blocks.location_id

@@ -1,4 +1,6 @@
 import React from "react";
+import {Select} from ".././styles/register";
+
 
 export const listOfUnits = ["garage", "office"];
 
@@ -22,7 +24,7 @@ export const SelectField = ({
 }) => (
   <div>
     <label>{label}</label>
-      <select {...input}>{children}</select>
+      <Select {...input}>{children}</Select>
       {error && touched ? (
         <span style={{ display: "block", color: "red", fontSize: "10px" }}>
           {error}
