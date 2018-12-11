@@ -4,7 +4,7 @@ import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner/public";
 import { connect } from "react-redux";
 import renderInput from "../../component/Input";
-import { ErrorSpan ,ButtonMedium, Form, Header } from "../../styles/register";
+import { ErrorSpan, ButtonMedium, Form, Header } from "../../styles/register";
 import validate from "../../validations/registerCustomer";
 import { checkIsAuthNav } from "../../utils/checkAuth";
 
@@ -27,13 +27,13 @@ class RegisterBusinessOwner extends Component {
   }
 
   async handleFormSubmit(details) {
-    await this.props.registerBusinessOwner(details, this.props.history);
+    await this.props.registerBusinessOwner(details);
   }
 
   render() {
     const { handleSubmit } = this.props;
     const { errors } = this.state;
-    console.log(this.props.errors);
+
     return (
       <div>
         <Header> Sign up as a Customer </Header>
@@ -79,8 +79,8 @@ class RegisterBusinessOwner extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    registerBusinessOwner: (details, history) =>
-      dispatch(actions.registerBusinessOwner(details, history))
+    registerBusinessOwner: details =>
+      dispatch(actions.registerBusinessOwner(details))
   };
 }
 

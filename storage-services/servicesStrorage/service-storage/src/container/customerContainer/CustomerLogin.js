@@ -26,12 +26,11 @@ class CustomerLogin extends Component {
   }
 
   async handleFormSubmit(details) {
-    await this.props.loginCustomer(details, this.props.history);
+    await this.props.loginCustomer(details);
   }
 
   render() {
     const { handleSubmit } = this.props;
-    // console.log("errors", this.state.errors);
     const { errors } = this.state;
     return (
       <div>
@@ -62,8 +61,7 @@ class CustomerLogin extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loginCustomer: (details, history) =>
-      dispatch(actions.loginCustomer(details, history))
+    loginCustomer: details => dispatch(actions.loginCustomer(details))
   };
 }
 

@@ -1,7 +1,6 @@
 import * as actions from "../../actionTypes";
 import history from "../../history";
 import axios from "axios";
-// import { setAxiosHeader } from "../../auth";
 
 const ownerRegisterUrl = "http://localhost:3003/businessownersign";
 const loginInUrl = "http://localhost:3003/businessownerlogin";
@@ -23,7 +22,7 @@ export function logOut() {
   };
 }
 
-export function registerBusinessOwner(details, history) {
+export function registerBusinessOwner(details) {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {
@@ -41,7 +40,7 @@ export function registerBusinessOwner(details, history) {
   };
 }
 
-export function loginBusinessOwner(details, history) {
+export function loginBusinessOwner(details) {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {

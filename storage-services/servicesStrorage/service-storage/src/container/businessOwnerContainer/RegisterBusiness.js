@@ -13,7 +13,7 @@ class registerBusiness extends Component {
   }
 
   async handleFormSubmit(details) {
-    await this.props.saveBusinessDetails(details, this.props.history);
+    await this.props.saveBusinessDetails(details);
   }
 
   render() {
@@ -56,8 +56,8 @@ class registerBusiness extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveBusinessDetails: (details, history) =>
-      dispatch(actions.saveBusinessDetails(details, history))
+    saveBusinessDetails: (details) =>
+      dispatch(actions.saveBusinessDetails(details))
   };
 }
 

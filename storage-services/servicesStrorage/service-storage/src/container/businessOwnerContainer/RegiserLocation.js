@@ -16,7 +16,7 @@ class RegisterLocation extends Component {
   async handleFormSubmit(details) {
     const id = Number(this.props.match.params.id);
     let locationInfo = { ...details, id };
-    await this.props.saveLocationToServer(locationInfo, this.props.history);
+    await this.props.saveLocationToServer(locationInfo);
   }
 
   render() {
@@ -71,8 +71,8 @@ class RegisterLocation extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    saveLocationToServer: (details, history) =>
-      dispatch(actions.saveLocationToServer(details, history))
+    saveLocationToServer: details =>
+      dispatch(actions.saveLocationToServer(details))
   };
 }
 

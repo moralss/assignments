@@ -27,7 +27,7 @@ class LoginFormOwner extends Component {
   }
 
   async handleFormSubmit(details) {
-    await this.props.loginBusinessOwner(details, this.props.history);
+    await this.props.loginBusinessOwner(details);
   }
 
   render() {
@@ -70,15 +70,14 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loginBusinessOwner: (details, history) =>
-      dispatch(actions.loginBusinessOwner(details, history))
+    loginBusinessOwner: details => dispatch(actions.loginBusinessOwner(details))
   };
 }
 
 const currretForm = reduxForm({
-  form: "loginBusinessOwner",
+  form: "loginBusinessOwner"
 })(LoginFormOwner);
-validate
+validate;
 
 export default connect(
   mapStateToProps,

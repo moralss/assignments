@@ -1,10 +1,10 @@
 import * as actions from "../../actionTypes";
 import axios from "axios";
-
+import history from "../../history";
 const customerLoginUrl = "http://localhost:3003/customerlogin";
 const customerSignUpUrl = "http://localhost:3003/customersign";
 
-export function registerCustomer(details, history) {
+export function registerCustomer(details) {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {
@@ -21,7 +21,7 @@ export function registerCustomer(details, history) {
   };
 }
 
-export function loginCustomer(details, history) {
+export function loginCustomer(details) {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {

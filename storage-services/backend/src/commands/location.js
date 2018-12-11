@@ -6,7 +6,6 @@ const saveLocation = async location => {
   let insertQuery = `INSERT INTO locations(province , city , state , street , business_id)
     VALUES($1 , $2 , $3 , $4 ,  $5) RETURNING ID`;
   let parameters = [province , city, state, street, id];
-  console.log(parameters);
   try {
     res = await client.query(insertQuery, parameters);
     let id = res.rows[0].id;

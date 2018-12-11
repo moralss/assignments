@@ -1,7 +1,7 @@
 import * as actions from "../../actionTypes";
 import axios from "axios";
 import { setAxiosHeader } from "../../auth";
-
+import history from "../../history";
 const url = "http://localhost:3003/";
 
 const businessReservedUnitsUrl = `${url}businessreservedunits`;
@@ -73,7 +73,7 @@ export const saveBlockToServer = details => {
   };
 };
 
-export const saveBusinessDetails = (details, history) => {
+export const saveBusinessDetails = details => {
   return async dispatch => {
     dispatch({ type: actions.LOADING_TRUE });
     try {
@@ -95,7 +95,7 @@ export const saveBusinessDetails = (details, history) => {
   };
 };
 
-export function saveLocationToServer(details, history) {
+export function saveLocationToServer(details) {
   return async function(dispatch) {
     dispatch({ type: actions.LOADING_TRUE });
     await axios.post(locationUrl, { ...details }, setAxiosHeader());

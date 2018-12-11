@@ -6,7 +6,6 @@ import { Router, Route, Redirect } from "react-router-dom";
 
 const token = localStorage.getItem("authorization");
 
-// export const determineAuthentication = () => {
 let decodedToken;
 
 if (token) {
