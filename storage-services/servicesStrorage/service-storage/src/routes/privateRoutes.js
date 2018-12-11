@@ -6,27 +6,39 @@ import { Router, Route, Redirect } from "react-router-dom";
 
 const token = localStorage.getItem("authorization");
 
-let decodedToken;
+const authenticatedUser = () => {
+  let decodedToken;
+  if (token) {
+    decodedToken = jwtDecode(token);
+    let currentDate = Date.now() / 1000;
+    if (decodedToken.lat > currentDate) {
+      store.dispatch({ type: actions.OWNER_AUTHENTICATED, payload: false });
+      store.dispatch({ type: actions.CUSTOMER_AUTHENTICATED, payload: false });
+      return;
+    }
 
-if (token) {
-  decodedToken = jwtDecode(token);
+    if (decodedToken.authority === "customer") {
+      store.dispatch({
+        type: actions.CUSTOMER_AUTHENTICATED,
+        payload: true
+      });
+      return;
+    }
 
-  if (decodedToken.authority === "customer") {
-    store.dispatch({
-      type: actions.CUSTOMER_AUTHENTICATED,
-      payload: true
-    });
+    if (decodedToken.authority === "business-owner") {
+      store.dispatch({ type: actions.OWNER_AUTHENTICATED, payload: true });
+    }
+    return;
   }
 
-  if (decodedToken.authority === "business-owner") {
-    store.dispatch({ type: actions.OWNER_AUTHENTICATED, payload: true });
+  if (!token) {
+    store.dispatch({ type: actions.OWNER_AUTHENTICATED, payload: false });
+    store.dispatch({ type: actions.CUSTOMER_AUTHENTICATED, payload: false });
+    return;
   }
-}
+};
 
-if (!token) {
-  store.dispatch({ type: actions.OWNER_AUTHENTICATED, payload: false });
-  store.dispatch({ type: actions.CUSTOMER_AUTHENTICATED, payload: false });
-}
+authenticatedUser();
 
 export const PrivateRouteCustomer = ({ component: Component, ...rest }) => {
   let authenticated = store.getState().customerAuth.authenticated;

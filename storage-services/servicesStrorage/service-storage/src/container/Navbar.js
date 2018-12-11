@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../App.css";
 import { connect } from "react-redux";
 import { NavBar, ButtonPrimary } from "../styles/register";
@@ -17,17 +17,17 @@ class Navbar extends Component {
         <ul>
           <li>
             <a href="">
-              <NavLink to="/registerbusiness">Register business</NavLink>
+              <Link to="/registerbusiness">Register business</Link>
             </a>
           </li>
           <li>
             <a href="">
-              <NavLink to="/dashboard">Dashboard</NavLink>
+              <Link to="/dashboard">Dashboard</Link>
             </a>
           </li>
           <li>
             <a href="">
-              <NavLink to="/businessreservedunits">Reserved units</NavLink>
+              <Link to="/businessreservedunits">Reserved units</Link>
             </a>
           </li>
 
@@ -43,12 +43,12 @@ class Navbar extends Component {
         <ul>
           <li>
             <a href="">
-              <NavLink to="/businessunites">Business units</NavLink>
+              <Link to="/businessunites">Business units</Link>
             </a>
           </li>
           <li>
             <a href="">
-              <NavLink to="/customerreservedunits">Reserved Units</NavLink>
+              <Link to="/customerreservedunits">Reserved Units</Link>
             </a>
           </li>
           <ButtonPrimary onClick={() => this.LogOut()}>Log out</ButtonPrimary>
