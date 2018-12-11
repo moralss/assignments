@@ -16,14 +16,11 @@ module.exports = function(passport) {
     try {
       if ("customer" === jwt_payload.authority) {
         let customer = await getCustomerById(jwt_payload.sub);
-        console.log("found customer");
         return done(null, customer);
       } else if ("business-owner" == jwt_payload.authority) {
         let businessOwner = await getBusinessOwnerId(jwt_payload.sub);
-        console.log("found businessOwner");
         return done(null, businessOwner);
       } else {
-        console.log("cannot find user");
         return done(null, false);
       }
     } catch (e) {}
