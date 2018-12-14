@@ -44,15 +44,15 @@ class BusinessInfo extends Component {
                   <label> Block name </label>
                   <span> {object.block_name} </span>
                   <label> Unit name </label>
-                  <span> {object.unit_name} m </span>
+                  <span> {object.unit_name}  </span>
                   <label> Unit type </label>
                   <span> {object.unit_type_name} </span>
                   <label> Height </label>
-                  <span> {object.height} m </span>
+                  <span> {object.height} meters </span>
                   <label> Width </label>
-                  <span> {object.width} m </span>
+                  <span> {object.width} meters </span>
                   <label> Length </label>
-                  <span> {object.length} m </span>
+                  <span> {object.length} meters </span>
                 </SideBar>
               </div>
             </div>

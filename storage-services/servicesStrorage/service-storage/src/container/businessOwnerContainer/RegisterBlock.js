@@ -4,6 +4,7 @@ import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/businessOwner";
 import { connect } from "react-redux";
 import renderInput from "../../component/Input";
+import { Form, ButtonMedium } from "../../styles/register";
 
 class RegisterBlock extends Component {
   constructor() {
@@ -30,8 +31,8 @@ class RegisterBlock extends Component {
     return (
       <div>
         {!this.state.isSuccessful ? (
-          <form
-            className="form"
+          <Form
+            className="Form"
             onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
           >
             {/* <label>block name</label> */}
@@ -43,8 +44,8 @@ class RegisterBlock extends Component {
               placeholder="enter block"
             />
 
-            <input type="submit" />
-          </form>
+            <ButtonMedium type="submit">Submit </ButtonMedium>
+          </Form>
         ) : (
           " Successfully submitted"
         )}

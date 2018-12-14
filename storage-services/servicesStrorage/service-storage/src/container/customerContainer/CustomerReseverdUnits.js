@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../App.css";
 import * as actions from "../../actions/customerActions";
 import { connect } from "react-redux";
-import { SideBar , Header} from "../../styles/register";
+import { SideBar, Header } from "../../styles/register";
 
 class CustomerReservedUnits extends Component {
   constructor() {
@@ -14,14 +14,13 @@ class CustomerReservedUnits extends Component {
   }
 
   render() {
-    console.log("reservedUnits", this.props.reservedUnits);
+    const { reservedUnits } = this.props;
 
     return (
       <div style={{ textAlign: "center" }}>
-        <Header> Current Reserved Units </Header>
- 
+        <Header> Current Reserved Units {reservedUnits.length}</Header>
 
-        {this.props.reservedUnits.map(element => {
+        {reservedUnits.map(element => {
           return (
             <div style={{ display: "grid", justifyContent: "center" }}>
               <SideBar>
@@ -39,7 +38,7 @@ class CustomerReservedUnits extends Component {
                 <span>{element.state} </span>
                 <label> Block Name :</label>
                 <span> {element.block_name} </span>
-                <label> unit_name :</label>
+                <label> Unit name :</label>
                 <span> {element.unit_name} </span>
                 <label> Unit type :</label>
                 <span> {element.unit_type_name} </span>
