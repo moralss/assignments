@@ -1,11 +1,7 @@
 const { getClient } = require("../db");
-
 const getUnitTypeInfo = async searchTerm => {
   const { unitType, province } = searchTerm;
-  // { province: 'Free State', unitType: 'garage' }
-
   const client = await getClient();
-
   let selectQuery = `select businesses.business_name , businesses.contact_email,
   businesses.contact_number , units.id , locations.city , locations.state , 
     locations.street , unit_types.unit_type_name ,blocks.block_name , units.unit_name, 
@@ -19,7 +15,6 @@ const getUnitTypeInfo = async searchTerm => {
     ;  
     `;
 
-  // searchParams { province: 'Free State', unitType: 'garage' }
 
   let parameters = [unitType, province];
   let unitInfo = "";
@@ -33,6 +28,7 @@ const getUnitTypeInfo = async searchTerm => {
     unitInfo = [];
     await client.release();
   }
+
   return unitInfo;
 };
 

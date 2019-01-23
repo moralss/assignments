@@ -3,7 +3,6 @@ const { bcryptPassword } = require("../auth/bcryptPassword");
 
 const createBusinessOwner = async businessOwner => {
   let { email, password, userName } = businessOwner;
-  console.log("businessOwner", businessOwner);
 
   const client = await getClient();
   let statement = `INSERT INTO business_owners(email , hashed_password , user_name)
