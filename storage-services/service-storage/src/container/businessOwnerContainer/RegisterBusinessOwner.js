@@ -36,7 +36,7 @@ class RegisterBusinessOwner extends Component {
 
     return (
       <div>
-        <Header> Sign up as a Customer </Header>
+        <Header> Sign up as a Business Owner </Header>
         <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
             name="email"

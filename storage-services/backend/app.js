@@ -36,3 +36,9 @@ block.blockRoutes(app);
 app.listen(3003, function() {
   console.log("server running port 3003");
 });
+
+
+
+module.exports = {
+  app
+};

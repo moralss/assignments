@@ -1,78 +1,62 @@
-// const chai = require("chai");
-// var expect = chai.expect;
+const chai = require("chai");
+var expect = chai.expect;
+const { createBusinessOwner } = require("../src/commands/business-owner");
+const { saveBusiness } = require("../src/commands/business");
+const { saveBlock } = require("../src/commands/block");
+const { saveLocation } = require("../src/commands/location");
+const { getLocation } = require("../src/queries/location");
+const { getBusinesses } = require("../src/queries/business");
 
-// const { saveLocation } = require("../src/commands/location");
-// const { saveBusiness } = require("../src/commands/business");
-// const { getLocation } = require("../src/queries/location");
-// const { getBusinesses } = require("../src/queries/business");
+const { clearTable } = require("./helpers");
 
-// const { clearTable } = require("./helpers");
+describe("Business", function() {
+  afterEach(async function() {
+    await clearTable("blocks");
+    await clearTable("locations");
+    await clearTable("businesses");
+    await clearTable("business_owners");
+  });
+  // { email, password, userName }
+  const userDetails = {
+    email: "moraljera@gmail.com",
+    password: "password",
+    userName: "moral"
+  };
 
-// describe("Business", function() {
-//   afterEach(async function() {
-//     await clearTable("location");
-//     await clearTable("business");
-//   });
-// // { email, password, userName }
+  const location = {
+    street: "street",
+    state: "state",
+    city: "city",
+    province: "province"
+  };
 
-//   const test = {
-//     email: "moraljera@gmail.com",
-//     password: "password",
-//     userName: "moral"
-//   };
+  const businessDetails = {
+    businessName: "company",
+    phoneNumbers: "0824004524",
+    email: "game@gmail.com"
+  };
 
-//   describe.only("Database commands ", () => {
-//     it.only("Should be able to save a new business to the database", async function() {
-//       const businessId = await createFakeBusiness(test);
-//       console.log(" businessId", businessId);
-//       // expect(businessId).to.be.gt(0);
-//     });
+  describe("Database queries", () => {
+    it("Should be able to query locations for business", async function() {
+      const ownerId = await createBusinessOwner(userDetails);
+      const id = await saveBusiness(businessDetails, ownerId);
+      const currentLocation = { ...location, id };
+       await saveLocation(currentLocation);
+      const locations = await getLocation("company");
+      expect(locations[0].street).to.eq(location.street);
+      expect(locations[0].city).to.eq(location.city);
+      expect(locations[0].state).to.eq(location.state);
+      expect(locations[0].province).to.eq(location.province);
+    });
 
-//     it("Should be able to save a location for a business", async function() {
-//       const businessId = await createFakeBusiness(test);
-//       const { id } = await createFakeLocation(businessId);
-//       expect(id).to.be.gt(0);
-//     });
-//   });
+    it("Should be able to query business", async function() {
+      const id = await createBusinessOwner(userDetails);
+       await saveBusiness(businessDetails, id);
+      const businesses = await getBusinesses(id);
+      expect(businessDetails.street).to.eq(businesses.street);
+      expect(businessDetails.city).to.eq(businesses.city);
+      expect(businessDetails.state).to.eq(businesses.state);
+    });
+  });
+});
 
-//   // describe("Database queries", () => {
-//   //   it.only("Should be able to query locations for business", async function() {
-//   //     const businessId = await createFakeBusiness(test);
-//   //     const fakeLocation = await createFakeLocation(businessId);
-//   //     const locations = await getLocation("bkebbngname");
-//   //     const firstLocation = locations[0];
-
-//   //     expect(firstLocation.street).to.eq(fakeLocation.street);
-//   //     expect(firstLocation.city).to.eq(fakeLocation.city);
-//   //     expect(firstLocation.state).to.eq(fakeLocation.state);
-//   //   });
-
-//   //   it.only("Should be able to query business", async function() {
-//   //     await createFakeBusiness(test);
-//   //     const businesses = await getBusinesses();
-
-//   //     const firstBusiness = businesses[0];
-
-//   //     expect(firstBusiness.street).to.eq(test.street);
-//   //     expect(firstBusiness.city).to.eq(test.city);
-//   //     expect(firstBusiness.state).to.eq(test.state);
-//   //   });
-//   // });
-// });
-
-// const createFakeBusiness = async business => {
-//   const id = await saveBusiness(business);
-//   return id;
-// };
-
-// // const createFakeLocation = async businessId => {
-// //   const locationInfo = {
-// //     street: "knb",
-// //     state: "santbn",
-// //     city: "paradabies",
-// //     id: businessId
-// //   };
-
-// //   let id = await saveLocation(locationInfo);
-// //   return { ...locationInfo, id };
-// // };

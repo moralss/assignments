@@ -30,7 +30,7 @@ class BusinessLoginOrSignup extends Component {
           </ul>
         </NavBar>
 
-        <Header> Business owner </Header>
+        <Header> Business Owner </Header>
       </div>
     );
   }

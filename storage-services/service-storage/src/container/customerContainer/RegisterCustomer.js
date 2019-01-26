@@ -34,7 +34,7 @@ class RegisterCustomer extends Component {
     const { errors } = this.state;
     return (
       <div>
-        <Header> Sign up as a Customer. </Header>
+        <Header> Sign up as a Customer </Header>
         <Form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field
             label="Email"
