@@ -7,10 +7,7 @@ const { checkPassword } = require("../src/auth/checkPassword");
 const businessOwnerRoutes = app => {
   app.post("/businessownerlogin", async (req, res) => {
     let { email, password } = req.body;
-    console.log("body" , req.body);
-
     const ownerDetails = await getBusinessOwner(email);
-    console.log("found", ownerDetails);
     if (!ownerDetails) {
       return res.status(404).json({ email: "user not found" });
     }
@@ -27,8 +24,6 @@ const businessOwnerRoutes = app => {
   });
 
 
-
-
   app.post("/businessownersign", async (req, res) => {
     const ownerDetails = req.body;
     const { isValid, errors } = await validateNewOwner(ownerDetails);
@@ -42,7 +37,7 @@ const businessOwnerRoutes = app => {
       await createBusinessOwner(ownerDetails);
       let businessOwner = await getBusinessOwner(ownerDetails.email);
       let token = createToken(businessOwner.id, "business-owner");
-      return res.status(201).json({ token });
+      return res.status(200).json({ token });
     } catch (e) {
       console.log(e);
       return res.status(500).end();
