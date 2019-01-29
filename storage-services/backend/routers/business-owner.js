@@ -37,7 +37,7 @@ const businessOwnerRoutes = app => {
       await createBusinessOwner(ownerDetails);
       let businessOwner = await getBusinessOwner(ownerDetails.email);
       let token = createToken(businessOwner.id, "business-owner");
-      return res.status(200).json({ token });
+      return res.status(201).json({ token });
     } catch (e) {
       console.log(e);
       return res.status(500).end();
