@@ -16,7 +16,7 @@ describe("Business", function() {
     await clearTable("businesses");
     await clearTable("business_owners");
   });
-  // { email, password, userName }
+
   const userDetails = {
     email: "moraljera@gmail.com",
     password: "password",
@@ -49,7 +49,7 @@ describe("Business", function() {
       expect(locations[0].province).to.eq(location.province);
     });
 
-    it("Should be able to query business", async function() {
+    it("Should be able to query businesses", async function() {
       const id = await createBusinessOwner(userDetails);
        await saveBusiness(businessDetails, id);
       const businesses = await getBusinesses(id);

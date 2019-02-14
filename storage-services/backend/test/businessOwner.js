@@ -15,7 +15,7 @@ describe("Business Owner", function() {
   });
 
   const userDetails = {
-    email: "moraljera@gmail.com",
+    email: "moralera@gmail.com",
     password: "password",
     userName: "moral"
   };

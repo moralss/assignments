@@ -45,7 +45,6 @@ const validateNewOwner = async data => {
     errors.confirmPassword = "password does not match";
   }
 
-  console.log(errors);
   return {
     errors,
     isValid: _.isEmpty(errors)

@@ -13,7 +13,7 @@ const { clearTable } = require("./helpers");
 //   });
 
 describe("API Integration Tests", async function() {
-  beforeEach(async function() {
+  afterEach(async function() {
     await clearTable("blocks");
     await clearTable("locations");
     await clearTable("businesses");
@@ -21,7 +21,7 @@ describe("API Integration Tests", async function() {
   });
 
   describe("##User ", function() {
-    it("A user can successfully sign in ", function(done) {
+    it.only("A user can successfully sign in ", function(done) {
       chai
         .request(app)
         .post("/businessownersign")
@@ -37,7 +37,7 @@ describe("API Integration Tests", async function() {
         });
     });
 
-    it("A user can successfully login in ", function(done) {
+    it.only("A user can successfully login in ", function(done) {
       chai
         .request(app)
         .post("/businessownersign")
@@ -50,6 +50,7 @@ describe("API Integration Tests", async function() {
         .end(function(err, res) {
           console.log(err);
         });
+
       chai
         .request(app)
         .post("/businessownerlogin")
@@ -60,7 +61,7 @@ describe("API Integration Tests", async function() {
         .end(function(err, res) {
           expect(res).to.have.status(200);
         });
-        done();
-      });
+      done();
+    });
   });
 });

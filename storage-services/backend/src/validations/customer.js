@@ -9,7 +9,6 @@ const validateNewCustomer = async data => {
   let customerUser = await getCustomerByUserName(data.userName);
 
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  console.log(data);
   const errors = {};
 
   if (customer !== undefined) {
@@ -48,7 +47,6 @@ const validateNewCustomer = async data => {
     errors.confirmPassword = "password does not match";
   }
 
-  console.log(errors);
 
   return {
     errors,

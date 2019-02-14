@@ -18,6 +18,7 @@
     "dotenv": "^6.1.0",
     "express": "^4.16.3",
     "express-validator": "^5.3.0",
+    "helmet": "^3.15.0",
     "jwt-simple": "^0.5.5",
     "lodash": "^4.17.11",
     "mocha": "^5.2.0",
