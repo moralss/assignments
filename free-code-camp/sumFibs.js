@@ -7,7 +7,6 @@
 
 
 function sumFibs(num) {
-
     var fibArray = [1, 1];
 
     var getlastValueInArray = () => fibArray[fibArray.length - 1];
@@ -18,9 +17,7 @@ function sumFibs(num) {
         fibArray.push(getlastValueInArray() + getSecondLastValueInArray());
     }
 
-    var filterOdd = fibArray.filter((value) => value % 2 !== 0);
-
-    return filterEven.reduce((a , b) => a + b);
+    return fibArray;
 }
 
 console.log(sumFibs(4));
