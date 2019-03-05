@@ -1,9 +1,11 @@
 import * as actions from "../../actionTypes";
 import history from "../../history";
 import axios from "axios";
+let url  = "http://0.0.0.0:32282";
 
-const ownerRegisterUrl = "http://localhost:3003/businessownersign";
-const loginInUrl = "http://localhost:3003/businessownerlogin";
+
+const ownerRegisterUrl = `${url}/businessownersign`;
+const loginInUrl = `${url}/businessownerlogin`;
 
 export function logOut() {
   return dispatch => {

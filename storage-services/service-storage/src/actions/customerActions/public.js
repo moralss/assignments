@@ -1,8 +1,10 @@
 import * as actions from "../../actionTypes";
 import axios from "axios";
 import history from "../../history";
-const customerLoginUrl = "http://localhost:3003/customerlogin";
-const customerSignUpUrl = "http://localhost:3003/customersign";
+let url  = "http://0.0.0.0:32282";
+
+const customerLoginUrl = `${url}/customerlogin`;
+const customerSignUpUrl = `${url}/customersign`;
 
 export function registerCustomer(details) {
   return async dispatch => {

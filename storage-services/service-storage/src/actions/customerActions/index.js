@@ -3,9 +3,12 @@ import axios from "axios";
 import { setAxiosHeader } from "../../auth";
 import history from "../../history";
 
-const customerSearchTerm = "http://localhost:3003/searchunittype/";
-const purchaseUrl = "http://localhost:3003/purchaseunit";
-const reservedUnitsUrl = "http://localhost:3003/customerreservedunits";
+let url  = "http://0.0.0.0:32282";
+
+
+const customerSearchTerm = `${url}/searchunittype/`;
+const purchaseUrl = `${url}/purchaseunit`;
+const reservedUnitsUrl = `${url}/customerreservedunits`;
 
 export function searchForUnitType(data) {
   return async dispatch => {

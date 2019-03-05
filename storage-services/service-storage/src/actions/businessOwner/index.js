@@ -2,15 +2,16 @@ import * as actions from "../../actionTypes";
 import axios from "axios";
 import { setAxiosHeader } from "../../auth";
 import history from "../../history";
-const url = "http://localhost:3003/";
+let url  = "http://0.0.0.0:32282";
 
-const businessReservedUnitsUrl = `${url}businessreservedunits`;
-const businessUrl = `${url}business`;
-const businessInfoUrl = `${url}businessinfo/`;
-const locationUrl = `${url}location`;
-const blockUrl = `${url}block/`;
-const unitType = `${url}unittype`;
-const unitTypeUrl = `${url}unittype/`;
+
+const businessReservedUnitsUrl = `${url}/businessreservedunits`;
+const businessUrl = `${url}/business`;
+const businessInfoUrl = `${url}/businessinfo/`;
+const locationUrl = `${url}/location`;
+const blockUrl = `${url}/block/`;
+const unitType = `${url}/unittype`;
+const unitTypeUrl = `${url}/unittype/`;
 
 // http get requests
 
