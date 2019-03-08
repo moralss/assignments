@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+     app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+      - name: server-api
+        image: moralss/server
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3003
+        env:
+        - name: HOST_NAME
+          value: postgres-service
+          name: USER_NAME
+          value: postgres
+          name: PGPORT
+          value: '5432'
+          name: DATABASE_NAME
+          value: storage_unit
+          name:  DATABASE_PASSWORD
+          value: Moral007
+          name:  JWT_SECRET
+          value: dbnnf45d
+
+                               

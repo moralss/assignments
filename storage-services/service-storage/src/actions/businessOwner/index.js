@@ -2,8 +2,9 @@ import * as actions from "../../actionTypes";
 import axios from "axios";
 import { setAxiosHeader } from "../../auth";
 import history from "../../history";
-let url  = "http://0.0.0.0:32282";
 
+
+let url  = process.env.REACT_APP_API
 
 const businessReservedUnitsUrl = `${url}/businessreservedunits`;
 const businessUrl = `${url}/business`;

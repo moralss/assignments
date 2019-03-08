@@ -1,9 +1,11 @@
 import * as actions from "../../actionTypes";
 import axios from "axios";
 import history from "../../history";
-let url  = "http://0.0.0.0:32282";
 
-const customerLoginUrl = `${url}/customerlogin`;
+
+let url  = process.env.REACT_APP_API
+ const customerLoginUrl = `${url}/customerlogin`;
+
 const customerSignUpUrl = `${url}/customersign`;
 
 export function registerCustomer(details) {

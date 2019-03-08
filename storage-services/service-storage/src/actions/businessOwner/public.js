@@ -1,8 +1,8 @@
 import * as actions from "../../actionTypes";
 import history from "../../history";
 import axios from "axios";
-let url  = "http://0.0.0.0:32282";
 
+let url  = process.env.REACT_APP_API
 
 const ownerRegisterUrl = `${url}/businessownersign`;
 const loginInUrl = `${url}/businessownerlogin`;
