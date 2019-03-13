@@ -2,7 +2,7 @@ const { saveUnitType } = require("../src/commands/unit-type");
 const { getUnitTypes } = require("../src/queries/unit-type");
 
 const unitTypeRoutes = app => {
-  app.post("/unittype", async (req, res) => {
+  app.post("/api/unittype", async (req, res) => {
     let unitType = req.body;
     res.send(201).end();
     try {
@@ -14,7 +14,7 @@ const unitTypeRoutes = app => {
     }
   });
 
-  app.get("/unittype/:id", async (req, res) => {
+  app.get("/api/unittype/:id", async (req, res) => {
     let blockId = Number(req.params.id);
 
     try {

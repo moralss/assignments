@@ -2,7 +2,7 @@ const { saveBlock } = require("../src/commands/block");
 const { getBlocks } = require("../src/queries/block");
 
 const blockRoutes = app => {
-  app.post("/block", async (req, res) => {
+  app.post("/api/block", async (req, res) => {
     const block = req.body;
 
     try {
@@ -14,7 +14,7 @@ const blockRoutes = app => {
     }
   });
 
-  app.get("/block/:locationid", async (req, res) => {
+  app.get("/api/block/:locationid", async (req, res) => {
     const locationId = req.params.locationid;
     try {
       let blocks = await getBlocks(locationId);

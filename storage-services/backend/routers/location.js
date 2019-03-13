@@ -2,7 +2,7 @@ const { saveLocation } = require("../src/commands/location");
 const { validateLocation } = require("../src/validations");
 
 const locationRoutes = app => {
-  app.post("/location", async (req, res) => {
+  app.post("/api/location", async (req, res) => {
     const location = req.body;
 
     if (!validateLocation(location)) {

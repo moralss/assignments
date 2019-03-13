@@ -2,7 +2,7 @@ const { jwtCheck } = require("../src/auth/jwtCheck");
 const { createPurchase } = require("../src/commands/purchase");
 
 const purchaseRoutes = app => {
-  app.post("/purchaseunit", jwtCheck, async (req, res) => {
+  app.post("/api/purchaseunit", jwtCheck, async (req, res) => {
 
     const unitId = req.body.unitId;
 

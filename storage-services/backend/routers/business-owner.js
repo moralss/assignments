@@ -5,7 +5,7 @@ const { validateNewOwner } = require("../src/validations/business-owner");
 const { checkPassword } = require("../src/auth/checkPassword");
 
 const businessOwnerRoutes = app => {
-  app.post("/businessownerlogin", async (req, res) => {
+  app.post("/api/businessownerlogin", async (req, res) => {
     let { email, password } = req.body;
     const ownerDetails = await getBusinessOwner(email);
     if (!ownerDetails) {
@@ -24,7 +24,7 @@ const businessOwnerRoutes = app => {
   });
 
 
-  app.post("/businessownersign", async (req, res) => {
+  app.post("/api/businessownersign", async (req, res) => {
     const ownerDetails = req.body;
     const { isValid, errors } = await validateNewOwner(ownerDetails);
 

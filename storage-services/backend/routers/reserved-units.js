@@ -5,7 +5,7 @@ const { jwtCheck } = require("../src/auth/jwtCheck");
 
 
 const reservedUnitsRoutes = app => {
-  app.get("/customerreservedunits", jwtCheck, async (req, res) => {
+  app.get("/api/customerreservedunits", jwtCheck, async (req, res) => {
     try {
       const reservedUnits = await getReservedUnits(req.user.id);
       return res.json(reservedUnits);
@@ -15,7 +15,7 @@ const reservedUnitsRoutes = app => {
     }
   }); 
 
-  app.get("/businessreservedunits", jwtCheck, async (req, res) => {
+  app.get("/api/businessreservedunits", jwtCheck, async (req, res) => {
     try {
       const reservedUnits = await getBusinessReserverdUnits(req.user.id);
       return res.json(reservedUnits);

@@ -1,7 +1,7 @@
 const { getUnitTypeInfo } = require("../src/queries/customer-search");
 
 const customerSearchRoutes = app => {
-  app.get("/searchunittype", async (req, res) => {
+  app.get("/api/searchunittype", async (req, res) => {
     const searchParams = req.query;
 
     try {

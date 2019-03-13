@@ -5,7 +5,7 @@ const { validateNewCustomer } = require("../src/validations/customer");
 const { checkPassword } = require("../src/auth/checkPassword");
 
 const customerRoutes = app => {
-  app.post("/customerlogin", async (req, res) => {
+  app.post("/api/customerlogin", async (req, res) => {
     let { email, password } = req.body;
     const customerDetails = await getCustomerInfo(email);
 
@@ -24,7 +24,7 @@ const customerRoutes = app => {
     return res.json({ token }).end();
   });
 
-  app.post("/customersign", async (req, res) => {
+  app.post("/api/customersign", async (req, res) => {
     const customerDetails = req.body;
 
     const { errors, isValid } = await validateNewCustomer(customerDetails);

@@ -4,7 +4,7 @@ const { validateBusinessInfo } = require("../src/validations/business");
 const { jwtCheck } = require("../src/auth/jwtCheck");
 
 const businessRoutes = app => {
-  app.post("/business", jwtCheck, async (req, res) => {
+  app.post("/api/business", jwtCheck, async (req, res) => {
     const business = req.body;
     const businessOwnerId = Number(req.user.id);
     const { errors, isValid } = await validateBusinessInfo(business);
@@ -26,7 +26,7 @@ const businessRoutes = app => {
     }
   });
 
-  app.get("/business", jwtCheck, async (req, res) => {
+  app.get("/api/business", jwtCheck, async (req, res) => {
     const businessOwnerId = Number(req.user.id);
     try {
       const businesses = await getBusinesses(businessOwnerId);
