@@ -28,4 +28,4 @@ spec:
               subPath: postgres
           env:
             - name: POSTGRES_PASSWORD
-              value: Moral007
+              value: tcgdb1 

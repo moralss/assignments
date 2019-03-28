@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: client-deployment
+  name: web
   labels:
    app: web
 spec:
@@ -15,12 +15,14 @@ spec:
         app: web
     spec:
      containers:
-     - name: client
-       image: moralss/react-client
-       imagePullPolicy: Never
+     - name: client-cluster-ip-service
+       image: tcgdockerregistry.azurecr.io/moral-react-client
+       imagePullPolicy: IfNotPresent
        ports:
        - containerPort: 80
        env:
        - name: REACT_APP_API
          value: '192.168.0.25:30006'
+     imagePullSecrets:  
+       - name: tcg
 

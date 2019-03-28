@@ -1,21 +1,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: server-deployment
+  name: server
 spec:
   replicas: 1
   selector:
     matchLabels:
-     app: server
+      app: server
   template:
     metadata:
       labels:
-        app: server
+       app: server
     spec:
       containers:
-      - name: server-api
-        image: moralss/server
-        imagePullPolicy: Never
+      - name: server-cluster-ip-service
+        image: tcgdockerregistry.azurecr.io/moral-server
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3003
         env:
@@ -31,5 +31,6 @@ spec:
           value: Moral007
           name:  JWT_SECRET
           value: dbnnf45d
+      imagePullSecrets:  
+        - name: tcg
 
-                               
