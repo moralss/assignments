@@ -4,6 +4,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
+
     }
 }
 
@@ -26,6 +27,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+
+    
     compile("org.springframework.boot:spring-boot-starter-web")
     compile 'io.jsonwebtoken:jjwt:0.7.0'
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')

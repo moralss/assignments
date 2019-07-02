@@ -1,12 +1,17 @@
 package com.storageapp.domain;
 
-public class User {
-private String name;
-private String password;
+public class User  {
 
-    public User(String name, String password) {
-        this.name = name;
+    private long id;
+    private String userName;
+    private String password;
+    private String email;
+//    private String
+
+    public User(String userName, String password , String email) {
+        this.userName = userName;
         this.password = password;
+        this.email = email;
     }
 
     public String getPassword() {
@@ -18,10 +23,26 @@ private String password;
     }
 
     public String getName() {
-        return name;
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String userName) {
+        this.userName = userName;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
