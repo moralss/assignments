@@ -1,10 +1,13 @@
 package com.storageapp.config;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 
 
+    @Component
     public class Database  {
 
         private final String url = "jdbc:postgresql://localhost/storage_services";
