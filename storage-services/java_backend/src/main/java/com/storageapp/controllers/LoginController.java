@@ -3,15 +3,18 @@ package com.storageapp.controllers;
 
 //import com.storageapp.config.JwtResponse;
 //import com.storageapp.config.JwtTokenUtil;
+
 import com.storageapp.domain.*;
 
 import com.storageapp.repository.UserRepository;
-//import com.storageapp.services.JwtUserDetailsService;
-
+import com.storageapp.security.JwtGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.PasswordAuthentication;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -20,57 +23,52 @@ import java.util.logging.Logger;
 @RestController
 public class LoginController {
 
+
     @Autowired
-    private UserRepository services;
+    private UserRepository userRepository;
 
-//    @Autowired
-//    private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private JwtGenerator jwtGenerator;
 
-//
-//    @Autowired
-//    private JwtUserDetailsService userDetailsService;
-//
-//
-//    @PostMapping("/api/businessownersign")
-//    public Map<String, String> registerUser(@RequestBody User user){
-//        user.getName();
-//        services.saveUser(user);
-//        Map<String , String > tokens = new HashMap<String , String>();
-//        String token = Jwts.builder().setSubject(user.getName()).claim("roles", "user").setIssuedAt(new Date())
-//                .signWith(SignatureAlgorithm.HS256, "secretkey").compact();
-//        tokens.put("token" , token);
-//        return tokens;
-//
-//
-//    }
+    @PostMapping("/registor")
+    public Map<String , String> registorUser(@RequestBody User registorDetails) {
+        Map<String, String> token = new HashMap<>();
+        User user = userRepository.saveUser(registorDetails);
+        String generatoredToken = jwtGenerator.generate(registorDetails);
+        token.put("token" , generatoredToken);
+        return token;
+    }
+
 
     @RequestMapping("/cars")
-    public User getBusiness(@RequestParam  String name){
-        User user = services.findUserByUserName(name);
-        System.out.println(user);
+    public User getBusiness(@RequestParam String name) {
+        User user = userRepository.findUserByUserName(name);
+        System.out.println("user " + user);
         return user;
     }
 
 
     @PostMapping("/authenticate")
-    public Map<String , String> createAuthenticationToken(@RequestBody User user)  {
-        Map<String ,String > giveToken = new HashMap<String , String>();
+    public Map<String , String> createAuthenticationToken(@RequestBody JwtRequest user) {
+        Map<String , String> token = new HashMap<>();
+        try {
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+            User foundUser = userRepository.findUserByUserName(user.getUserName());
+            if(foundUser == null){
+                throw new UsernameNotFoundException("user not found");
+            }
+            boolean isAuthorization = bCryptPasswordEncoder.matches(user.getPassword(), foundUser.getPassword());
+            if (!isAuthorization) {
+                System.out.println("password is incorrect !");
+            } else {
+                String generatedToken = jwtGenerator.generate(foundUser);
+                token.put("token" , generatedToken);
+            }
 
-//        try{
-//            System.out.println(user.getName());
-//            final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getName());
-//            System.out.println("userDetails" + user);
-////            final String token = jwtTokenUtil.generateToken(user);
-//            System.out.println(" token >>>>>>" +  token);
-//            Logger.getLogger("token >>>>>>>>>" + token);
-//
-//            giveToken.put("token" , token);
-//
-//        }catch (Exception ex){
-//            System.out.println(ex);
-//        }
-
-        return giveToken;
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return token;
     }
 }
 
