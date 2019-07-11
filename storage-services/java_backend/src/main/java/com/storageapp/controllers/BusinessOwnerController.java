@@ -14,15 +14,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.PasswordAuthentication;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 
 @RestController
 public class LoginController {
-
 
     @Autowired
     private UserRepository userRepository;
@@ -30,7 +27,8 @@ public class LoginController {
     @Autowired
     private JwtGenerator jwtGenerator;
 
-    @PostMapping("/registor")
+
+    @PostMapping("/api/businessownersign")
     public Map<String , String> registorUser(@RequestBody User registorDetails) {
         Map<String, String> token = new HashMap<>();
         User user = userRepository.saveUser(registorDetails);
@@ -40,20 +38,13 @@ public class LoginController {
     }
 
 
-    @RequestMapping("/cars")
-    public User getBusiness(@RequestParam String name) {
-        User user = userRepository.findUserByUserName(name);
-        System.out.println("user " + user);
-        return user;
-    }
-
-
-    @PostMapping("/authenticate")
+    @PostMapping("/api/businessownerlogin")
     public Map<String , String> createAuthenticationToken(@RequestBody JwtRequest user) {
         Map<String , String> token = new HashMap<>();
         try {
             BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
             User foundUser = userRepository.findUserByUserName(user.getUserName());
+
             if(foundUser == null){
                 throw new UsernameNotFoundException("user not found");
             }

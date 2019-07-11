@@ -15,14 +15,13 @@ spec:
         app: web
     spec:
      containers:
-     - name: client-cluster-ip-service
-       image: tcgdockerregistry.azurecr.io/moral-react-client
-       imagePullPolicy: IfNotPresent
+     - name: client-service
+       image: 447795736826.dkr.ecr.eu-west-2.amazonaws.com/students:react-app
        ports:
        - containerPort: 80
-       env:
-       - name: REACT_APP_API
-         value: '192.168.0.25:30006'
+         #env:
+               #- name: REACT_APP_API
+               #j  value: http://ac88a44a6935711e982b602f197ebe6f-1529281652.eu-west-2.elb.amazonaws.com/api/ 
      imagePullSecrets:  
        - name: tcg
 

@@ -1,0 +1,24 @@
+ingress:
+  ## If true, Moodle server Ingress will be created
+  ##
+  enabled: true
+
+  ## Moodle server Ingress annotations
+  ##
+  annotations: {}
+  #   kubernetes.io/ingress.class: nginx
+  #   kubernetes.io/tls-acme: 'true'
+
+  ## Moodle server Ingress hostnames
+  ## Must be provided if Ingress is enabled
+  ##
+  hosts:
+    - moodle.domain.com
+
+  ## Moodle server Ingress TLS configuration
+  ## Secrets must be manually created in the namespace
+  ##
+  tls:
+    - secretName: moodle-server-tls
+      hosts:
+        - moodle.domain.com

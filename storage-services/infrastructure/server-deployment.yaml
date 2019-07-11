@@ -13,23 +13,23 @@ spec:
        app: server
     spec:
       containers:
-      - name: server-cluster-ip-service
-        image: tcgdockerregistry.azurecr.io/moral-server
+      - name: server-service
+        image: 447795736826.dkr.ecr.eu-west-2.amazonaws.com/students:node-app
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3003
         env:
         - name: HOST_NAME
           value: postgres-service
-          name: USER_NAME
+        - name: USER_NAME
           value: postgres
-          name: PGPORT
+        - name: PGPORT
           value: '5432'
-          name: DATABASE_NAME
+        - name: DATABASE_NAME
           value: storage_unit
-          name:  DATABASE_PASSWORD
-          value: Moral007
-          name:  JWT_SECRET
+        - name:  DATABASE_PASSWORD
+          value: tcg1
+        - name:  JWT_SECRET
           value: dbnnf45d
       imagePullSecrets:  
         - name: tcg
