@@ -1,8 +1,8 @@
 package com.storageapp.security;
 
+import com.storageapp.domain.BusinessOwner;
 import com.storageapp.domain.JwtAuthenticationToken;
 import com.storageapp.domain.JwtUserDetails;
-import com.storageapp.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
@@ -31,15 +31,15 @@ import java.util.List;
             JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) usernamePasswordAuthenticationToken;
             String token = jwtAuthenticationToken.getToken();
 
-            User jwtUser = validator.validate(token);
+            BusinessOwner jwtBusinessOwner = validator.validate(token);
 
-            if (jwtUser == null) {
+            if (jwtBusinessOwner == null) {
                 throw new RuntimeException("JWT Token is incorrect");
             }
 
             List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-                    .commaSeparatedStringToAuthorityList(jwtUser.getEmail());
-            return new JwtUserDetails(jwtUser.getUserName(), jwtUser.getId(),
+                    .commaSeparatedStringToAuthorityList(jwtBusinessOwner.getEmail());
+            return new JwtUserDetails(jwtBusinessOwner.getUserName(), jwtBusinessOwner.getId(),
                     token,
                     grantedAuthorities);
         }

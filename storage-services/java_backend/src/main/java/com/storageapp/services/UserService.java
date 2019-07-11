@@ -1,8 +1,8 @@
 package com.storageapp.services;
 
-import com.storageapp.domain.User;
+import com.storageapp.domain.BusinessOwner;
 
 public interface UserService {
-    User save(User user);
+    BusinessOwner save(BusinessOwner businessOwner);
 
 }

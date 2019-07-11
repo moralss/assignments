@@ -14,15 +14,13 @@ import java.io.IOException;
 public class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessingFilter {
 
     public JwtAuthenticationTokenFilter() {
-
-        super("/cars**");
+        super("/api/business/**");
     }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
 
-        String header = httpServletRequest.getHeader("Authorisation");
-
+        String header = httpServletRequest.getHeader("Authorization");
 
         if (header == null || !header.startsWith("Token ")) {
             throw new RuntimeException("JWT Token is missing");

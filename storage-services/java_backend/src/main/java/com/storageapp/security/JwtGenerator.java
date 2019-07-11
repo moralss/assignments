@@ -1,23 +1,22 @@
 package com.storageapp.security;
 
-import com.storageapp.domain.User;
+import com.storageapp.domain.BusinessOwner;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.springframework.stereotype.Component;
 
 @Component
 public class JwtGenerator {
 
 
-    public String generate(User user) {
+    public String generate(BusinessOwner businessOwner) {
 
 
         Claims claims = Jwts.claims()
-                .setSubject(user.getUserName());
-        claims.put("userId", user.getId());
-        claims.put("email", user.getEmail());
+                .setSubject(businessOwner.getUserName());
+        claims.put("userId", businessOwner.getId());
+        claims.put("email", businessOwner.getEmail());
 
 
         return Jwts.builder()

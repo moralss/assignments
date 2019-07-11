@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 
-
     @Component
     public class Database  {
 

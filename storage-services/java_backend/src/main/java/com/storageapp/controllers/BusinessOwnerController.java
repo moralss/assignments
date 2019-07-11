@@ -6,10 +6,9 @@ package com.storageapp.controllers;
 
 import com.storageapp.domain.*;
 
-import com.storageapp.repository.UserRepository;
+import com.storageapp.repository.BusinessOwnerRepository;
 import com.storageapp.security.JwtGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -19,20 +18,20 @@ import java.util.Map;
 
 
 @RestController
-public class LoginController {
+public class BusinessOwnerController {
 
     @Autowired
-    private UserRepository userRepository;
+    private BusinessOwnerRepository businessOwnerRepository;
 
     @Autowired
     private JwtGenerator jwtGenerator;
 
 
     @PostMapping("/api/businessownersign")
-    public Map<String , String> registorUser(@RequestBody User registorDetails) {
+    public Map<String , String> registorUser(@RequestBody BusinessOwner registorDetails) {
         Map<String, String> token = new HashMap<>();
-        User user = userRepository.saveUser(registorDetails);
-        String generatoredToken = jwtGenerator.generate(registorDetails);
+        BusinessOwner businessOwner = businessOwnerRepository.saveUser(registorDetails);
+        String generatoredToken = jwtGenerator.generate(businessOwner);
         token.put("token" , generatoredToken);
         return token;
     }
@@ -43,19 +42,17 @@ public class LoginController {
         Map<String , String> token = new HashMap<>();
         try {
             BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-            User foundUser = userRepository.findUserByUserName(user.getUserName());
-
-            if(foundUser == null){
+            BusinessOwner foundBusinessOwner = businessOwnerRepository.findUserByUserName(user.getUserName());
+            if(foundBusinessOwner == null){
                 throw new UsernameNotFoundException("user not found");
             }
-            boolean isAuthorization = bCryptPasswordEncoder.matches(user.getPassword(), foundUser.getPassword());
+            boolean isAuthorization = bCryptPasswordEncoder.matches(user.getPassword(), foundBusinessOwner.getPassword());
             if (!isAuthorization) {
                 System.out.println("password is incorrect !");
             } else {
-                String generatedToken = jwtGenerator.generate(foundUser);
+                String generatedToken = jwtGenerator.generate(foundBusinessOwner);
                 token.put("token" , generatedToken);
             }
-
         } catch (Exception ex) {
             System.out.println(ex);
         }

@@ -1,7 +1,7 @@
 package com.storageapp.domain;
 
 
-public class User  {
+public class BusinessOwner {
 
     private long id;
     private String userName;
@@ -9,12 +9,12 @@ public class User  {
     private String email;
 
 
-    public User(){
+    public BusinessOwner(){
 
     }
 
 
-    public User(long id , String userName, String password , String email) {
+    public BusinessOwner(long id , String userName, String password , String email) {
         this.id = id;
         this.userName = userName;
         this.password = password;
