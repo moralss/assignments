@@ -29,6 +29,7 @@ export function registerBusinessOwner(details) {
     dispatch({ type: actions.LOADING_TRUE });
     try {
       let res = await axios.post(ownerRegisterUrl, { ...details });
+console.log(res)	    
       dispatch({ type: actions.OWNER_AUTHENTICATED, payload: true });
       localStorage.setItem("authorization", res.data.token);
       history.push("/registerbusiness");
